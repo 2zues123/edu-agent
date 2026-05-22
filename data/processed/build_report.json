@@ -1,0 +1,96 @@
+{
+  "built_at": "2026-05-22T02:05:54.429611+00:00",
+  "raw_dir": "data/raw",
+  "output": "data/processed/chunks.jsonl",
+  "document_count": 12,
+  "parsed_count": 12,
+  "failed_count": 0,
+  "chunk_count": 132,
+  "parsed": [
+    {
+      "source_file": "data/raw/courses/32201188_智能推荐.docx",
+      "category": "courses",
+      "title": "32201188_智能推荐",
+      "text_chars": 6297,
+      "chunks": 9
+    },
+    {
+      "source_file": "data/raw/courses/32201264-人工智能导论.docx",
+      "category": "courses",
+      "title": "32201264-人工智能导论",
+      "text_chars": 7225,
+      "chunks": 9
+    },
+    {
+      "source_file": "data/raw/courses/32201270_机器学习.docx",
+      "category": "courses",
+      "title": "32201270_机器学习",
+      "text_chars": 4804,
+      "chunks": 6
+    },
+    {
+      "source_file": "data/raw/courses/32201271_科学计算.docx",
+      "category": "courses",
+      "title": "32201271_科学计算",
+      "text_chars": 4375,
+      "chunks": 4
+    },
+    {
+      "source_file": "data/raw/courses/32201273_经典模型.docx",
+      "category": "courses",
+      "title": "32201273_经典模型",
+      "text_chars": 4232,
+      "chunks": 5
+    },
+    {
+      "source_file": "data/raw/courses/32201274_数字图像处理.docx",
+      "category": "courses",
+      "title": "32201274_数字图像处理",
+      "text_chars": 5443,
+      "chunks": 6
+    },
+    {
+      "source_file": "data/raw/programs/2019级软件工程专业人才培养方案20190720修改稿v2.doc",
+      "category": "programs",
+      "title": "2019级软件工程专业人才培养方案20190720修改稿v2",
+      "text_chars": 11673,
+      "chunks": 17
+    },
+    {
+      "source_file": "data/raw/programs/2020级软件工程专业人才培养方案v8.docx",
+      "category": "programs",
+      "title": "2020级软件工程专业人才培养方案v8",
+      "text_chars": 11763,
+      "chunks": 18
+    },
+    {
+      "source_file": "data/raw/programs/2021级软件工程专业人才培养方案v9.pdf",
+      "category": "programs",
+      "title": "2021级软件工程专业人才培养方案v9",
+      "text_chars": 12433,
+      "chunks": 14
+    },
+    {
+      "source_file": "data/raw/programs/2022级软件工程专业人才培养方案v9.pdf",
+      "category": "programs",
+      "title": "2022级软件工程专业人才培养方案v9",
+      "text_chars": 11821,
+      "chunks": 12
+    },
+    {
+      "source_file": "data/raw/programs/2024培养方案.pdf",
+      "category": "programs",
+      "title": "2024培养方案",
+      "text_chars": 13719,
+      "chunks": 15
+    },
+    {
+      "source_file": "data/raw/programs/2025软件工程专业培养方案.docx",
+      "category": "programs",
+      "title": "2025软件工程专业培养方案",
+      "text_chars": 12222,
+      "chunks": 17
+    }
+  ],
+  "failed": []
+}
