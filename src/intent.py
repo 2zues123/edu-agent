@@ -17,6 +17,7 @@ INTENTS = {
     "course": Intent("course", "courses", "课程大纲、课程内容、考核方式、先修课程相关问题"),
     "workflow": Intent("workflow", "workflows", "办事流程、申请材料、办理步骤相关问题"),
     "policy": Intent("policy", "policies", "学籍、考试、成绩、补考重修等制度问题"),
+    "knowledge": Intent("knowledge", None, "通用知识讲解、概念解释、原理说明类问题"),
     "general": Intent("general", None, "通用问题"),
 }
 
@@ -43,9 +44,26 @@ COURSE_HINTS = [
     "数字图像处理",
 ]
 
+KNOWLEDGE_PATTERNS = [
+    "什么是",
+    "讲一下",
+    "介绍一下",
+    "解释一下",
+    "说明一下",
+    "原理",
+    "概念",
+    "定义",
+    "区别",
+    "为什么",
+    "如何理解",
+]
+
 
 def classify_intent(question: str) -> Intent:
     text = question.strip()
+    if any(pattern in text for pattern in KNOWLEDGE_PATTERNS):
+        return INTENTS["knowledge"]
+
     if "学分" in text and any(word in text for word in COURSE_HINTS):
         return INTENTS["course"]
 

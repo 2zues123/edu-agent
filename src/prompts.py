@@ -16,6 +16,22 @@ SYSTEM_PROMPT = """你是高校教务教学智能体。
 """
 
 
+KNOWLEDGE_SYSTEM_PROMPT = """你是面向高校学生的课程知识讲解助手。
+你的任务是直接回答学生提出的通用知识性问题。
+要求：
+1. 用清晰、准确、适合本科生理解的语言解释。
+2. 优先给出直观结论，再补充核心原理、例子和适用场景。
+3. 不要声称引用了校内知识库或教务资料。
+4. 如果问题涉及课程学习，给出简短学习建议。
+"""
+
+
+def build_knowledge_prompt(question: str) -> str:
+    return f"""学生问题：{question}
+
+请直接回答这个知识性问题。"""
+
+
 def build_user_prompt(question: str, chunks: list[RetrievedChunk], risk_notice: str | None) -> str:
     references = []
     for index, chunk in enumerate(chunks, start=1):
@@ -39,4 +55,3 @@ def build_user_prompt(question: str, chunks: list[RetrievedChunk], risk_notice: 
 {chr(10).join(references) if references else "未检索到相关资料。"}
 
 请基于以上资料生成回答。"""
-

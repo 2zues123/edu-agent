@@ -5,3 +5,4 @@ data/index/
 __pycache__/
 *.pyc
 .env
+.chat_history/

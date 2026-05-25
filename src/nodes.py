@@ -6,7 +6,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from src.intent import classify_intent
 from src.llm import build_deepseek_chat
-from src.prompts import SYSTEM_PROMPT, build_user_prompt
+from src.prompts import KNOWLEDGE_SYSTEM_PROMPT, SYSTEM_PROMPT, build_knowledge_prompt, build_user_prompt
 from src.retriever import HybridRetriever, RetrievedChunk
 from src.risk import RISK_NOTICE, is_high_risk
 from src.state import AgentState
@@ -25,8 +25,11 @@ def detect_risk_node(state: AgentState) -> AgentState:
 
 
 def retrieve_knowledge_node(state: AgentState) -> AgentState:
-    retriever = HybridRetriever()
     intent = state.get("intent")
+    if intent and intent.name == "knowledge":
+        return {"sources": []}
+
+    retriever = HybridRetriever()
     category = intent.category if intent else None
     top_k = state.get("top_k", 5)
 
@@ -39,6 +42,17 @@ def retrieve_knowledge_node(state: AgentState) -> AgentState:
 def generate_answer_node(state: AgentState) -> AgentState:
     sources = state.get("sources", [])
     risk_notice = state.get("risk_notice")
+    intent = state.get("intent")
+
+    if intent and intent.name == "knowledge":
+        llm = build_deepseek_chat()
+        response = llm.invoke(
+            [
+                SystemMessage(content=KNOWLEDGE_SYSTEM_PROMPT),
+                HumanMessage(content=build_knowledge_prompt(state["question"])),
+            ]
+        )
+        return {"answer": str(response.content)}
 
     if not state.get("use_llm", True):
         return {"answer": build_fallback_answer(sources, risk_notice)}
