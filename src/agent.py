@@ -95,15 +95,49 @@ class AcademicAgent:
         if not sources:
             return "当前知识库中没有检索到明确依据，建议咨询学院教务办公室。"
 
-        lines = ["已检索到以下相关依据，可用于生成回答："]
+        if is_open_listing_question(question):
+            lines = ["根据已检索资料，可参考的相关项目/成果包括："]
+        else:
+            lines = ["已检索到以下相关依据，可用于生成回答："]
         if risk_notice:
             lines.append(f"\n风险提示：{risk_notice}")
         for index, source in enumerate(sources, start=1):
-            excerpt = source.text[:280].replace("\n", " ")
+            text = source_attr(source, "text")
+            title = source_attr(source, "title") or "未命名资料"
+            heading = source_attr(source, "heading") or "未识别章节"
+            source_file = source_attr(source, "source_file") or "未知来源"
+            excerpt = relevant_excerpt(text, question)
+            source_line = f"来源：{source_file}"
+            source_url = source_attr(source, "source_url")
+            if source_url:
+                source_line += f"\n官网链接：{source_url}"
             lines.append(
-                f"\n[资料{index}] {source.title}｜{source.heading or '未识别章节'}\n"
-                f"来源：{source.source_file}\n"
+                f"\n[资料{index}] {title}｜{heading}\n"
+                f"{source_line}\n"
                 f"片段：{excerpt}"
             )
         return "\n".join(lines)
 
+
+def is_open_listing_question(question: str) -> bool:
+    return any(word in question for word in ["优秀", "项目", "成果", "荣誉", "竞赛", "大赛", "实训", "实践"])
+
+
+def relevant_excerpt(text: str, question: str, *, length: int = 360) -> str:
+    compact = " ".join(text.split())
+    keywords = ["项目", "成果", "荣誉", "竞赛", "大赛", "实训", "实践", "AI+PBL", "创新"]
+    if question:
+        keywords = [word for word in keywords if word in question or word in compact] or keywords
+    positions = [compact.find(word) for word in keywords if compact.find(word) >= 0]
+    if not positions:
+        return compact[:length]
+    start = max(0, min(positions) - 80)
+    end = min(len(compact), start + length)
+    prefix = "..." if start > 0 else ""
+    suffix = "..." if end < len(compact) else ""
+    return f"{prefix}{compact[start:end]}{suffix}"
+
+
+def source_attr(source: RetrievedChunk, name: str, default: str = "") -> str:
+    value = getattr(source, name, default)
+    return default if value is None else str(value)

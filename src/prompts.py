@@ -32,26 +32,43 @@ def build_knowledge_prompt(question: str) -> str:
 请直接回答这个知识性问题。"""
 
 
+def chunk_attr(chunk: RetrievedChunk, name: str, default: str = "") -> str:
+    value = getattr(chunk, name, default)
+    return default if value is None else str(value)
+
+
 def build_user_prompt(question: str, chunks: list[RetrievedChunk], risk_notice: str | None) -> str:
     references = []
     for index, chunk in enumerate(chunks, start=1):
+        source_url = chunk_attr(chunk, "source_url")
+        published_at = chunk_attr(chunk, "published_at")
         references.append(
             "\n".join(
-                [
+                item for item in [
                     f"[资料{index}]",
-                    f"标题：{chunk.title}",
-                    f"类别：{chunk.category}",
-                    f"章节：{chunk.heading or '未识别章节'}",
-                    f"来源：{chunk.source_file}",
-                    f"内容：{chunk.text}",
-                ]
+                    f"标题：{chunk_attr(chunk, 'title')}",
+                    f"类别：{chunk_attr(chunk, 'category')}",
+                    f"章节：{chunk_attr(chunk, 'heading') or '未识别章节'}",
+                    f"来源：{chunk_attr(chunk, 'source_file')}",
+                    f"官网链接：{source_url}" if source_url else "",
+                    f"发布时间：{published_at}" if published_at else "",
+                    f"内容：{chunk_attr(chunk, 'text')}",
+                ] if item
             )
         )
 
     risk_text = f"\n风险提示要求：{risk_notice}\n" if risk_notice else ""
+    answer_policy = """
+回答策略：
+1. 如果问题是“优秀项目、项目成果、科研项目、教学成果、实训项目、竞赛、大赛、荣誉、活动成果”等开放式查询，请从资料中提取并列出具体条目、栏目、活动、项目、成果或案例。
+2. 资料里没有完全同名的“优秀项目”栏目时，不要直接回答“没有”。如果有语义相关内容，请写成“可参考的相关项目/成果包括”，并逐条列出依据。
+3. 只有在资料完全无关、无法提取具体内容时，才说明当前知识库依据不足。
+4. 不要把“未明确命名为优秀项目”和“没有相关项目”混为一谈。
+"""
     return f"""学生问题：{question}
 {risk_text}
 知识库片段：
 {chr(10).join(references) if references else "未检索到相关资料。"}
 
+{answer_policy}
 请基于以上资料生成回答。"""

@@ -29,6 +29,9 @@ class SourceDocument:
     title: str
     suffix: str
     doc_id: str
+    source_url: str = ""
+    site: str = ""
+    published_at: str = ""
 
 
 @dataclass
@@ -41,6 +44,9 @@ class Chunk:
     chunk_index: int
     heading: str
     text: str
+    source_url: str = ""
+    site: str = ""
+    published_at: str = ""
 
 
 def stable_id(value: str, length: int = 16) -> str:
@@ -59,23 +65,75 @@ def infer_title(path: Path) -> str:
     return path.stem.strip()
 
 
+def infer_category(path: Path, raw_dir: Path) -> str:
+    relative_parts = path.relative_to(raw_dir).parts
+    if relative_parts and relative_parts[0] in {"web", "web_attachments"}:
+        return "web"
+    return path.parent.name
+
+
+def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
+    if not text.startswith("---\n"):
+        return {}, text
+    end = text.find("\n---", 4)
+    if end < 0:
+        return {}, text
+
+    metadata: dict[str, str] = {}
+    raw_metadata = text[4:end].splitlines()
+    for line in raw_metadata:
+        if ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        metadata[key.strip()] = value.strip()
+    body = text[end + 4 :].lstrip("\r\n")
+    return metadata, body
+
+
+def read_sidecar_metadata(path: Path) -> dict[str, str]:
+    candidates = [
+        path.with_suffix(path.suffix + ".meta.json"),
+        path.with_suffix(".meta.json"),
+    ]
+    for candidate in candidates:
+        if not candidate.exists():
+            continue
+        try:
+            data = json.loads(candidate.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if isinstance(data, dict):
+            return {str(key): str(value) for key, value in data.items() if value is not None}
+    return {}
+
+
 def discover_documents(raw_dir: Path) -> list[SourceDocument]:
     documents: list[SourceDocument] = []
     for path in sorted(raw_dir.rglob("*")):
-        if not path.is_file() or path.name.startswith("."):
+        if not path.is_file() or path.name.startswith(".") or path.name.startswith("~$"):
             continue
         suffix = path.suffix.lower()
         if suffix not in SUPPORTED_SUFFIXES:
             continue
-        category = path.parent.name
+        metadata = read_sidecar_metadata(path)
+        if suffix == ".md":
+            try:
+                markdown_metadata, _body = parse_front_matter(read_text_file(path))
+                metadata = {**metadata, **markdown_metadata}
+            except OSError:
+                pass
+        category = metadata.get("category") or infer_category(path, raw_dir)
         doc_id = stable_id(str(path))
         documents.append(
             SourceDocument(
                 path=path,
                 category=category,
-                title=infer_title(path),
+                title=metadata.get("title") or infer_title(path),
                 suffix=suffix,
                 doc_id=doc_id,
+                source_url=metadata.get("source_url", ""),
+                site=metadata.get("site", ""),
+                published_at=metadata.get("published_at", ""),
             )
         )
     return documents
@@ -88,6 +146,26 @@ def read_text_file(path: Path) -> str:
         except UnicodeDecodeError:
             continue
     return path.read_text(encoding="utf-8", errors="ignore")
+
+
+def read_docx(path: Path) -> str:
+    try:
+        from docx import Document  # type: ignore
+    except ModuleNotFoundError:
+        return read_with_textutil(path)
+
+    document = Document(str(path))
+    parts: list[str] = []
+    for paragraph in document.paragraphs:
+        text = paragraph.text.strip()
+        if text:
+            parts.append(text)
+    for table in document.tables:
+        for row in table.rows:
+            cells = [cell.text.strip() for cell in row.cells if cell.text.strip()]
+            if cells:
+                parts.append(" | ".join(cells))
+    return "\n".join(parts)
 
 
 def read_with_textutil(path: Path) -> str:
@@ -136,8 +214,11 @@ def read_pdf(path: Path) -> str:
 
 def extract_text(document: SourceDocument) -> str:
     if document.suffix in {".txt", ".md"}:
-        return read_text_file(document.path)
-    if document.suffix in {".doc", ".docx"}:
+        metadata, body = parse_front_matter(read_text_file(document.path))
+        return body if metadata else read_text_file(document.path)
+    if document.suffix == ".docx":
+        return read_docx(document.path)
+    if document.suffix == ".doc":
         return read_with_textutil(document.path)
     if document.suffix == ".pdf":
         return read_pdf(document.path)
@@ -239,6 +320,9 @@ def chunk_text(
                     chunk_index=index,
                     heading=pending_heading,
                     text=part,
+                    source_url=document.source_url,
+                    site=document.site,
+                    published_at=document.published_at,
                 )
             )
         pending_heading = ""
@@ -295,6 +379,9 @@ def build_chunks(args: argparse.Namespace) -> int:
                     "title": document.title,
                     "text_chars": len(text),
                     "chunks": len(chunks),
+                    "source_url": document.source_url,
+                    "site": document.site,
+                    "published_at": document.published_at,
                 }
             )
         except Exception as exc:

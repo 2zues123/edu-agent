@@ -9,7 +9,7 @@
 安装依赖：
 
 ```bash
-/Users/tml/miniconda3/envs/langchain/bin/pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 生成知识库切分结果：

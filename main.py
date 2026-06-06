@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import sys
 
 from src.graph import LangGraphAcademicAgent
 
@@ -14,6 +15,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> int:
+    configure_stdout()
     args = parse_args()
     question = " ".join(args.question).strip()
     if not question:
@@ -34,9 +36,26 @@ def main() -> int:
     if result.sources:
         print("\n引用来源：")
         for index, source in enumerate(result.sources, start=1):
-            heading = source.heading or "未识别章节"
-            print(f"{index}. {source.title}｜{heading}｜{source.source_file}")
+            heading = source_attr(source, "heading") or "未识别章节"
+            title = source_attr(source, "title") or "未命名资料"
+            source_file = source_attr(source, "source_file") or "未知来源"
+            print(f"{index}. {title}｜{heading}｜{source_file}")
+            source_url = source_attr(source, "source_url")
+            if source_url:
+                print(f"   官网链接：{source_url}")
     return 0
+
+
+def configure_stdout() -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
+
+def source_attr(source, name: str, default: str = "") -> str:
+    value = getattr(source, name, default)
+    return default if value is None else str(value)
 
 
 if __name__ == "__main__":
