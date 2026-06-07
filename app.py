@@ -1102,7 +1102,7 @@ def main() -> None:
         page_title="河北师范大学教务智能体",
         page_icon="🎓",
         layout="wide",
-        initial_sidebar_state="expanded",
+        initial_sidebar_state="collapsed",
     )
 
     view = current_view()
