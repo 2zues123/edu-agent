@@ -6,3 +6,10 @@ __pycache__/
 *.pyc
 .env
 .chat_history/
+.claude/
+__MACOSX/
+edu-agent/
+*.log
+.trae/
+.uploads/
+static/

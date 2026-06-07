@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(python -c \"\nimport requests, re\n\nr = requests.get(''https://www.hebtu.edu.cn/'', timeout=15, headers={''User-Agent'': ''Mozilla/5.0''})\n\n# Simple regex\npattern = r''src=\"\"(https?://[^\"\"]+\\.(?:jpg|jpeg|png))\"\"''\nmatches = re.findall(pattern, r.text, re.I)\nall_imgs = set(matches)\n\n# Also check for background images in style\npattern2 = r''url\\((https?://[^)]+\\.(?:jpg|jpeg|png))\\)''\nmatches2 = re.findall(pattern2, r.text, re.I)\nall_imgs.update(matches2)\n\nprint(f''Found {len(all_imgs)} unique images:'')\nfor img in sorted(all_imgs):\n    marker = '' ***'' if ''/resources/'' in img else ''''\n    print(f''  {img}{marker}'')\n\")"
-    ],
-    "deny": [],
-    "ask": []
-  }
-}
