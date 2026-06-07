@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from langgraph.graph import END, StateGraph
 
-from src.nodes import classify_intent_node, detect_risk_node, generate_answer_node, retrieve_knowledge_node
-from src.retriever import RetrievedChunk
 from src.state import AgentState
+
+if TYPE_CHECKING:
+    from src.retriever import RetrievedChunk
 
 
 @dataclass(frozen=True)
@@ -22,6 +24,8 @@ class GraphAgentAnswer:
 
 
 def build_agent_graph():
+    from src.nodes import classify_intent_node, detect_risk_node, generate_answer_node, retrieve_knowledge_node
+
     graph = StateGraph(AgentState)
     graph.add_node("classify_intent", classify_intent_node)
     graph.add_node("detect_risk", detect_risk_node)

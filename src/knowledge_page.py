@@ -7,7 +7,8 @@ from pathlib import Path
 import streamlit as st
 
 from src.knowledge_summary import load_knowledge_summary
-from src.ui.layout import apply_site_theme, ds_metric_card, render_top_nav, section_header
+from src.ui.design_system import apply_design_system
+from src.ui.layout import ds_metric_card, render_top_nav, section_header
 
 
 CATEGORY_NAMES: dict[str, str] = {
@@ -50,25 +51,26 @@ def render_source_row(item: dict) -> None:
     text_chars = item.get("text_chars", 0)
     chunks = item.get("chunks", 0)
 
-    left, middle, right = st.columns([0.58, 0.24, 0.18])
-    with left:
-        st.markdown(f"**{html.escape(title)}**")
-        source_file = source_name(str(item.get("source_file") or ""))
-        if source_file and source_file != title:
-            st.caption(source_file)
-    with middle:
-        st.caption(f"{text_chars:,} 字 · {chunks} 片段")
-        if site:
-            st.caption(site)
-    with right:
-        if source_url:
-            st.link_button("打开来源", source_url, use_container_width=True)
-        else:
-            st.caption("本地文件")
+    with st.container(border=True):
+        left, middle, right = st.columns([0.58, 0.24, 0.18])
+        with left:
+            st.markdown(f"**{html.escape(title)}**")
+            sf = source_name(str(item.get("source_file") or ""))
+            if sf and sf != title:
+                st.caption(sf)
+        with middle:
+            st.caption(f"{text_chars:,} 字 · {chunks} 片段")
+            if site:
+                st.caption(site)
+        with right:
+            if source_url:
+                st.link_button("打开来源", source_url, use_container_width=True)
+            else:
+                st.caption("本地文件")
 
 
 def render_knowledge_base_page() -> None:
-    apply_site_theme()
+    apply_design_system()
     render_top_nav("knowledge")
 
     summary = load_knowledge_summary()
@@ -79,14 +81,16 @@ def render_knowledge_base_page() -> None:
     st.markdown(
         f"""
         <section class="ds-hero">
-            <div class="ds-hero-content">
-                <div class="ds-hero-eyebrow">Knowledge Base · 数据资产</div>
-                <h1>知识库资料</h1>
-                <p>当前知识库已收录 <strong>{html.escape(str(summary["documents"]))}</strong> 份资料，
-                拆分为 <strong>{html.escape(str(summary["chunks"]))}</strong> 个可检索片段。</p>
-            </div>
+            <div class="ds-hero-eyebrow">HebTU Knowledge · 数据资产</div>
+            <h1>知识库资料</h1>
+            <p>当前知识库已收录 <strong>{html.escape(str(summary["documents"]))}</strong> 份资料，
+            拆分为 <strong>{html.escape(str(summary["chunks"]))}</strong> 个可检索片段。</p>
             <div class="ds-hero-badges">
-                <span class="ds-badge ds-badge-success">最近更新：{html.escape(str(summary["built_at"]))}</span>
+                <span class="ds-badge ds-badge-success">
+                    最近更新：{html.escape(str(summary["built_at"]))}
+                </span>
+                <span class="ds-badge ds-badge-muted">课程大纲</span>
+                <span class="ds-badge ds-badge-muted">培养方案</span>
             </div>
         </section>
         """,

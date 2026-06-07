@@ -13,11 +13,11 @@ def apply_site_theme() -> None:
 
 
 def render_top_nav(active: str) -> None:
-    """Render the glassmorphism top navigation bar."""
+    """Render the top navigation bar."""
     nav_items = [
-        ("home", "🏠 主界面", "/?view=home"),
-        ("chat", "💬 智能问答", "/?view=chat"),
-        ("knowledge", "📚 知识库", "/?view=knowledge"),
+        ("home", "首页", "/?view=home"),
+        ("chat", "智能问答", "/?view=chat"),
+        ("knowledge", "知识库", "/?view=knowledge"),
     ]
     links = "".join(
         f'<a class="ds-topnav-link{" active" if key == active else ""}" '
@@ -28,7 +28,7 @@ def render_top_nav(active: str) -> None:
         f"""
         <nav class="ds-topnav">
             <a class="ds-topnav-brand" href="/?view=home" target="_self">
-                <span class="ds-topnav-logo">🎓</span>
+                <span class="ds-topnav-logo">E</span>
                 <span>高校教务教学智能体</span>
             </a>
             <div class="ds-topnav-links">{links}</div>

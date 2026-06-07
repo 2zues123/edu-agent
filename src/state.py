@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import TypedDict
 
 from src.intent import Intent
-from src.retriever import RetrievedChunk
 
 
 class AgentState(TypedDict, total=False):
@@ -15,6 +14,5 @@ class AgentState(TypedDict, total=False):
     intent: Intent
     high_risk: bool
     risk_notice: str | None
-    sources: list[RetrievedChunk]
+    sources: list[object]
     answer: str
-
