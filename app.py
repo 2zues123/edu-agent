@@ -207,6 +207,15 @@ footer {{
     position: relative;
     z-index: 2;
 }}
+.hebtu-mainnav {{
+    z-index: 12;
+}}
+.hebtu-center {{
+    pointer-events: none;
+}}
+.hebtu-scroll {{
+    z-index: 4;
+}}
 .hebtu-topbar {{
     display: flex;
     justify-content: center;
@@ -256,6 +265,86 @@ footer {{
     text-underline-offset: 7px;
     transform: translateY(-2px);
     text-shadow: 0 0 18px rgba(255,255,255,0.55), 0 2px 18px rgba(0,0,0,0.52);
+}}
+.hebtu-dropdown {{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}}
+.hebtu-dropdown::before {{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: max(100%, 210px);
+    height: 18px;
+    transform: translateX(-50%);
+}}
+.hebtu-dropdown > a::after {{
+    content: "";
+    width: 7px;
+    height: 7px;
+    margin-left: 9px;
+    border-right: 2px solid rgba(255,255,255,0.9);
+    border-bottom: 2px solid rgba(255,255,255,0.9);
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 180ms ease;
+}}
+.hebtu-dropdown:hover > a::after,
+.hebtu-dropdown:focus-within > a::after {{
+    transform: translateY(2px) rotate(225deg);
+}}
+.hebtu-dropdown-menu {{
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    z-index: 20;
+    display: grid;
+    min-width: 190px;
+    padding: 8px;
+    border: 1px solid rgba(255,255,255,0.26);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 18px 42px rgba(0,0,0,0.24);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, 8px);
+    transition:
+        opacity 180ms ease 120ms,
+        transform 180ms ease 120ms,
+        visibility 0s linear 300ms;
+    text-shadow: none;
+}}
+.hebtu-dropdown:hover .hebtu-dropdown-menu,
+.hebtu-dropdown:focus-within .hebtu-dropdown-menu {{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+    transition-delay: 0s;
+}}
+.hebtu-dropdown-menu a {{
+    justify-content: flex-start;
+    min-height: 38px;
+    padding: 0 12px;
+    border-radius: 6px;
+    color: #172018 !important;
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 750;
+    letter-spacing: 0;
+    white-space: nowrap;
+    text-shadow: none !important;
+}}
+.hebtu-dropdown-menu a:hover {{
+    color: #174c2b !important;
+    background: #eef5ee;
+    text-decoration: none !important;
+    transform: none;
+    text-shadow: none !important;
 }}
 .hebtu-brand {{
     display: flex;
@@ -542,6 +631,35 @@ footer {{
 .hebtu-chip:hover::after {{
     transform: translateX(3px);
 }}
+.hebtu-software {{
+    margin-top: 22px;
+    scroll-margin-top: 24px;
+}}
+.hebtu-software-grid {{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}}
+.hebtu-software .hebtu-card {{
+    min-height: 236px;
+}}
+.hebtu-tag-row {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0 20px;
+}}
+.hebtu-tag {{
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: #eef5ee;
+    color: #174c2b;
+    font-size: 0.78rem;
+    font-weight: 750;
+}}
 .hebtu-stats {{
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -640,7 +758,8 @@ footer {{
     }}
     .hebtu-actions,
     .hebtu-dynamic,
-    .hebtu-stats {{
+    .hebtu-stats,
+    .hebtu-software-grid {{
         grid-template-columns: 1fr;
     }}
     .hebtu-section-head {{
@@ -660,7 +779,44 @@ footer {{
         padding-top: 16px;
     }}
     .hebtu-menu {{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 0.95rem;
+    }}
+    .hebtu-menu-right {{
         display: none;
+    }}
+    .hebtu-dropdown {{
+        display: grid;
+        justify-items: center;
+        gap: 8px;
+    }}
+    .hebtu-dropdown::before {{
+        display: none;
+    }}
+    .hebtu-dropdown-menu {{
+        position: static;
+        min-width: min(260px, 86vw);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+        background: rgba(255,255,255,0.16);
+        border-color: rgba(255,255,255,0.26);
+        box-shadow: none;
+    }}
+    .hebtu-dropdown:hover .hebtu-dropdown-menu,
+    .hebtu-dropdown:focus-within .hebtu-dropdown-menu {{
+        transform: none;
+    }}
+    .hebtu-dropdown-menu a {{
+        justify-content: center;
+        color: rgba(255,255,255,0.96) !important;
+    }}
+    .hebtu-dropdown-menu a:hover {{
+        color: #fff !important;
+        background: rgba(255,255,255,0.15);
     }}
     .hebtu-brand img {{
         width: 184px;
@@ -813,7 +969,14 @@ footer {{
             <div class="hebtu-menu">
                 <a href="#hebtu-system">关于系统</a>
                 <a href="/?view=chat" target="_self">课程咨询</a>
-                <a href="/?view=chat" target="_self">培养方案</a>
+                <div class="hebtu-dropdown">
+                    <a href="#software-overview">软件学院专栏</a>
+                    <div class="hebtu-dropdown-menu" aria-label="软件学院专栏栏目">
+                        <a href="#software-overview">学院学习概览</a>
+                        <a href="#software-code">代码辅助学习</a>
+                        <a href="#software-resources">课程相关资源</a>
+                    </div>
+                </div>
                 <a href="/?view=chat" target="_self">教务问答</a>
             </div>
             <a class="hebtu-brand" href="/?view=home" target="_self" aria-label="河北师范大学教务智能体">
@@ -842,7 +1005,7 @@ footer {{
         <div class="hebtu-body-inner">
             <div class="hebtu-section-head">
                 <h2>高校教务教学智能体</h2>
-                <p>保留原有系统能力：教务问答、培养方案查询、课程资料检索、知识库溯源。这里只重构前端展示，不改变核心功能。</p>
+                <p>保留原有系统能力：教务问答、培养方案查询、课程资料检索、知识库溯源，并把软件学院学习场景放到首页入口。</p>
             </div>
             <div class="hebtu-actions">
                 <article class="hebtu-card hebtu-card-primary">
@@ -868,8 +1031,8 @@ footer {{
                         <p>机器学习、科学计算、经典模型等课程可在智能问答中查询学分、周次、方向归属和课程依据。</p>
                     </details>
                     <details>
-                        <summary>培养方案</summary>
-                        <p>支持按年级和专业追问培养目标、毕业要求、课程矩阵与模块关系。</p>
+                        <summary>软件学院专栏</summary>
+                        <p>聚合软件工程学习路径、代码辅助学习和课程相关资源，保留培养方案与课程矩阵的查询能力。</p>
                     </details>
                     <details>
                         <summary>资料溯源</summary>
@@ -878,8 +1041,46 @@ footer {{
                 </div>
                 <div class="hebtu-quick">
                     <a class="hebtu-chip" href="/?view=chat" target="_self">查询课程学分</a>
-                    <a class="hebtu-chip" href="/?view=chat" target="_self">追问培养方案</a>
+                    <a class="hebtu-chip" href="#software-overview">进入软件学院专栏</a>
                     <a class="hebtu-chip" href="/?view=knowledge" target="_self">核对知识来源</a>
+                </div>
+            </div>
+            <div class="hebtu-software" aria-label="软件学院专栏">
+                <div class="hebtu-section-head">
+                    <h2>软件学院专栏</h2>
+                    <p>围绕软件工程课程、实践能力和代码学习，把学院资料、智能问答和知识库入口收束到同一处。</p>
+                </div>
+                <div class="hebtu-software-grid">
+                    <article id="software-overview" class="hebtu-card hebtu-card-primary">
+                        <strong>学院学习概览</strong>
+                        <p>以程序设计、数据结构、机器学习、软件工程实践为主线，串联专业课程、项目训练和毕业要求。</p>
+                        <div class="hebtu-tag-row">
+                            <span class="hebtu-tag">软件工程</span>
+                            <span class="hebtu-tag">AI 方向</span>
+                            <span class="hebtu-tag">项目实践</span>
+                        </div>
+                        <a href="/?view=chat" target="_self">咨询学习路径</a>
+                    </article>
+                    <article id="software-code" class="hebtu-card">
+                        <strong>代码辅助学习</strong>
+                        <p>第一版采用静态代码阅读方式，支持解释代码、定位错误、优化思路和生成练习，不在系统内运行用户代码。</p>
+                        <div class="hebtu-tag-row">
+                            <span class="hebtu-tag">解释代码</span>
+                            <span class="hebtu-tag">定位 Bug</span>
+                            <span class="hebtu-tag">练习生成</span>
+                        </div>
+                        <a href="/?view=chat" target="_self">进入代码问答</a>
+                    </article>
+                    <article id="software-resources" class="hebtu-card">
+                        <strong>课程相关资源</strong>
+                        <p>查看课程大纲、培养方案、软件学院官网页面和公开附件，回答中的资料依据也可回到知识库核对。</p>
+                        <div class="hebtu-tag-row">
+                            <span class="hebtu-tag">课程大纲</span>
+                            <span class="hebtu-tag">培养方案</span>
+                            <span class="hebtu-tag">学院官网</span>
+                        </div>
+                        <a href="/?view=knowledge" target="_self">查看课程资料</a>
+                    </article>
                 </div>
             </div>
             <div id="hebtu-data" class="hebtu-stats">

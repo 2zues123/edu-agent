@@ -1,11 +1,11 @@
 {
-  "built_at": "2026-06-05T06:55:14.346080+00:00",
+  "built_at": "2026-06-07T07:28:37.129524+00:00",
   "raw_dir": "data\\raw",
   "output": "data\\processed\\chunks.jsonl",
-  "document_count": 132,
-  "parsed_count": 131,
+  "document_count": 133,
+  "parsed_count": 132,
   "failed_count": 1,
-  "chunk_count": 279,
+  "chunk_count": 668,
   "parsed": [
     {
       "source_file": "data\\raw\\courses\\32201188_智能推荐.docx",
@@ -63,6 +63,16 @@
       "title": "32201274_数字图像处理",
       "text_chars": 5701,
       "chunks": 6,
+      "source_url": "",
+      "site": "",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\policies\\2024版本科教学工作手册.pdf",
+      "category": "policies",
+      "title": "2024版本科教学工作手册",
+      "text_chars": 345227,
+      "chunks": 389,
       "source_url": "",
       "site": "",
       "published_at": ""

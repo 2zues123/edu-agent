@@ -12,7 +12,7 @@ import streamlit as st
 
 from src.graph import GraphAgentAnswer, LangGraphAcademicAgent
 from src.retriever import RetrievedChunk
-from src.ui.design_system import apply_design_system
+from src.ui.design_system import apply_design_system, inject_extra_css
 from src.ui.layout import render_top_nav
 
 EXAMPLE_QUESTIONS = (
@@ -41,6 +41,83 @@ STARTER_CARDS = (
     ("学业风险", "rose", "●", "挂科、重修、毕业影响", "如果挂科会影响毕业吗？"),
 )
 
+CHAT_WORKSPACE_CSS = """
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    width: fit-content !important;
+    min-width: min(280px, 92%) !important;
+    max-width: 72% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    background: #DDEAE2 !important;
+    border-color: rgba(22, 140, 140, 0.26) !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+    width: fit-content !important;
+    max-width: 86% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] {
+    text-align: left !important;
+}
+.ds-user-bubble {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0.72rem 0 0.72rem auto;
+    padding: 16px 20px;
+    border-radius: 22px 22px 6px 22px;
+    border: 1px solid rgba(22, 140, 140, 0.26);
+    background: #DDEAE2;
+    color: #17324A;
+    font-weight: 650;
+    line-height: 1.72;
+    box-shadow: 0 16px 34px rgba(22, 140, 140, 0.10);
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+.ds-assistant-shell {
+    margin: 0.72rem 0;
+}
+.ds-loading-bubble {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #5D7183;
+    font-weight: 650;
+}
+.ds-loading-dots {
+    display: inline-flex;
+    gap: 4px;
+}
+.ds-loading-dots span {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #168C8C;
+    opacity: 0.35;
+    animation: ds-dot-pulse 1.2s ease-in-out infinite;
+}
+.ds-loading-dots span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+.ds-loading-dots span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+@keyframes ds-dot-pulse {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.35; }
+    40% { transform: translateY(-4px); opacity: 1; }
+}
+@media (max-width: 760px) {
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]),
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+        max-width: 94% !important;
+    }
+    .ds-user-bubble {
+        max-width: 94%;
+    }
+}
+"""
+
 
 def knowledge_cache_stamp() -> tuple[tuple[str, int, int], ...]:
     stamp: list[tuple[str, int, int]] = []
@@ -60,6 +137,18 @@ def load_agent(_cache_stamp: tuple[tuple[str, int, int], ...]) -> LangGraphAcade
 
 def now_text() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M")
+
+
+def set_chat_route(stage: str, cid: str | None = None) -> None:
+    try:
+        st.query_params["view"] = "chat"
+        st.query_params["stage"] = stage
+        if cid:
+            st.query_params["cid"] = cid
+        elif "cid" in st.query_params:
+            del st.query_params["cid"]
+    except Exception:
+        pass
 
 
 def make_conversation_title(question: str) -> str:
@@ -208,10 +297,10 @@ def conversation_timestamp(conversation: dict) -> float:
 def ensure_current_conversation(conversations: list[dict]) -> str:
     cid = st.session_state.get("current_conversation_id", "")
     c = get_conversation(conversations, cid if cid else None)
-    if c is None:
-        cid = create_conversation(conversations)
-        st.session_state["current_conversation_id"] = cid
-    return cid
+    if c is not None:
+        return cid
+    st.session_state["current_conversation_id"] = ""
+    return ""
 
 
 def sorted_conversations(conversations: list[dict]) -> list[dict]:
@@ -244,11 +333,8 @@ def delete_conversation(conversations: list[dict], cid: str) -> str:
     remaining = [i for i in conversations if i.get("id") != cid]
     conversations.clear()
     conversations.extend(remaining)
-    if not conversations:
-        new_id = create_conversation(conversations)
-    else:
-        v = visible_conversations(conversations)
-        new_id = v[0].get("id", "") if v else create_conversation(conversations)
+    v = visible_conversations(conversations)
+    new_id = v[0].get("id", "") if v else ""
     save_conversations(conversations)
     return new_id
 
@@ -306,6 +392,9 @@ def result_to_dict(result: GraphAgentAnswer) -> dict:
         "question": result.question,
         "intent_name": result.intent_name,
         "intent_description": result.intent_description,
+        "answer_mode_name": result.answer_mode_name,
+        "answer_mode_label": result.answer_mode_label,
+        "answer_mode_description": result.answer_mode_description,
         "high_risk": result.high_risk,
         "answer": result.answer,
         "sources": [source_to_dict(s) for s in result.sources],
@@ -320,6 +409,9 @@ def result_from_dict(data: dict) -> GraphAgentAnswer:
         question=str(data.get("question", "")),
         intent_name=str(data.get("intent_name", "general")),
         intent_description=str(data.get("intent_description", "")),
+        answer_mode_name=str(data.get("answer_mode_name", "general_llm")),
+        answer_mode_label=str(data.get("answer_mode_label", "通用智能问答")),
+        answer_mode_description=str(data.get("answer_mode_description", "")),
         high_risk=bool(data.get("high_risk", False)),
         answer=str(data.get("answer", "")),
         sources=[source_from_dict(s) for s in raw],
@@ -393,6 +485,7 @@ def render_empty_dashboard(conversations: list[dict]) -> None:
                 st.markdown(f"**{icon}  {label}**")
                 st.caption(desc)
                 if st.button("开始提问 →", key=f"starter_{idx}", use_container_width=True):
+                    st.session_state["current_conversation_id"] = ""
                     st.session_state["pending_question"] = question
                     st.rerun()
 
@@ -420,11 +513,47 @@ def render_chat_header(conversation: dict | None, n_messages: int) -> None:
 
 def render_message(msg: dict) -> None:
     role = msg.get("role", "user")
-    with st.chat_message(role):
-        if role == "assistant" and msg.get("result"):
-            render_answer(result_from_dict(msg["result"]))
-        else:
-            st.markdown(str(msg.get("content", "")))
+    content = str(msg.get("content", ""))
+    if role == "user":
+        _spacer, bubble = st.columns([0.34, 0.66])
+        with bubble:
+            st.markdown(
+                f'<div class="ds-user-bubble">{html.escape(content)}</div>',
+                unsafe_allow_html=True,
+            )
+        return
+
+    answer_col, _spacer = st.columns([0.86, 0.14])
+    with answer_col:
+        st.markdown('<div class="ds-assistant-shell">', unsafe_allow_html=True)
+        with st.container(border=True):
+            if msg.get("result"):
+                render_answer(result_from_dict(msg["result"]))
+            else:
+                st.markdown(content)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+
+def render_chat_messages(messages: list[dict]) -> None:
+    st.markdown('<div class="ds-chat-thread">', unsafe_allow_html=True)
+    for msg in messages:
+        render_message(msg)
+    st.markdown("</div>", unsafe_allow_html=True)
+
+
+def render_assistant_loading() -> None:
+    answer_col, _spacer = st.columns([0.86, 0.14])
+    with answer_col:
+        with st.container(border=True):
+            st.markdown(
+                """
+                <div class="ds-loading-bubble">
+                    <span>正在检索资料并生成回答</span>
+                    <span class="ds-loading-dots"><span></span><span></span><span></span></span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
 
 def render_conversation_actions(conversations: list[dict], conversation: dict) -> None:
@@ -469,7 +598,11 @@ def render_answer(result: GraphAgentAnswer) -> None:
     if result.high_risk:
         st.warning("该问题涉及正式教务认定，系统仅根据当前知识库做初步判断，最终结果以教务系统、学院和教务部门审核为准。")
 
-    chips = [f"意图：{result.intent_name}{'（' + result.intent_description + '）' if result.intent_description else ''}"]
+    mode_label = getattr(result, "answer_mode_label", "通用智能问答")
+    chips = [
+        f"模式：{mode_label}",
+        f"意图：{result.intent_name}{'（' + result.intent_description + '）' if result.intent_description else ''}",
+    ]
     if result.high_risk:
         chips.append("⚠️ 高风险")
     if result.sources:
@@ -512,8 +645,9 @@ def render_workspace_sidebar(conversations: list[dict], current_id: str) -> None
     st.markdown("#### 河北师大教务智能体")
 
     if st.button("＋ 新建对话", key="new_conv", use_container_width=True):
-        nid = create_conversation(conversations)
-        st.session_state["current_conversation_id"] = nid
+        st.session_state["current_conversation_id"] = ""
+        st.session_state["pending_question"] = None
+        set_chat_route("start")
         st.rerun()
 
     st.caption(f"知识库：{summary['documents']} 份资料 · {summary['chunks']} 片段")
@@ -535,6 +669,7 @@ def render_workspace_sidebar(conversations: list[dict], current_id: str) -> None
             bt = "primary" if cid == current_id else "secondary"
             if st.button(display, key=f"hist_{i}", use_container_width=True, type=bt):
                 st.session_state["current_conversation_id"] = cid
+                set_chat_route("thread", cid)
                 st.rerun()
         with mc:
             render_conversation_actions(conversations, c)
@@ -542,8 +677,95 @@ def render_workspace_sidebar(conversations: list[dict], current_id: str) -> None
     if recent:
         if st.button("🗑️ 清空历史", key="clr_hist", use_container_width=True):
             clear_history()
-            st.session_state["current_conversation_id"] = str(uuid4())
+            st.session_state["current_conversation_id"] = ""
+            set_chat_route("start")
             st.rerun()
+
+
+def start_question(conversations: list[dict], current_id: str, question: str) -> str:
+    current_conv = get_conversation(conversations, current_id)
+    if current_conv is None:
+        current_id = create_conversation(conversations)
+        st.session_state["current_conversation_id"] = current_id
+        set_chat_route("thread", current_id)
+        current_conv = get_conversation(conversations, current_id)
+
+    if current_conv is None:
+        return ""
+
+    current_msgs = current_conv.setdefault("messages", [])
+    current_msgs.append({"role": "user", "content": question})
+    current_conv["updated_at"] = now_text()
+    ct = current_conv.get("title")
+    if not ct or ct in {"新建教务对话", "未命名教务对话"}:
+        current_conv["title"] = make_conversation_title(question)
+    save_conversations(conversations)
+    st.session_state["generating_conversation_id"] = current_id
+    st.session_state["generating_question"] = question
+    set_chat_route("thread", current_id)
+    return current_id
+
+
+def finish_pending_answer(conversations: list[dict]) -> None:
+    current_id = str(st.session_state.get("generating_conversation_id") or "")
+    question = str(st.session_state.get("generating_question") or "").strip()
+    if not current_id or not question:
+        return
+
+    current_conv = get_conversation(conversations, current_id)
+    if current_conv is None:
+        st.session_state.pop("generating_conversation_id", None)
+        st.session_state.pop("generating_question", None)
+        return
+
+    current_msgs = current_conv.setdefault("messages", [])
+
+    with st.spinner("正在生成回答..."):
+        try:
+            agent = load_agent(knowledge_cache_stamp())
+            result = agent.answer(
+                question,
+                top_k=st.session_state["cfg_top_k"],
+                use_llm=st.session_state["cfg_use_llm"],
+            )
+        except Exception as exc:
+            try:
+                fallback_agent = locals().get("agent") or load_agent(knowledge_cache_stamp())
+                fallback_result = fallback_agent.answer(
+                    question,
+                    top_k=st.session_state["cfg_top_k"],
+                    use_llm=False,
+                )
+                result = GraphAgentAnswer(
+                    question=fallback_result.question,
+                    intent_name=fallback_result.intent_name,
+                    intent_description=fallback_result.intent_description,
+                    answer_mode_name=fallback_result.answer_mode_name,
+                    answer_mode_label=fallback_result.answer_mode_label,
+                    answer_mode_description=fallback_result.answer_mode_description,
+                    high_risk=fallback_result.high_risk,
+                    answer=f"大模型暂时不可用，已切换为本地资料模式。\n\n{fallback_result.answer}",
+                    sources=fallback_result.sources,
+                )
+            except Exception as fallback_exc:
+                result = GraphAgentAnswer(
+                    question=question,
+                    intent_name="general",
+                    intent_description="通用问题",
+                    answer_mode_name="general_llm",
+                    answer_mode_label="通用智能问答",
+                    answer_mode_description="异常兜底回答",
+                    high_risk=False,
+                    answer=f"抱歉，回答生成失败：{exc}\n本地资料兜底也失败：{fallback_exc}",
+                    sources=[],
+                )
+
+    current_msgs.append({"role": "assistant", "content": result.answer, "result": result_to_dict(result)})
+    current_conv["messages"] = current_msgs
+    current_conv["updated_at"] = now_text()
+    save_conversations(conversations)
+    st.session_state.pop("generating_conversation_id", None)
+    st.session_state.pop("generating_question", None)
 
 
 def render_workspace_page(configure_page: bool = False) -> None:
@@ -554,19 +776,44 @@ def render_workspace_page(configure_page: bool = False) -> None:
         )
 
     apply_design_system()
+    inject_extra_css(CHAT_WORKSPACE_CSS)
     render_top_nav("chat")
 
     st.session_state.setdefault("pending_question", None)
     st.session_state.setdefault("current_conversation_id", "")
     st.session_state.setdefault("cfg_use_llm", True)
     st.session_state.setdefault("cfg_top_k", 5)
+    try:
+        route_cid = str(st.query_params.get("cid") or "")
+    except Exception:
+        route_cid = ""
+    if route_cid and not st.session_state.get("current_conversation_id"):
+        st.session_state["current_conversation_id"] = route_cid
 
     conversations = load_conversations()
     current_id = ensure_current_conversation(conversations)
     current_conv = get_conversation(conversations, current_id)
     current_msgs = current_conv.get("messages", []) if current_conv else []
 
-    left, main = st.columns([0.25, 0.75], gap="large")
+    pending = st.session_state.get("pending_question")
+    if pending:
+        question = str(pending).strip()
+        st.session_state["pending_question"] = None
+        if question:
+            start_question(conversations, current_id, question)
+        st.rerun()
+
+    if not current_msgs:
+        set_chat_route("start")
+        render_empty_dashboard(conversations)
+        user_input = st.chat_input("输入问题，开始新的教务对话...")
+        if user_input and user_input.strip():
+            st.session_state["current_conversation_id"] = ""
+            st.session_state["pending_question"] = user_input.strip()
+            st.rerun()
+        return
+
+    left, main = st.columns([0.24, 0.76], gap="large")
 
     with left:
         with st.container(border=True):
@@ -583,60 +830,22 @@ def render_workspace_page(configure_page: bool = False) -> None:
                 top_k = st.slider("检索片段数", 1, 20, st.session_state["cfg_top_k"], key="cfg_top_k_slider")
                 st.session_state["cfg_top_k"] = top_k
 
-        if not current_msgs:
-            render_empty_dashboard(conversations)
-        else:
-            for msg in current_msgs:
-                render_message(msg)
-            st.divider()
+        render_chat_messages(current_msgs)
+        generating_here = (
+            str(st.session_state.get("generating_conversation_id") or "") == str(current_id)
+            and bool(st.session_state.get("generating_question"))
+        )
+        if generating_here:
+            render_assistant_loading()
+            finish_pending_answer(conversations)
+            st.rerun()
 
         render_quick_questions()
 
         user_input = st.chat_input("输入你的教务问题...")
-        pending = st.session_state.get("pending_question")
-        question = ""
-        if user_input:
-            question = user_input.strip()
-            st.session_state["pending_question"] = None
-        elif pending:
-            question = str(pending).strip()
-            st.session_state["pending_question"] = None
-
-        if not question:
-            return
-
-        current_msgs.append({"role": "user", "content": question})
-        if not current_conv:
-            current_id = create_conversation(conversations)
-            current_conv = get_conversation(conversations, current_id)
-
-        with st.chat_message("user"):
-            st.markdown(question)
-
-        with st.chat_message("assistant"):
-            with st.spinner("正在检索知识库并生成回答..."):
-                try:
-                    agent = load_agent(knowledge_cache_stamp())
-                    result = agent.answer(question, top_k=st.session_state["cfg_top_k"], use_llm=st.session_state["cfg_use_llm"])
-                except Exception as exc:
-                    result = GraphAgentAnswer(
-                        question=question, intent_name="general",
-                        intent_description="通用问题", high_risk=False,
-                        answer=f"抱歉，回答生成失败：{exc}", sources=[],
-                    )
-            render_answer(result)
-
-        current_msgs.append({"role": "assistant", "content": result.answer, "result": result_to_dict(result)})
-
-        if current_conv is not None:
-            current_conv["messages"] = current_msgs
-            current_conv["updated_at"] = now_text()
-            ct = current_conv.get("title")
-            if not ct or ct == "新建教务对话":
-                current_conv["title"] = make_conversation_title(question)
-            save_conversations(conversations)
-
-        st.rerun()
+        if user_input and user_input.strip():
+            st.session_state["pending_question"] = user_input.strip()
+            st.rerun()
 
 
 def main() -> None:

@@ -9,6 +9,7 @@ __pycache__/
 .claude/
 __MACOSX/
 edu-agent/
+edu-agent-old/
 *.log
 .trae/
 .uploads/
