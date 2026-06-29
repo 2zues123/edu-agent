@@ -3,10 +3,10 @@
   "index_file": "chunks.faiss",
   "metadata_file": "metadata.jsonl",
   "embedding": {
-    "backend": "sentence-transformers",
-    "model": "BAAI/bge-small-zh-v1.5",
-    "dimension": 512,
+    "backend": "hashing",
+    "n_features": 4096,
+    "dimension": 4096,
     "normalized": true,
-    "local_files_only": false
+    "vectorizer_file": "vectorizer.pkl"
   }
 }
