@@ -493,7 +493,7 @@ def render_empty_dashboard(conversations: list[dict]) -> None:
     recent = visible_conversations(conversations)[:6]
     if recent:
         st.markdown("---")
-        st.markdown("#### 📋 历史对话")
+        st.markdown("#### 历史对话")
         st.caption("点击即可继续之前的对话")
         hist_cols = st.columns(3)
         for i, c in enumerate(recent):
@@ -501,7 +501,7 @@ def render_empty_dashboard(conversations: list[dict]) -> None:
             ct = str(c.get("title") or "未命名教务对话")
             ts = c.get("updated_at") or c.get("created_at") or ""
             pinned = c.get("pinned")
-            label = f"{'📌 ' if pinned else ''}{ct}"
+            label = f"{'[置顶] ' if pinned else ''}{ct}"
             with hist_cols[i % 3]:
                 with st.container(border=True):
                     st.markdown(f"**{label[:30]}{'…' if len(label) > 30 else ''}**")
@@ -514,7 +514,7 @@ def render_empty_dashboard(conversations: list[dict]) -> None:
 
 
 def render_quick_questions() -> None:
-    st.caption("💡 试试这些问题")
+    st.caption("试试这些问题")
     cols = st.columns(QUICK_QUESTION_COUNT)
     for i, q in enumerate(EXAMPLE_QUESTIONS[:QUICK_QUESTION_COUNT]):
         with cols[i]:
@@ -582,11 +582,11 @@ def render_assistant_loading() -> None:
 def render_conversation_actions(conversations: list[dict], conversation: dict) -> None:
     cid = str(conversation.get("id", ""))
     with st.popover("⋯", use_container_width=True):
-        pin_label = "📌 取消置顶" if conversation.get("pinned") else "📌 置顶对话"
+        pin_label = "取消置顶" if conversation.get("pinned") else "置顶对话"
         if st.button(pin_label, key=f"pin_{cid}", use_container_width=True):
             toggle_conversation_pin(conversations, cid)
             st.rerun()
-        if st.button("✏️ 重命名", key=f"rn_btn_{cid}", use_container_width=True):
+        if st.button("重命名", key=f"rn_btn_{cid}", use_container_width=True):
             st.session_state["renaming_id"] = cid
         if st.session_state.get("renaming_id") == cid:
             nt = st.text_input("新标题", value=str(conversation.get("title", "")), key=f"rn_inp_{cid}", label_visibility="collapsed")
@@ -600,7 +600,7 @@ def render_conversation_actions(conversations: list[dict], conversation: dict) -
                 if st.button("取消", key=f"rn_ccl_{cid}", use_container_width=True):
                     st.session_state.pop("renaming_id", None)
                     st.rerun()
-        if st.button("🗑️ 删除对话", key=f"del_btn_{cid}", use_container_width=True):
+        if st.button("删除对话", key=f"del_btn_{cid}", use_container_width=True):
             st.session_state["delete_id"] = cid
         if st.session_state.get("delete_id") == cid:
             st.warning("确定删除此对话？")
@@ -627,15 +627,15 @@ def render_answer(result: GraphAgentAnswer) -> None:
         f"意图：{result.intent_name}{'（' + result.intent_description + '）' if result.intent_description else ''}",
     ]
     if result.high_risk:
-        chips.append("⚠️ 高风险")
+        chips.append("[高风险]")
     if result.sources:
-        chips.append(f"📎 引用 {len(result.sources)} 项依据")
+        chips.append(f"引用 {len(result.sources)} 项依据")
     st.caption(" · ".join(chips))
 
     st.markdown(result.answer)
 
     if result.sources:
-        with st.expander(f"📚 查看 {len(result.sources)} 项资料依据"):
+        with st.expander(f"查看 {len(result.sources)} 项资料依据"):
             for i, source in enumerate(result.sources):
                 heading = source_attr(source, "heading") or "未识别章节"
                 title = source_attr(source, "title") or "未命名资料"
@@ -647,11 +647,11 @@ def render_answer(result: GraphAgentAnswer) -> None:
                 published_at = source_attr(source, "published_at")
 
                 st.markdown(f"**[资料{i + 1}] {html.escape(title)}**")
-                st.caption(f"📂 {html.escape(category)} · 📄 {html.escape(source_file)} · 📍 {html.escape(heading)}")
+                st.caption(f"{html.escape(category)} | {html.escape(source_file)} | {html.escape(heading)}")
                 if site:
-                    st.caption(f"🌐 {html.escape(site)}")
+                    st.caption(f"来源: {html.escape(site)}")
                 if published_at:
-                    st.caption(f"🕐 {html.escape(published_at)}")
+                    st.caption(f"发布时间: {html.escape(published_at)}")
                 if source_url:
                     st.link_button("打开来源", source_url)
 
@@ -679,13 +679,13 @@ def render_workspace_sidebar(conversations: list[dict], current_id: str) -> None
 
     recent = visible_conversations(conversations)[:MAX_HISTORY_ITEMS]
     if recent:
-        st.caption("📋 历史对话")
+        st.caption("历史对话")
 
     for i, c in enumerate(recent):
         cid = str(c.get("id", ""))
         ct = str(c.get("title") or "未命名教务对话")
         pinned = c.get("pinned")
-        display = f"📌 {ct}" if pinned else ct
+        display = f"[置顶] {ct}" if pinned else ct
 
         tc, mc = st.columns([0.84, 0.16])
         with tc:
@@ -698,7 +698,7 @@ def render_workspace_sidebar(conversations: list[dict], current_id: str) -> None
             render_conversation_actions(conversations, c)
 
     if recent:
-        if st.button("🗑️ 清空历史", key="clr_hist", use_container_width=True):
+        if st.button("清空历史", key="clr_hist", use_container_width=True):
             clear_history()
             st.session_state["current_conversation_id"] = ""
             set_chat_route("start")
@@ -801,7 +801,7 @@ def finish_pending_answer(conversations: list[dict]) -> None:
 def render_workspace_page(configure_page: bool = False) -> None:
     if configure_page:
         st.set_page_config(
-            page_title="智能问答工作台", page_icon="💬",
+            page_title="智能问答工作台", page_icon="",
             layout="wide", initial_sidebar_state="expanded",
         )
 
@@ -854,7 +854,7 @@ def render_workspace_page(configure_page: bool = False) -> None:
         with hc:
             render_chat_header(current_conv, len(current_msgs))
         with mc:
-            with st.popover("⚙️", use_container_width=True):
+            with st.popover("设置", use_container_width=True):
                 use_llm = st.toggle("调用大模型", value=st.session_state["cfg_use_llm"], key="cfg_use_llm_toggle")
                 st.session_state["cfg_use_llm"] = use_llm
                 top_k = st.slider("检索片段数", 1, 20, st.session_state["cfg_top_k"], key="cfg_top_k_slider")

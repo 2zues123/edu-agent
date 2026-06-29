@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import html
+import json
 import textwrap
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 from src.conversations import load_conversations, visible_conversations
 from src.knowledge_summary import load_knowledge_summary
@@ -25,6 +27,49 @@ def first_query_value(value):
 def current_view() -> str:
     view = str(first_query_value(st.query_params.get("view")) or "home")
     return view if view in VALID_VIEWS else "home"
+
+
+def reset_scroll_on_view_change(view: str) -> None:
+    previous_view = st.session_state.get("_last_rendered_view")
+    if previous_view == view:
+        return
+    st.session_state["_last_rendered_view"] = view
+    components.html(
+        f"""
+        <script>
+        (() => {{
+            const view = {json.dumps(view)};
+            try {{
+                const parentWindow = window.parent;
+                const parentDocument = parentWindow.document;
+                parentWindow.history.scrollRestoration = "manual";
+                const targets = [
+                    parentWindow,
+                    parentDocument.documentElement,
+                    parentDocument.body,
+                    parentDocument.querySelector('[data-testid="stAppViewContainer"]'),
+                    parentDocument.querySelector('[data-testid="stAppViewContainer"] > .main')
+                ].filter(Boolean);
+                const jumpTop = () => {{
+                    for (const target of targets) {{
+                        if (typeof target.scrollTo === "function") {{
+                            target.scrollTo({{ top: 0, left: 0, behavior: "auto" }});
+                        }} else {{
+                            target.scrollTop = 0;
+                            target.scrollLeft = 0;
+                        }}
+                    }}
+                }};
+                jumpTop();
+                requestAnimationFrame(jumpTop);
+                setTimeout(jumpTop, 60);
+            }} catch (error) {{}}
+        }})();
+        </script>
+        """,
+        height=0,
+        width=0,
+    )
 
 
 @st.cache_data(show_spinner=False)
@@ -958,15 +1003,16 @@ footer {{
     <section class="hebtu-hero">
         <div class="hebtu-topbar" aria-label="系统快捷入口">
             <a href="/?view=home" target="_self">首页</a>
-            <a href="/?view=chat" target="_self">高校对话系统</a>
+            <a href="/?view=chat" target="_self">教务问答</a>
             <a href="/?view=knowledge" target="_self">知识库</a>
             <a href="#hebtu-system">系统概览</a>
+            <a href="/?view=learn" target="_self">学习驾驶舱</a>
             <a href="#hebtu-recent">最近对话</a>
         </div>
         <div class="hebtu-mainnav" aria-label="主导航">
             <div class="hebtu-menu">
                 <a href="#hebtu-system">关于系统</a>
-                <a href="/?view=chat" target="_self">课程咨询</a>
+                <a href="/?view=chat" target="_self">教务问答</a>
                 <div class="hebtu-dropdown">
                     <a href="#software-overview">软件学院专栏</a>
                     <div class="hebtu-dropdown-menu" aria-label="软件学院专栏栏目">
@@ -975,14 +1021,13 @@ footer {{
                         <a href="#software-resources">课程相关资源</a>
                     </div>
                 </div>
-                <a href="/?view=chat" target="_self">教务问答</a>
             </div>
             <a class="hebtu-brand" href="/?view=home" target="_self" aria-label="河北师范大学教务智能体">
                 <img src="{HEBTU_LOGO_URL}" alt="河北师范大学 logo">
                 <span>Hebei Normal University</span>
             </a>
             <div class="hebtu-menu hebtu-menu-right">
-                <a href="/?view=chat" target="_self">智能问答</a>
+                <a href="/?view=learn" target="_self">学习驾驶舱</a>
                 <a href="/?view=knowledge" target="_self">知识库</a>
                 <a href="#hebtu-data">数据概览</a>
                 <a href="#hebtu-recent">最近对话</a>
@@ -1098,12 +1143,13 @@ footer {{
 def main() -> None:
     st.set_page_config(
         page_title="河北师范大学教务智能体",
-        page_icon="🎓",
+        page_icon="",
         layout="wide",
         initial_sidebar_state="collapsed",
     )
 
     view = current_view()
+    reset_scroll_on_view_change(view)
     if view == "chat":
         render_chat_view()
     elif view == "code":

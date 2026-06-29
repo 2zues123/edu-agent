@@ -1,4 +1,4 @@
-"""Code Learning AI page — code Q&A with optional image upload."""
+"""Code Learning AI page — text Q&A + image-based code recognition."""
 
 from __future__ import annotations
 
@@ -12,11 +12,23 @@ import streamlit as st
 
 from src.code_agent import (
     CodeLearningAgent,
+    EXT_TO_MIME,
     validate_image_upload,
 )
 from src.learner_profile import update_profile_from_signal
 from src.ui.design_system import apply_design_system, inject_extra_css
 from src.ui.layout import render_top_nav
+
+# Module-level agent cache — avoid recreating OpenAI clients each call
+_CODE_AGENT_CACHE: CodeLearningAgent | None = None
+
+
+def _get_agent() -> CodeLearningAgent:
+    global _CODE_AGENT_CACHE
+    if _CODE_AGENT_CACHE is None:
+        _CODE_AGENT_CACHE = CodeLearningAgent()
+    return _CODE_AGENT_CACHE
+
 
 # ── Constants ───────────────────────────────────────────────
 
@@ -31,54 +43,13 @@ EXAMPLE_QUESTIONS = (
 )
 
 STARTER_CARDS = (
-    ("代码讲解", "green", "📖", "逐行解释代码逻辑", "帮我解释这段代码：\ndef binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1"),
-    ("静态 Debug", "amber", "🐛", "分析报错给出修复建议", "这段代码报 TypeError: unsupported operand type(s) for +: 'int' and 'str'，帮我看看哪里有问题：\nx = 10\ny = '20'\nresult = x + y"),
-    ("算法题", "blue", "🧮", "思路、复杂度与参考实现", "用动态规划解「最长回文子串」，分析时间复杂度和空间复杂度"),
-    ("上传截图", "rose", "📸", "上传代码截图开始学习", ""),
+    ("代码讲解", "green", "逐行解释代码逻辑", "帮我解释这段代码：\ndef binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1"),
+    ("静态 Debug", "amber", "分析报错给出修复建议", "这段代码报 TypeError: unsupported operand type(s) for +: 'int' and 'str'，帮我看看哪里有问题：\nx = 10\ny = '20'\nresult = x + y"),
+    ("算法题", "blue", "思路、复杂度与参考实现", "用动态规划解「最长回文子串」，分析时间复杂度和空间复杂度"),
+    ("上传截图", "rose", "上传代码截图开始学习", ""),
 )
 
 CODE_PAGE_CSS = """
-/* ── Image upload area ── */
-.ds-code-upload-zone {
-    border: 2px dashed #D6CAB9;
-    border-radius: 18px;
-    padding: 24px;
-    text-align: center;
-    background: rgba(255, 249, 239, 0.6);
-    transition: border-color 180ms ease, background 180ms ease;
-}
-.ds-code-upload-zone:hover {
-    border-color: #168C8C;
-    background: rgba(221, 234, 226, 0.35);
-}
-
-/* ── Recognized code block ── */
-.ds-recognized-code {
-    background: #1E2A35;
-    color: #DDEAE2;
-    border-radius: 16px;
-    padding: 20px 24px;
-    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
-    font-size: 0.85rem;
-    line-height: 1.6;
-    white-space: pre-wrap;
-    overflow-x: auto;
-    margin: 12px 0;
-}
-
-/* ── Language badge ── */
-.ds-lang-badge {
-    display: inline-flex;
-    align-items: center;
-    min-height: 28px;
-    padding: 0 12px;
-    border-radius: 999px;
-    background: #DDEAE2;
-    color: #168C8C;
-    font-size: 0.78rem;
-    font-weight: 750;
-}
-
 /* ── User message bubble (plain text) ── */
 .ds-user-bubble {
     width: fit-content;
@@ -182,8 +153,7 @@ CODE_PAGE_CSS = """
     line-height: 1.6;
 }
 
-/* Keep the code chat input to a single visual frame. Streamlit wraps the
-   textarea with its own border, so the inner border is removed here. */
+/* Keep the code chat input to a single visual frame. */
 div[data-testid="stChatInput"] {
     background: transparent !important;
     border: 0 !important;
@@ -229,7 +199,6 @@ div[data-testid="stChatInput"] textarea:focus {
 
 # ── Helpers ─────────────────────────────────────────────────
 
-
 def now_text() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M")
 
@@ -237,7 +206,7 @@ def now_text() -> str:
 def make_conversation_title(question: str) -> str:
     title = question.strip().replace("\n", " ").replace("\r", "")
     if len(title) > 40:
-        title = title[:40] + "…"
+        title = title[:40] + "..."
     return title
 
 
@@ -252,7 +221,6 @@ def normalize_conversation(conv: dict) -> dict:
 
 
 # ── Persistence ─────────────────────────────────────────────
-
 
 def load_code_conversations() -> list[dict]:
     if not CODE_CONVERSATIONS_FILE.exists():
@@ -358,7 +326,6 @@ def ensure_current_conversation(conversations: list[dict]) -> str:
 
 # ── UI Rendering ────────────────────────────────────────────
 
-
 def render_starter_dashboard(conversations: list[dict]) -> None:
     """Render the welcome dashboard when no conversation is active."""
     st.markdown(
@@ -382,29 +349,28 @@ def render_starter_dashboard(conversations: list[dict]) -> None:
 
     card_cols = st.columns(4)
     for idx, (col, card) in enumerate(zip(card_cols, STARTER_CARDS)):
-        label, accent, icon, desc, question = card
+        label, accent, desc, question = card
         with col:
             with st.container(border=True):
-                st.markdown(f"**{icon}  {label}**")
+                st.markdown(f"**{label}**")
                 st.caption(desc)
-                if st.button("开始提问 →", key=f"code_starter_{idx}", use_container_width=True):
+                if st.button("开始提问 ->", key=f"code_starter_{idx}", use_container_width=True):
                     st.session_state["code_current_id"] = ""
                     if question:
                         st.session_state["code_pending_question"] = question
                     else:
-                        # For the "upload screenshot" card, just set flag to show uploader
                         st.session_state["code_show_upload"] = True
                     st.rerun()
 
 
 def render_conversation_actions(conversations: list[dict], conversation: dict) -> None:
     cid = str(conversation.get("id", ""))
-    with st.popover("⋯", use_container_width=True):
-        pin_label = "📌 取消置顶" if conversation.get("pinned") else "📌 置顶对话"
+    with st.popover("...", use_container_width=True):
+        pin_label = "取消置顶" if conversation.get("pinned") else "置顶对话"
         if st.button(pin_label, key=f"code_pin_{cid}", use_container_width=True):
             toggle_conversation_pin(conversations, cid)
             st.rerun()
-        if st.button("✏️ 重命名", key=f"code_rn_btn_{cid}", use_container_width=True):
+        if st.button("重命名", key=f"code_rn_btn_{cid}", use_container_width=True):
             st.session_state["code_renaming_id"] = cid
         if st.session_state.get("code_renaming_id") == cid:
             nt = st.text_input(
@@ -421,7 +387,7 @@ def render_conversation_actions(conversations: list[dict], conversation: dict) -
                 if st.button("取消", key=f"code_rn_ccl_{cid}", use_container_width=True):
                     st.session_state.pop("code_renaming_id", None)
                     st.rerun()
-        if st.button("🗑️ 删除对话", key=f"code_del_btn_{cid}", use_container_width=True):
+        if st.button("删除对话", key=f"code_del_btn_{cid}", use_container_width=True):
             st.session_state["code_delete_id"] = cid
         if st.session_state.get("code_delete_id") == cid:
             st.warning("确定删除此对话？")
@@ -441,24 +407,24 @@ def render_conversation_actions(conversations: list[dict], conversation: dict) -
 def render_sidebar(conversations: list[dict], current_id: str) -> None:
     st.markdown("#### 代码学习 AI")
 
-    if st.button("＋ 新建对话", key="code_new_conv", use_container_width=True):
+    if st.button("+ 新建对话", key="code_new_conv", use_container_width=True):
         st.session_state["code_current_id"] = ""
         st.session_state["code_pending_question"] = None
         st.rerun()
 
-    st.caption("代码讲解 · 静态 Debug · 算法分析")
+    st.caption("代码讲解 | 静态 Debug | 算法分析")
 
     st.markdown("---")
 
     recent = visible_conversations(conversations)[:MAX_HISTORY_ITEMS]
     if recent:
-        st.caption("📋 历史对话")
+        st.caption("历史对话")
 
     for i, c in enumerate(recent):
         cid = str(c.get("id", ""))
         ct = str(c.get("title") or "未命名代码对话")
         pinned = c.get("pinned")
-        display = f"📌 {ct}" if pinned else ct
+        display = f"[置顶] {ct}" if pinned else ct
 
         tc, mc = st.columns([0.84, 0.16])
         with tc:
@@ -470,14 +436,14 @@ def render_sidebar(conversations: list[dict], current_id: str) -> None:
             render_conversation_actions(conversations, c)
 
     if recent:
-        if st.button("🗑️ 清空历史", key="code_clr_hist", use_container_width=True):
+        if st.button("清空历史", key="code_clr_hist", use_container_width=True):
             clear_history()
             st.session_state["code_current_id"] = ""
             st.rerun()
 
 
 def render_quick_questions() -> None:
-    st.caption("💡 试试这些问题")
+    st.caption("试试这些问题")
     cols = st.columns(4)
     for i, q in enumerate(EXAMPLE_QUESTIONS[:4]):
         with cols[i]:
@@ -500,7 +466,7 @@ def render_learning_signal(msg: dict) -> None:
     if courses:
         chips.append("关联课程：" + "、".join(courses[:2]))
     if chips:
-        st.caption(" · ".join(chips))
+        st.caption(" | ".join(chips))
 
     if exercises:
         with st.expander("下一步练习", expanded=False):
@@ -513,7 +479,6 @@ def render_message(msg: dict) -> None:
     content = str(msg.get("content", ""))
 
     if role == "user":
-        # Check if this message had an image
         had_image = msg.get("has_image", False)
         _spacer, bubble = st.columns([0.34, 0.66])
         with bubble:
@@ -522,7 +487,7 @@ def render_message(msg: dict) -> None:
                 if recognized:
                     st.markdown(
                         f'<div class="ds-code-user-bubble">'
-                        f'📸 <em>已识别截图中的代码</em>'
+                        f'<em>已识别截图中的代码</em>'
                         f'<pre>{html.escape(recognized)}</pre>'
                         f'{html.escape(content)}'
                         f'</div>',
@@ -530,7 +495,7 @@ def render_message(msg: dict) -> None:
                     )
                 else:
                     st.markdown(
-                        f'<div class="ds-user-bubble">📸 {html.escape(content)}</div>',
+                        f'<div class="ds-user-bubble">{html.escape(content)}</div>',
                         unsafe_allow_html=True,
                     )
             else:
@@ -546,7 +511,7 @@ def render_message(msg: dict) -> None:
         lang = msg.get("language")
         with st.container(border=True):
             if lang:
-                st.caption(f"🔍 检测语言：{lang}")
+                st.caption(f"检测语言：{lang}")
             render_learning_signal(msg)
             st.markdown(content)
 
@@ -577,13 +542,12 @@ def render_chat_header(conversation: dict | None, n_messages: int) -> None:
     title = conversation.get("title", "未命名代码对话")
     ts = conversation.get("updated_at") or conversation.get("created_at") or now_text()
     rounds = n_messages // 2
-    meta = f"{rounds} 轮对话 · {ts}" if rounds else f"{n_messages} 条消息 · {ts}"
+    meta = f"{rounds} 轮对话 | {ts}" if rounds else f"{n_messages} 条消息 | {ts}"
     st.markdown(f"### {title}")
     st.caption(meta)
 
 
 # ── Agent Interaction ──────────────────────────────────────
-
 
 def start_question(
     conversations: list[dict],
@@ -642,22 +606,31 @@ def finish_pending_answer(conversations: list[dict]) -> None:
         _cleanup_generating_state()
         return
 
+    # Build chat history from recent messages for multi-turn context
+    raw_msgs = current_conv.get("messages", []) or []
+    # Exclude the last user message (already sent as current question)
+    chat_history: list[dict[str, str]] = []
+    for m in raw_msgs[-9:]:  # ~4 turns before current question
+        role = m.get("role", "")
+        content = str(m.get("content", ""))
+        if role in ("user", "assistant") and content.strip():
+            chat_history.append({"role": role, "content": content})
+
     try:
-        agent = CodeLearningAgent()
+        agent = _get_agent()
 
         if image_bytes is not None and image_mime:
             with st.spinner("正在识别图片中的代码..."):
-                result = agent.answer_with_image(question, image_bytes, image_mime)
+                result = agent.answer_with_image(question, image_bytes, image_mime, chat_history=chat_history)
         else:
             with st.spinner("正在分析代码..."):
-                result = agent.answer_text_question(question)
+                result = agent.answer_text_question(question, chat_history=chat_history)
     except RuntimeError as exc:
-        # API key missing or other config error
         error_msg = str(exc)
         from src.code_agent import CodeAgentAnswer
         result = CodeAgentAnswer(
             question=question,
-            answer=f"❌ 出错了：{error_msg}\n\n请检查 `.env` 文件中的 API Key 配置。",
+            answer=f"出错了：{error_msg}\n\n请检查 `.env` 文件中的 API Key 配置。",
             has_image=image_bytes is not None,
             recognized_code=getattr(exc, "recognized_code", None),
         )
@@ -665,7 +638,7 @@ def finish_pending_answer(conversations: list[dict]) -> None:
         from src.code_agent import CodeAgentAnswer
         result = CodeAgentAnswer(
             question=question,
-            answer=f"❌ 回答生成失败：{exc}",
+            answer=f"回答生成失败：{exc}",
             has_image=False,
         )
 
@@ -721,7 +694,6 @@ def _cleanup_generating_state() -> None:
 
 # ── Main Page Renderer ──────────────────────────────────────
 
-
 def render_code_learning_page() -> None:
     """Render the full Code Learning AI page."""
     apply_design_system()
@@ -747,18 +719,17 @@ def render_code_learning_page() -> None:
             start_question(conversations, current_id, question)
         st.rerun()
 
-    # ── No messages yet → show dashboard ──
+    # ── No messages yet -> show dashboard ──
     if not current_msgs:
         render_starter_dashboard(conversations)
 
         # Image upload area
-        with st.expander("📸 上传代码截图（可选）", expanded=st.session_state.get("code_show_upload", False)):
+        with st.expander("上传代码截图（可选）", expanded=st.session_state.get("code_show_upload", False)):
             if st.session_state.get("code_show_upload"):
                 st.session_state["code_show_upload"] = False
 
-            agent_check = CodeLearningAgent()
-            if not agent_check.has_vision:
-                st.info("💡 图片识别功能需要配置 OpenAI 视觉模型 API Key（在 `.env` 中设置 `OPENAI_API_KEY`）。文本代码问答仍可正常使用。")
+            if not _get_agent().has_vision:
+                st.info("图片识别功能需要配置 Kimi 视觉模型 API Key（在 `.env` 中设置 `CODE_VISION_API_KEY`）。文本代码问答仍可正常使用。")
 
             uploaded = st.file_uploader(
                 "上传代码截图",
@@ -775,15 +746,11 @@ def render_code_learning_page() -> None:
                     st.error(error_msg)
                 else:
                     st.image(img_bytes, caption="上传的代码截图", use_container_width=True)
-                    # Store in session for the next question
                     st.session_state["code_uploaded_image"] = img_bytes
 
-                    # Determine MIME type
                     ext = Path(filename).suffix.lower()
-                    from src.code_agent import EXT_TO_MIME
                     st.session_state["code_uploaded_image_mime"] = EXT_TO_MIME.get(ext, "image/png")
 
-        # Text input for new question
         user_input = st.chat_input("输入代码问题，或粘贴代码片段...")
         if user_input and user_input.strip():
             question = user_input.strip()
@@ -825,11 +792,10 @@ def render_code_learning_page() -> None:
 
         render_quick_questions()
 
-        # Image upload area (collapsed by default)
-        with st.expander("📸 上传代码截图（可选）", expanded=False):
-            agent_check = CodeLearningAgent()
-            if not agent_check.has_vision:
-                st.info("💡 图片识别功能需要配置 OpenAI 视觉模型 API Key（在 `.env` 中设置 `OPENAI_API_KEY`）。文本代码问答仍可正常使用。")
+        # Image upload area (collapsed by default in active conversation)
+        with st.expander("上传代码截图（可选）", expanded=False):
+            if not _get_agent().has_vision:
+                st.info("图片识别功能需要配置 Kimi 视觉模型 API Key（在 `.env` 中设置 `CODE_VISION_API_KEY`）。文本代码问答仍可正常使用。")
 
             uploaded = st.file_uploader(
                 "上传代码截图",
@@ -849,7 +815,6 @@ def render_code_learning_page() -> None:
                     st.session_state["code_uploaded_image"] = img_bytes
 
                     ext = Path(filename).suffix.lower()
-                    from src.code_agent import EXT_TO_MIME
                     st.session_state["code_uploaded_image_mime"] = EXT_TO_MIME.get(ext, "image/png")
 
         # Chat input

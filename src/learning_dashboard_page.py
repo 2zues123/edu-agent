@@ -1,415 +1,351 @@
-"""Learning cockpit page for the Software College growth agent."""
+"""Learning dashboard — semester-based course browser powered by structured course DB.
+
+Core feature: browse courses by semester (1-8), click any course to instantly
+ask about it in the教务问答.  This turns the dashboard from a static report
+into an interactive learning tool.
+"""
 
 from __future__ import annotations
 
 import html
 import json
-import re
+from collections import defaultdict
 from pathlib import Path
-from typing import Any
 
 import streamlit as st
 
-from src.learner_profile import load_profile, recommended_tasks, update_basic_profile
-from src.learning_map import build_learning_map, load_learning_map, save_learning_map
+from src.course_db import CourseDB
+from src.learner_profile import update_basic_profile
+from src.student_memory import build_student_profile, generate_learning_advice, profile_to_llm_context
 from src.ui.design_system import apply_design_system, inject_extra_css
 from src.ui.layout import render_top_nav
 
 
-CODE_CONVERSATIONS_FILE = Path(".chat_history/code_conversations.json")
+CONVERSATIONS_FILE = Path(".chat_history/conversations.json")
+BUILD_REPORT_FILE = Path("data/processed/build_report.json")
 
-# Heuristic: detect text that looks like code rather than natural language
-_CODE_INDICATORS = [
-    re.compile(r"\b(def|class|import|return|print|while|for|if|else|elif)\b"),
-    re.compile(r"[{}();]"),
-    re.compile(r"^\s*(#|//|/\*)"),
-    re.compile(r"\b(public|private|static|void|int|float|double|String)\b"),
-    re.compile(r"\b(len|range|append|split|join|lambda|yield|raise|except|try|catch)\b"),
-]
+DASHBOARD_CSS = """
+.dash-semester-nav {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0;
+}
+.dash-semester-nav a {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 60px; height: 36px; padding: 0 12px;
+    border-radius: 10px; border: 1px solid var(--border);
+    background: #fff; color: var(--ink); font-weight: 650; font-size: 0.84rem;
+    text-decoration: none; transition: all 120ms;
+}
+.dash-semester-nav a.active, .dash-semester-nav a:hover {
+    background: #168C8C; color: #fff; border-color: #168C8C;
+}
+.dash-course-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0;
+}
+.dash-course-card {
+    border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;
+    background: #fff; transition: box-shadow 150ms;
+}
+.dash-course-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.dash-course-name { font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.dash-course-meta { font-size: 0.76rem; color: var(--ink-muted); }
+.dash-course-actions { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
 
+.dash-kpi-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px;
+}
+.dash-kpi {
+    border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px;
+    background: rgba(255,255,255,0.6);
+}
+.dash-kpi-label { color: var(--ink-muted); font-size: 0.78rem; font-weight: 700; }
+.dash-kpi-value { color: var(--ink); font-size: 1.5rem; font-weight: 820; margin-top: 4px; }
+.dash-kpi-sub { color: var(--ink-secondary); font-size: 0.76rem; margin-top: 2px; }
 
-LEARNING_DASHBOARD_CSS = """
-.learn-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
-    gap: 18px;
-    align-items: stretch;
-    margin: 10px 0 18px;
-}
-.learn-panel {
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    background: rgba(255, 249, 239, 0.84);
-    box-shadow: var(--shadow-sm);
-    padding: 20px;
-}
-.learn-panel h1,
-.learn-panel h2,
-.learn-panel h3 {
-    margin: 0 0 10px;
-    color: var(--ink);
-}
-.learn-panel p {
-    margin: 0;
-    color: var(--ink-secondary);
-    line-height: 1.7;
-}
-.learn-kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-    margin: 12px 0 18px;
-}
-.learn-kpi {
-    border: 1px solid rgba(24, 53, 35, 0.12);
-    border-radius: 12px;
-    padding: 14px;
-    background: rgba(255,255,255,0.54);
-}
-.learn-kpi span {
-    display: block;
-    color: var(--ink-muted);
-    font-size: 0.78rem;
-    font-weight: 700;
-}
-.learn-kpi strong {
-    display: block;
-    margin-top: 6px;
-    color: var(--ink);
-    font-size: 1.3rem;
-}
-.learn-skill {
-    display: grid;
-    grid-template-columns: 92px minmax(0, 1fr) 42px;
-    gap: 12px;
-    align-items: center;
-    margin: 11px 0;
-}
-.learn-skill-name,
-.learn-skill-score {
-    color: var(--ink-secondary);
-    font-size: 0.84rem;
-    font-weight: 700;
-}
-.learn-skill-track {
-    height: 10px;
-    border-radius: 999px;
-    background: rgba(23, 50, 74, 0.08);
-    overflow: hidden;
-}
-.learn-skill-fill {
-    height: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #168C8C, #7FB8A4);
-}
-.learn-tag-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-}
-.learn-tag {
-    display: inline-flex;
-    align-items: center;
-    min-height: 28px;
-    padding: 0 10px;
-    border-radius: 999px;
-    background: #DDEAE2;
-    color: #168C8C;
-    font-size: 0.78rem;
-    font-weight: 750;
-}
-.learn-task {
-    border-left: 3px solid #168C8C;
-    padding: 10px 0 10px 14px;
-    margin: 8px 0;
-}
-.learn-task strong {
-    display: block;
-    color: var(--ink);
-}
-.learn-task span {
-    color: var(--ink-secondary);
-    font-size: 0.86rem;
-}
-.learn-course-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-}
-.learn-course {
-    border: 1px solid rgba(24, 53, 35, 0.10);
-    border-radius: 12px;
-    padding: 12px;
-    background: rgba(255,255,255,0.48);
-}
-.learn-course strong {
-    display: block;
-    color: var(--ink);
-}
-.learn-course span {
-    color: var(--ink-muted);
-    font-size: 0.78rem;
-}
 @media (max-width: 860px) {
-    .learn-hero,
-    .learn-kpi-grid,
-    .learn-course-grid {
-        grid-template-columns: 1fr;
-    }
+    .dash-course-grid { grid-template-columns: 1fr; }
+    .dash-kpi-row { grid-template-columns: 1fr; }
 }
+
+.dash-sem-badge {
+    display: inline-block; padding: 2px 10px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 700; margin-left: 6px; vertical-align: middle;
+}
+.dash-sem-badge.past { background: #E8F5E9; color: #2E7D32; }
+.dash-sem-badge.current { background: #168C8C; color: #fff; }
+.dash-sem-badge.future { background: #F5F5F5; color: #9E9E9E; }
+
+.dash-grade-banner {
+    background: linear-gradient(135deg, #E8F5E9 0%, #DDEAE2 100%);
+    border: 1px solid rgba(22, 140, 140, 0.18);
+    border-radius: 12px; padding: 12px 18px; margin-bottom: 16px;
+    color: #17324A; font-size: 0.88rem; line-height: 1.6;
+}
+.dash-grade-banner strong { color: #168C8C; }
+
 """
 
 
-def _looks_like_code(text: str) -> bool:
-    """Heuristic to detect whether text looks like source code rather than natural language."""
-    if not text or not text.strip():
-        return False
-    return sum(1 for pattern in _CODE_INDICATORS if pattern.search(text)) >= 2
+def _load_kb_stats() -> dict:
+    if not BUILD_REPORT_FILE.exists():
+        return {"documents": 0, "chunks": 0, "built_at": ""}
+    try:
+        r = json.loads(BUILD_REPORT_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return {"documents": 0, "chunks": 0, "built_at": ""}
+    return {
+        "documents": r.get("document_count", 0),
+        "chunks": r.get("chunk_count", 0),
+        "built_at": (r.get("built_at") or "")[:10],
+    }
 
 
-def _task_label(task: dict[str, Any]) -> str:
-    """Build a human-readable label for a task, avoiding raw-question exposure."""
-    topics = task.get("topics", [])
-    difficulty = str(task.get("difficulty", ""))
-    if topics:
-        readable = [str(t) for t in topics[:3] if str(t).strip()]
-        if readable:
-            return " · ".join(readable[:2])
-    if difficulty and difficulty != "入门":
-        return f"{difficulty}难度练习"
-    return "代码学习记录"
-
-
-def _task_detail(task: dict[str, Any]) -> str:
-    """Build a detail line for a task from metadata (skills + courses)."""
-    parts: list[str] = []
-    skills = task.get("skills", [])
-    if skills:
-        parts.append("技能：" + "、".join(str(s) for s in skills[:2] if str(s).strip()))
-    courses = task.get("related_courses", [])
-    if courses:
-        parts.append("课程：" + "、".join(str(c) for c in courses[:2] if str(c).strip()))
-    return " · ".join(parts) if parts else ""
+def _ask_about_course(course_name: str, question: str) -> None:
+    """Navigate to chat view with a pre-filled question about a course."""
+    st.session_state["pending_question"] = question
+    st.query_params["view"] = "chat"
+    st.query_params["stage"] = "start"
+    st.rerun()
 
 
 def render_learning_dashboard_page() -> None:
     apply_design_system()
-    inject_extra_css(LEARNING_DASHBOARD_CSS)
+    inject_extra_css(DASHBOARD_CSS)
     render_top_nav("learn")
 
-    profile = load_profile()
-    learning_map = load_learning_map()
-    code_conversations = load_code_conversations()
+    db = CourseDB()
+    stats = _load_kb_stats()
 
-    render_header(profile, learning_map, code_conversations)
-    render_profile_editor(profile)
+    st.markdown("## 学习驾驶舱")
+    st.caption("按学期浏览软件工程专业全部课程，点击即可查询详情")
 
-    left, right = st.columns([0.62, 0.38], gap="large")
-    with left:
-        render_skill_scores(profile)
-        render_recommended_tasks(profile)
-        render_learning_map_summary(learning_map)
-    with right:
-        render_weak_topics(profile)
-        render_recent_activity(profile, code_conversations)
-        render_map_actions()
+    # ── Student profile + AI advice ──
+    profile = build_student_profile()
 
+    with st.expander("学习画像 & AI 建议", expanded=True):
+        pcol1, pcol2 = st.columns([1, 2])
+        with pcol1:
+            basic = profile.get("basic", {})
+            pstats = profile.get("stats", {})
+            st.markdown("#### 基本信息")
 
-def render_header(profile: dict[str, Any], learning_map: dict[str, Any], code_conversations: list[dict[str, Any]]) -> None:
-    basic = profile.get("basic", {})
-    weak_topics = profile.get("knowledge_state", {}).get("weak_topics", [])
-    recent_tasks = profile.get("activity", {}).get("recent_tasks", [])
-    kpis = [
-        ("目标", basic.get("goal", "课程补弱")),
-        ("薄弱点", len(weak_topics)),
-        ("代码对话", len(code_conversations)),
-        ("课程节点", len(learning_map.get("courses", []))),
-    ]
-    kpi_markup = "".join(
-        f'<div class="learn-kpi"><span>{html.escape(str(label))}</span><strong>{html.escape(str(value))}</strong></div>'
-        for label, value in kpis
-    )
-    # Build a safe summary label for the most recent task (never expose raw question)
-    if recent_tasks and isinstance(recent_tasks[0], dict):
-        recent_label = _task_label(recent_tasks[0])
-    else:
-        recent_label = "暂无"
+            # Editable grade selector
+            current_grade = basic.get("grade", "未设置")
+            grade_options = ["未设置", "大一", "大二", "大三", "大四"]
+            try:
+                default_idx = grade_options.index(current_grade) if current_grade in grade_options else 0
+            except ValueError:
+                default_idx = 0
+            new_grade = st.selectbox(
+                "年级", grade_options, index=default_idx,
+                key="profile_grade", label_visibility="collapsed",
+            )
+            if new_grade != current_grade:
+                # Persist to learner_profile.json
+                try:
+                    update_basic_profile(
+                        grade=new_grade,
+                        goal=basic.get("goal", "课程补弱与代码能力提升"),
+                        direction=basic.get("direction", "软件工程综合能力"),
+                    )
+                    st.rerun()
+                except Exception:
+                    pass
+
+            st.caption(f"目标：{basic.get('goal', '未设置')}")
+            st.caption(f"方向：{basic.get('direction', '未设置')}")
+            st.markdown("#### 学习数据")
+            st.caption(f"总提问：{pstats.get('total_questions', 0)} 次")
+            st.caption(f"教务问答：{pstats.get('教务_questions', 0)} 次")
+            st.caption(f"代码学习：{pstats.get('代码_questions', 0)} 次")
+            st.caption(f"最近活跃：{pstats.get('last_active', '暂无')}")
+
+            courses_mentioned = profile.get("courses_mentioned", [])
+            if courses_mentioned:
+                st.markdown("#### 关注课程")
+                for name, count in courses_mentioned[:8]:
+                    st.caption(f"· {name}（{count}次）")
+
+            topics_engaged = profile.get("topics_engaged", [])
+            if topics_engaged:
+                st.markdown("#### 涉及主题")
+                for name, count in topics_engaged[:6]:
+                    st.caption(f"· {name}（{count}次）")
+
+        with pcol2:
+            advice = generate_learning_advice(profile)
+            st.markdown(advice)
+
+            if st.button("生成 AI 深度分析", use_container_width=True):
+                with st.spinner("AI 正在分析你的学习情况..."):
+                    try:
+                        from src.llm import build_deepseek_chat
+                        from langchain_core.messages import HumanMessage, SystemMessage
+                        llm = build_deepseek_chat()
+                        ctx = profile_to_llm_context(profile)
+                        prompt = (
+                            f"{ctx}\n"
+                            "请根据以上学生画像，给出个性化的学习建议和课程规划方案。\n"
+                            "要求：\n"
+                            "1. 分析学生的学习特点和关注领域\n"
+                            "2. 给出下学期的课程选择建议\n"
+                            "3. 指出需要加强的知识领域\n"
+                            "4. 语气亲切、具体、可执行\n"
+                            "格式：用 Markdown，分「学习分析」「课程建议」「能力提升」三部分。"
+                        )
+                        response = llm.invoke([
+                            SystemMessage(content="你是河北师范大学软件学院的学习导师，"
+                                "根据学生的学习数据提供专业、个性化的学业指导。"),
+                            HumanMessage(content=prompt),
+                        ])
+                        st.session_state["ai_advice"] = str(response.content)
+                    except Exception as e:
+                        st.session_state["ai_advice"] = f"AI 分析暂时不可用：{e}"
+
+            if st.session_state.get("ai_advice"):
+                st.markdown("---")
+                st.markdown("### AI 深度分析")
+                st.markdown(st.session_state["ai_advice"])
+
+    # ── KPI row ──
+    courses_with_sem = [c for c in db.courses if c.get("semester") and str(c["semester"]).strip().isdigit()]
+    semesters_found = sorted(set(int(str(c["semester"])) for c in courses_with_sem))
+
     st.html(
-        f"""<section class="learn-hero">
-            <div class="learn-panel">
-                <h1>学习驾驶舱</h1>
-                <p>把教务资料、课程地图、代码学习记录和个人薄弱点合在一起，形成软件学院专属的成长型学习 Agent。</p>
-                <div class="learn-kpi-grid">{kpi_markup}</div>
+        f"""<div class="dash-kpi-row">
+            <div class="dash-kpi">
+                <div class="dash-kpi-label">课程总数</div>
+                <div class="dash-kpi-value">{len(db.courses)}</div>
+                <div class="dash-kpi-sub">{len(db.by_type)} 个类别 · 覆盖 {len(semesters_found)} 个学期</div>
             </div>
-            <div class="learn-panel">
-                <h3>当前画像</h3>
-                <p>年级：{html.escape(str(basic.get("grade", "未设置")))}</p>
-                <p>方向：{html.escape(str(basic.get("direction", "软件工程综合能力")))}</p>
-                <p>最近学习：{html.escape(recent_label)}</p>
+            <div class="dash-kpi">
+                <div class="dash-kpi-label">知识库</div>
+                <div class="dash-kpi-value">{stats['documents']}</div>
+                <div class="dash-kpi-sub">{stats['chunks']} 片段 · BGE 语义索引</div>
             </div>
-        </section>"""
-    )
-
-
-def render_profile_editor(profile: dict[str, Any]) -> None:
-    basic = profile.get("basic", {})
-    with st.expander("调整学习目标", expanded=False):
-        with st.form("learner_profile_form"):
-            c1, c2, c3 = st.columns(3)
-            with c1:
-                grade = st.text_input("年级", value=str(basic.get("grade", "未设置")))
-            with c2:
-                goal = st.text_input("目标", value=str(basic.get("goal", "课程补弱与代码能力提升")))
-            with c3:
-                direction = st.text_input("方向", value=str(basic.get("direction", "软件工程综合能力")))
-            submitted = st.form_submit_button("保存画像", use_container_width=True)
-            if submitted:
-                update_basic_profile(grade=grade, goal=goal, direction=direction)
-                st.success("学习画像已更新")
-                st.rerun()
-
-
-def render_skill_scores(profile: dict[str, Any]) -> None:
-    scores = profile.get("coding_state", {}).get("skill_scores", {})
-    rows = []
-    for name, value in scores.items():
-        try:
-            score = max(0, min(100, int(value)))
-        except (TypeError, ValueError):
-            score = 0
-        rows.append(
-            f"""<div class="learn-skill">
-                <div class="learn-skill-name">{html.escape(str(name))}</div>
-                <div class="learn-skill-track"><div class="learn-skill-fill" style="width:{score}%"></div></div>
-                <div class="learn-skill-score">{score}</div>
-            </div>"""
-        )
-    st.html(
-        f'<div class="learn-panel"><h2>能力雷达</h2>{"".join(rows)}</div>'
-    )
-
-
-def render_recommended_tasks(profile: dict[str, Any]) -> None:
-    task_markup = []
-    for task in recommended_tasks(profile):
-        task_markup.append(
-            f"""<div class="learn-task">
-                <strong>{html.escape(str(task.get("title", "")))}</strong>
-                <span>{html.escape(str(task.get("detail", "")))}</span>
-            </div>"""
-        )
-    st.html(
-        f'<div class="learn-panel"><h2>本周推荐任务</h2>{"".join(task_markup)}</div>'
-    )
-
-
-def render_learning_map_summary(learning_map: dict[str, Any]) -> None:
-    courses = learning_map.get("courses", [])[:8]
-    course_markup = []
-    for course in courses:
-        course_markup.append(
-            f"""<div class="learn-course">
-                <strong>{html.escape(str(course.get("name", "")))}</strong>
-                <span>{html.escape(str(course.get("type", "专业课程")))} · 权重 {html.escape(str(course.get("weight", 0)))}</span>
-            </div>"""
-        )
-    st.html(
-        f'<div class="learn-panel"><h2>课程能力地图</h2><div class="learn-course-grid">{"".join(course_markup)}</div></div>'
-    )
-
-
-def render_weak_topics(profile: dict[str, Any]) -> None:
-    state = profile.get("knowledge_state", {})
-    topics = _tag_markup(state.get("weak_topics", []))
-    courses = _tag_markup(state.get("related_courses", []))
-    errors = _tag_markup(profile.get("coding_state", {}).get("error_patterns", []))
-    st.html(
-        f"""<div class="learn-panel">
-            <h2>薄弱点追踪</h2>
-            <p>知识点</p><div class="learn-tag-row">{topics or '<span class="learn-tag">等待学习记录</span>'}</div>
-            <p style="margin-top:14px;">关联课程</p><div class="learn-tag-row">{courses or '<span class="learn-tag">等待课程关联</span>'}</div>
-            <p style="margin-top:14px;">常见错误</p><div class="learn-tag-row">{errors or '<span class="learn-tag">暂无错误模式</span>'}</div>
+            <div class="dash-kpi">
+                <div class="dash-kpi-label">培养方案</div>
+                <div class="dash-kpi-value">5</div>
+                <div class="dash-kpi-sub">2019-2025级 · 6份文档</div>
+            </div>
         </div>"""
     )
 
+    # ── Grade-to-semester context ──
+    GRADE_MAP = {"大一": 1, "大二": 2, "大三": 3, "大四": 4}
+    grade_num = GRADE_MAP.get(current_grade, 0)  # 0 if not set
+    if grade_num:
+        completed_end = (grade_num - 1) * 2
+        current_start = completed_end + 1
+        current_end = min(grade_num * 2, 8)
+        future_start = current_end + 1
 
-def _sanitized_conv_title(conv: dict[str, Any]) -> str:
-    """Return a safe conversation title, replacing code-like titles with a generic label."""
-    title = str(conv.get("title", "")).strip()
-    if not title or title in {"新建代码对话", "未命名代码对话"}:
-        return "代码学习对话"
-    if _looks_like_code(title):
-        return "代码学习对话"
-    return title
+        sem_status: dict[int, str] = {}
+        for s in range(1, 9):
+            if s <= completed_end:
+                sem_status[s] = "past"
+            elif s <= current_end:
+                sem_status[s] = "current"
+            else:
+                sem_status[s] = "future"
 
-
-def render_recent_activity(profile: dict[str, Any], code_conversations: list[dict[str, Any]]) -> None:
-    """Show recent learning activity using metadata summaries — never raw user questions."""
-    recent = profile.get("activity", {}).get("recent_tasks", [])[:5]
-    lines = []
-    for item in recent:
-        if not isinstance(item, dict):
-            continue
-        label = _task_label(item)
-        detail = _task_detail(item)
-        lines.append(
-            f"""<div class="learn-task">
-                <strong>{html.escape(label)}</strong>
-                <span>{html.escape(detail)}</span>
+        # Banner showing grade context
+        completed_label = f"第1-{completed_end}学期" if completed_end > 0 else "无"
+        current_label = f"第{current_start}-{current_end}学期" if current_start <= current_end else "无"
+        future_label = f"第{future_start}-8学期" if future_start <= 8 else "无"
+        st.html(
+            f"""<div class="dash-grade-banner">
+                <strong>{current_grade}</strong> |
+                已完成：{completed_label} |
+                当前学期：{current_label} |
+                未修：{future_label}
             </div>"""
         )
-    if not lines:
-        for conv in code_conversations[:4]:
-            title = _sanitized_conv_title(conv)
-            ts = str(conv.get("updated_at", ""))
-            lines.append(
-                f"""<div class="learn-task">
-                    <strong>{html.escape(title)}</strong>
-                    <span>{html.escape(ts)}</span>
-                </div>"""
-            )
-    st.html(
-        f'<div class="learn-panel"><h2>最近学习记录</h2>{"".join(lines) or "<p>暂无记录，先去代码学习 AI 问一个问题。</p>"}</div>'
+    else:
+        sem_status = {s: "future" for s in range(1, 9)}
+
+    # ── Semester tabs ──
+    STATUS_LABEL = {"past": "[已完成]", "current": "[当前学期]", "future": "[未开始]"}
+    STATUS_BADGE = {"past": "past", "current": "current", "future": "future"}
+
+    all_semesters = list(range(1, 9))
+    tab_labels = [
+        f"第{s}学期 {STATUS_LABEL.get(sem_status[s], '')}" for s in all_semesters
+    ]
+    tabs = st.tabs(tab_labels)
+
+    for sem, tab in zip(all_semesters, tabs):
+        with tab:
+            sem_courses = [c for c in db.courses
+                           if c.get("semester") and str(c["semester"]).strip().isdigit()
+                           and int(str(c["semester"])) == sem]
+
+            status = sem_status.get(sem, "future")
+            if status == "current" and grade_num:
+                st.caption(f"当前学期 | {len(sem_courses)} 门课程")
+            elif status == "past" and grade_num:
+                st.caption(f"已完成学期 | {len(sem_courses)} 门课程")
+            elif not sem_courses:
+                st.caption("该学期暂无课程数据")
+                continue
+            else:
+                st.caption(f"{len(sem_courses)} 门课程")
+
+            # Group by type
+            by_type: dict[str, list[dict]] = defaultdict(list)
+            for c in sem_courses:
+                by_type[c.get("course_type", "其他")].append(c)
+
+            for ctype, courses in sorted(by_type.items()):
+                st.markdown(f"**{ctype}**")
+                cols = st.columns(3)
+                for i, c in enumerate(courses):
+                    with cols[i % 3]:
+                        with st.container(border=True):
+                            name = c["name"]
+                            meta_parts = []
+                            if c.get("credits") is not None:
+                                meta_parts.append(f"{c['credits']}学分")
+                            if c.get("hours_total") is not None:
+                                meta_parts.append(f"{c['hours_total']}学时")
+                            req = c.get("required", "")
+                            if req:
+                                meta_parts.append(req)
+                            meta = " · ".join(meta_parts) if meta_parts else ""
+
+                            st.markdown(f"**{html.escape(name)}**")
+                            if meta:
+                                st.caption(meta)
+
+                            c1, c2 = st.columns(2)
+                            with c1:
+                                if st.button("查详情", key=f"detail_{c['code']}", use_container_width=True):
+                                    st.session_state["pending_question"] = f"{name}多少学分？考核方式是什么？"
+                                    st.query_params["view"] = "chat"
+                                    st.rerun()
+                            with c2:
+                                if st.button("大纲", key=f"syllabus_{c['code']}", use_container_width=True):
+                                    st.session_state["pending_question"] = f"{name}的教学大纲和教学内容是什么？"
+                                    st.query_params["view"] = "chat"
+                                    st.rerun()
+
+    # ── Footer: all courses by type (quick reference) ──
+    st.markdown("---")
+    st.markdown("### 按类别浏览")
+
+    cols = st.columns(3)
+    for i, (ctype, names) in enumerate(sorted(db.by_type.items(), key=lambda x: -len(x[1]))):
+        with cols[i % 3]:
+            with st.container(border=True):
+                st.markdown(f"**{ctype}**（{len(names)}门）")
+                for name in names[:6]:
+                    st.caption(f"· {html.escape(name)}")
+                if len(names) > 6:
+                    st.caption(f"…还有 {len(names) - 6} 门")
+
+    st.caption(
+        f"数据来源：软件工程专业培养方案（2019-2025级）· "
+        f"知识库 {stats['documents']} 文档 · {stats['chunks']} 片段"
     )
-
-
-def render_map_actions() -> None:
-    with st.container(border=True):
-        st.markdown("#### 地图维护")
-        st.caption("当课程资料或知识库更新后，可重新生成学习地图。")
-        if st.button("重建学习地图", use_container_width=True):
-            data = build_learning_map()
-            save_learning_map(data)
-            st.success("学习地图已重建")
-            st.rerun()
-
-
-def load_code_conversations() -> list[dict[str, Any]]:
-    if not CODE_CONVERSATIONS_FILE.exists():
-        return []
-    try:
-        data = json.loads(CODE_CONVERSATIONS_FILE.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return []
-    if not isinstance(data, list):
-        return []
-    return [item for item in data if isinstance(item, dict)]
-
-
-def _tag_markup(items: list[Any]) -> str:
-    tags = []
-    for item in items[:10]:
-        if isinstance(item, dict):
-            label = str(item.get("name", ""))
-            count = item.get("count")
-            if count:
-                label = f"{label} ×{count}"
-        else:
-            label = str(item)
-        if label:
-            tags.append(f'<span class="learn-tag">{html.escape(label)}</span>')
-    return "".join(tags)
 
 
 def main() -> None:

@@ -42,15 +42,7 @@ CODE_LEARNING_SYSTEM_PROMPT = """\
 
 
 def build_code_text_prompt(question: str, code_context: str = "") -> str:
-    """Build a user prompt for text-based code learning questions.
-
-    Args:
-        question: The user's question or code snippet.
-        code_context: Optional additional code context from the conversation.
-
-    Returns:
-        Formatted prompt string.
-    """
+    """Build a user prompt for text-based code learning questions."""
     parts = ["请帮我分析以下内容："]
     if code_context:
         parts.append(f"\n上下文代码：\n```\n{code_context}\n```")
@@ -59,11 +51,7 @@ def build_code_text_prompt(question: str, code_context: str = "") -> str:
 
 
 def build_code_image_recognition_prompt() -> str:
-    """Build a prompt for recognising code from a screenshot.
-
-    Returns:
-        Prompt string for the vision model.
-    """
+    """Build a prompt for recognising code from a screenshot."""
     return """\
 请仔细识别这张图片中的代码内容，并按以下格式输出：
 
@@ -78,15 +66,7 @@ def build_code_image_recognition_prompt() -> str:
 
 
 def build_code_image_answer_prompt(question: str, recognized_code: str) -> str:
-    """Build a prompt that combines recognized code with the user's question.
-
-    Args:
-        question: The user's original question about the code.
-        recognized_code: Code text recognized from the image.
-
-    Returns:
-        Formatted prompt for the text model.
-    """
+    """Build a prompt that combines recognized code with the user's question."""
     return f"""\
 用户上传了一张代码截图，经过图片识别后得到以下代码：
 

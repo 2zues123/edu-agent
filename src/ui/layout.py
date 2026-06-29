@@ -54,20 +54,20 @@ def metric_card(label: str, value: object) -> None:
 
 
 METRIC_ICONS = {
-    "资料文件": ("📚", "blue"),
-    "知识片段": ("🧩", "coral"),
-    "课程大纲": ("📋", "green"),
-    "官网网页": ("🌐", "indigo"),
-    "公开附件": ("📎", "amber"),
-    "培养方案": ("🗂", "blue"),
-    "本地文件": ("📄", "blue"),
+    "资料文件": ("", "blue"),
+    "知识片段": ("", "coral"),
+    "课程大纲": ("", "green"),
+    "官网网页": ("", "indigo"),
+    "公开附件": ("", "amber"),
+    "培养方案": ("", "blue"),
+    "本地文件": ("", "blue"),
 }
 
 
 def ds_metric_card(label: str, value: object, *, accent: str = "blue") -> None:
     """Render a design-system metric card with icon and hover effect."""
-    icon_info = METRIC_ICONS.get(label, ("📊", accent))
-    icon, icon_class = icon_info if isinstance(icon_info, tuple) else ("📊", accent)
+    icon_info = METRIC_ICONS.get(label, ("", accent))
+    icon, icon_class = icon_info if isinstance(icon_info, tuple) else ("", accent)
     st.markdown(
         f"""
         <div class="ds-metric-card">

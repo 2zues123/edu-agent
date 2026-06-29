@@ -19,6 +19,7 @@ from src.retriever import HybridRetriever, RetrievedChunk
 from src.risk import RISK_NOTICE, is_high_risk
 from src.state import AgentState
 from src.course_db import is_counting_query, query_course_db, lookup_course_info, CourseDB
+from src.student_memory import build_student_profile, profile_to_llm_context
 
 # Module-level cache — BGE model is heavy, reuse across queries
 _RETRIEVER_CACHE: HybridRetriever | None = None
@@ -136,11 +137,18 @@ def generate_answer_node(state: AgentState) -> AgentState:
     question = state["question"]
     history = state.get("chat_history") or []
 
+    # Inject student memory context so the LLM can personalize answers
+    try:
+        student_ctx = profile_to_llm_context(build_student_profile())
+    except Exception:
+        student_ctx = ""
+
     if not state.get("use_llm", True):
         return {"answer": build_fallback_answer(mode, sources, risk_notice, question)}
 
     if mode.name == GENERAL_MODE.name:
-        return {"answer": invoke_llm(GENERAL_SYSTEM_PROMPT, build_general_prompt(question, history=history))}
+        return {"answer": invoke_llm(GENERAL_SYSTEM_PROMPT,
+                                      student_ctx + build_general_prompt(question, history=history))}
 
     if mode.name == STRICT_MODE.name:
         if not sources:
@@ -148,7 +156,7 @@ def generate_answer_node(state: AgentState) -> AgentState:
         return {
             "answer": invoke_llm(
                 STRICT_SYSTEM_PROMPT,
-                build_strict_prompt(question, sources, risk_notice, history=history),
+                student_ctx + build_strict_prompt(question, sources, risk_notice, history=history),
             )
         }
 
@@ -156,11 +164,12 @@ def generate_answer_node(state: AgentState) -> AgentState:
         return {
             "answer": invoke_llm(
                 HYBRID_SYSTEM_PROMPT,
-                build_hybrid_prompt(question, sources, risk_notice, history=history),
+                student_ctx + build_hybrid_prompt(question, sources, risk_notice, history=history),
             )
         }
 
-    return {"answer": invoke_llm(GENERAL_SYSTEM_PROMPT, build_general_prompt(question, history=history))}
+    return {"answer": invoke_llm(GENERAL_SYSTEM_PROMPT,
+                                  student_ctx + build_general_prompt(question, history=history))}
 
 
 def invoke_llm(system_prompt: str, user_prompt: str) -> str:
