@@ -309,11 +309,16 @@ class KeywordRetriever:
             penalty -= 20.0
 
         # ── Generic index/navigation pages ──
+        # Navigation/index titles — penalize for course/academic queries
+        # but NOT for news/events queries (these ARE the relevant content)
         nav_titles = {"师大要闻", "综合新闻", "基层动态", "学术动态", "通知公告",
                        "教学动态", "学工动态", "学院新闻", "重要通知",
                        "党旗飘扬", "立德树人", "学习参考", "文件精神",
                        "媒体师大", "校园风光", "校园地图"}
-        if title in nav_titles:
+        news_query = any(kw in question for kw in ["新闻", "最新", "最近", "活动", "事件",
+                                                     "典礼", "仪式", "比赛", "竞赛", "展演",
+                                                     "讲座", "报告", "会议"])
+        if title in nav_titles and not news_query:
             penalty -= 35.0
 
         # ── Short, low-content pages that are just link lists ──

@@ -56,16 +56,8 @@ def retrieve_knowledge_node(state: AgentState) -> AgentState:
     top_k = state.get("top_k", 5)
     question = state["question"]
 
-    # Course intent: also search programs — 培养方案 contains the definitive
-    # course list (name, code, credits, hours) that individual syllabi may lack.
-    # Workflow intent: search all categories since workflows data is in policies/web.
-    if intent and intent.category in ("courses", "workflows"):
-        sources = retriever.search(question, category=None, top_k=top_k)
-    else:
-        category = intent.category if intent else None
-        sources = retriever.search(question, category=category, top_k=top_k)
-        if not sources and category is not None:
-            sources = retriever.search(question, category=None, top_k=top_k)
+    # Search all categories — RRF ranking handles relevance.
+    sources = retriever.search(question, category=None, top_k=top_k)
 
     # ── Augment with structured course DB for counting / specific lookups ──
     sources = _augment_with_course_db(question, sources)
@@ -152,7 +144,15 @@ def generate_answer_node(state: AgentState) -> AgentState:
 
     if mode.name == STRICT_MODE.name:
         if not sources:
-            return {"answer": insufficient_evidence_answer(risk_notice)}
+            # No校内资料 found — fall back to hybrid mode so the LLM
+            # can still give a helpful answer while being transparent about
+            # the lack of official sources.
+            return {
+                "answer": invoke_llm(
+                    HYBRID_SYSTEM_PROMPT,
+                    student_ctx + build_hybrid_prompt(question, sources, risk_notice, history=history),
+                )
+            }
         return {
             "answer": invoke_llm(
                 STRICT_SYSTEM_PROMPT,
