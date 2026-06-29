@@ -14,3 +14,4 @@ edu-agent-old/
 .trae/
 .uploads/
 static/
+.streamlit/secrets.toml

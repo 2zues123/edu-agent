@@ -55,6 +55,18 @@ class CodeAgentAnswer:
         }
 
 
+def _env(key: str, default: str = "") -> str:
+    """Read config: st.secrets first (Streamlit Cloud), then os.getenv (local .env)."""
+    try:
+        import streamlit as st
+        val = st.secrets.get(key)
+        if val:
+            return str(val)
+    except Exception:
+        pass
+    return os.getenv(key, default)
+
+
 class CodeLearningAgent:
     """Agent for code learning Q&A — text via DeepSeek, vision via Kimi."""
 
@@ -62,35 +74,14 @@ class CodeLearningAgent:
         load_dotenv()
 
         # Text model — DeepSeek
-        self.text_api_key = (
-            os.getenv("DEEPSEEK_API_KEY")
-            or os.getenv("OPENAI_API_KEY")
-            or ""
-        )
-        self.text_base_url = (
-            os.getenv("DEEPSEEK_BASE_URL")
-            or os.getenv("OPENAI_BASE_URL")
-            or "https://api.deepseek.com"
-        )
-        self.text_model = (
-            os.getenv("CODE_TEXT_MODEL")
-            or os.getenv("DEEPSEEK_MODEL")
-            or os.getenv("OPENAI_MODEL")
-            or "deepseek-chat"
-        )
+        self.text_api_key = _env("DEEPSEEK_API_KEY") or _env("OPENAI_API_KEY")
+        self.text_base_url = _env("DEEPSEEK_BASE_URL") or _env("OPENAI_BASE_URL") or "https://api.deepseek.com"
+        self.text_model = _env("CODE_TEXT_MODEL") or _env("DEEPSEEK_MODEL") or _env("OPENAI_MODEL") or "deepseek-chat"
 
         # Vision model — Kimi (supports multimodal)
-        self.vision_api_key = (
-            os.getenv("CODE_VISION_API_KEY")
-            or os.getenv("OPENAI_API_KEY")
-            or ""
-        )
-        self.vision_base_url = (
-            os.getenv("CODE_VISION_BASE_URL")
-            or os.getenv("OPENAI_BASE_URL")
-            or "https://api.moonshot.cn/v1"
-        )
-        self.vision_model = os.getenv("CODE_VISION_MODEL") or "moonshot-v1-8k-vision-preview"
+        self.vision_api_key = _env("CODE_VISION_API_KEY") or _env("OPENAI_API_KEY")
+        self.vision_base_url = _env("CODE_VISION_BASE_URL") or _env("OPENAI_BASE_URL") or "https://api.moonshot.cn/v1"
+        self.vision_model = _env("CODE_VISION_MODEL") or "moonshot-v1-8k-vision-preview"
 
         self._text_client: OpenAI | None = None
         self._vision_client: OpenAI | None = None
