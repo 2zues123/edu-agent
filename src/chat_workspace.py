@@ -624,7 +624,7 @@ def render_answer(result: GraphAgentAnswer) -> None:
     mode_label = getattr(result, "answer_mode_label", "通用智能问答")
     chips = [
         f"模式：{mode_label}",
-        f"意图：{result.intent_name}{'（' + result.intent_description + '）' if result.intent_description else ''}",
+        f"意图：{result.intent_name}",
     ]
     if result.high_risk:
         chips.append("[高风险]")
