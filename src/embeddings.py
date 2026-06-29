@@ -72,6 +72,10 @@ class HashingEmbeddingProvider:
         }
 
 
+# Module-level cache for SentenceTransformer to avoid reloading on every query
+_SENTENCE_TRANSFORMER_CACHE: dict[str, "SentenceTransformer"] = {}
+
+
 class SentenceTransformersEmbeddingProvider:
     def __init__(self, *, model_name: str = DEFAULT_SENTENCE_MODEL, local_files_only: bool = False):
         os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
@@ -81,7 +85,12 @@ class SentenceTransformersEmbeddingProvider:
         transformers_logging.set_verbosity_error()
         self.model_name = model_name
         self.local_files_only = local_files_only
-        self.model = SentenceTransformer(model_name, local_files_only=local_files_only)
+        cache_key = f"{model_name}:{local_files_only}"
+        if cache_key in _SENTENCE_TRANSFORMER_CACHE:
+            self.model = _SENTENCE_TRANSFORMER_CACHE[cache_key]
+        else:
+            self.model = SentenceTransformer(model_name, local_files_only=local_files_only)
+            _SENTENCE_TRANSFORMER_CACHE[cache_key] = self.model
         self.dimension = int(self.model.get_sentence_embedding_dimension())
 
     def embed_texts(self, texts: list[str]) -> np.ndarray:

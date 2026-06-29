@@ -5,19 +5,19 @@ from __future__ import annotations
 from src.retriever import RetrievedChunk
 
 
-STRICT_SYSTEM_PROMPT = """你是高校教务教学智能体，当前处于“严格校内依据模式”。
+STRICT_SYSTEM_PROMPT = """你是高校教务教学智能体，当前处于"严格校内依据模式"。
 你只能依据用户提供的校内资料片段回答。
 
 硬性要求：
 1. 培养方案、课程学分、考试、毕业、政策、流程等结论必须有资料依据。
 2. 每个关键事实后面使用资料编号引用，例如 [资料1]。
-3. 如果资料没有覆盖问题，直接说明“当前资料依据不足”，不要凭常识补全学校政策。
+3. 如果资料没有覆盖问题，直接说明"当前资料依据不足"，不要凭常识补全学校政策。
 4. 可以指出还需要查询哪个部门、哪类文件或教务系统，但不要伪造具体规定。
 5. 回答结构尽量包含：结论、资料依据、注意事项。
 """
 
 
-GENERAL_SYSTEM_PROMPT = """你是通用智能问答助手，当前处于“通用智能问答模式”。
+GENERAL_SYSTEM_PROMPT = """你是通用智能问答助手，当前处于"通用智能问答模式"。
 你需要直接调用通用能力回答概念解释、学习建议、写作、总结、规划、代码或普通聊天问题。
 
 要求：
@@ -28,14 +28,14 @@ GENERAL_SYSTEM_PROMPT = """你是通用智能问答助手，当前处于“通�
 """
 
 
-HYBRID_SYSTEM_PROMPT = """你是高校教务教学智能体，当前处于“混合增强模式”。
+HYBRID_SYSTEM_PROMPT = """你是高校教务教学智能体，当前处于"混合增强模式"。
 你需要先基于校内资料提炼依据，再结合通用能力给出建议。
 
 硬性要求：
-1. 必须明确分成“资料依据”和“建议”两个部分。
-2. “资料依据”只写资料中能支持的事实，并使用 [资料1] 这类编号引用。
-3. “建议”可以结合通用学习规划能力，但必须标明这是建议，不要说成学校规定。
-4. 如果资料不足，先说明“资料依据不足”，再给出仅供参考的通用建议。
+1. 必须明确分成"资料依据"和"建议"两个部分。
+2. "资料依据"只写资料中能支持的事实，并使用 [资料1] 这类编号引用。
+3. "建议"可以结合通用学习规划能力，但必须标明这是建议，不要说成学校规定。
+4. 如果资料不足，先说明"资料依据不足"，再给出仅供参考的通用建议。
 """
 
 
@@ -73,9 +73,30 @@ def format_references(chunks: list[RetrievedChunk]) -> str:
     return "\n\n".join(references) if references else "未检索到相关校内资料。"
 
 
-def build_strict_prompt(question: str, chunks: list[RetrievedChunk], risk_notice: str | None) -> str:
+def _format_history(history: list[dict[str, str]] | None, max_messages: int = 6) -> str:
+    """Format recent conversation messages as context for the LLM."""
+    if not history:
+        return ""
+    recent = history[-max_messages:] if len(history) > max_messages else history
+    lines = ["对话历史："]
+    for msg in recent:
+        role = "用户" if msg.get("role") == "user" else "助手"
+        content = str(msg.get("content", "")).strip()
+        if content:
+            lines.append(f"{role}：{content}")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def build_strict_prompt(
+    question: str,
+    chunks: list[RetrievedChunk],
+    risk_notice: str | None,
+    history: list[dict[str, str]] | None = None,
+) -> str:
     risk_text = f"\n风险提示要求：{risk_notice}\n" if risk_notice else ""
-    return f"""学生问题：{question}
+    history_text = _format_history(history)
+    return f"""{history_text}学生问题：{question}
 {risk_text}
 校内资料片段：
 {format_references(chunks)}
@@ -83,20 +104,30 @@ def build_strict_prompt(question: str, chunks: list[RetrievedChunk], risk_notice
 请在严格校内依据模式下回答。若资料不足，必须明确说明依据不足。"""
 
 
-def build_general_prompt(question: str) -> str:
-    return f"""用户问题：{question}
+def build_general_prompt(
+    question: str,
+    history: list[dict[str, str]] | None = None,
+) -> str:
+    history_text = _format_history(history)
+    return f"""{history_text}用户问题：{question}
 
 请在通用智能问答模式下直接回答。不要引用校内资料。"""
 
 
-def build_hybrid_prompt(question: str, chunks: list[RetrievedChunk], risk_notice: str | None) -> str:
+def build_hybrid_prompt(
+    question: str,
+    chunks: list[RetrievedChunk],
+    risk_notice: str | None,
+    history: list[dict[str, str]] | None = None,
+) -> str:
     risk_text = f"\n风险提示要求：{risk_notice}\n" if risk_notice else ""
-    return f"""学生问题：{question}
+    history_text = _format_history(history)
+    return f"""{history_text}学生问题：{question}
 {risk_text}
 可参考的校内资料片段：
 {format_references(chunks)}
 
-请在混合增强模式下回答，必须区分“资料依据”和“建议”。"""
+请在混合增强模式下回答，必须区分"资料依据"和"建议"。"""
 
 
 def build_knowledge_prompt(question: str) -> str:

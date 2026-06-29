@@ -47,12 +47,20 @@ class LangGraphAcademicAgent:
     def __init__(self):
         self.graph = build_agent_graph()
 
-    def answer(self, question: str, *, top_k: int = 5, use_llm: bool = True) -> GraphAgentAnswer:
+    def answer(
+        self,
+        question: str,
+        *,
+        top_k: int = 5,
+        use_llm: bool = True,
+        chat_history: list[dict[str, str]] | None = None,
+    ) -> GraphAgentAnswer:
         state = self.graph.invoke(
             {
                 "question": question,
                 "top_k": top_k,
                 "use_llm": use_llm,
+                "chat_history": chat_history or [],
             }
         )
         intent = state["intent"]

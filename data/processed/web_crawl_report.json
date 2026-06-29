@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-06-05T01:24:55.703022+00:00",
+  "built_at": "2026-06-29T10:28:10.158538+00:00",
   "seed_urls": [
     "https://www.hebtu.edu.cn/",
     "https://news.hebtu.edu.cn/",
@@ -10,12 +10,27 @@
     "https://software.hebtu.edu.cn/a/xygk/xybs/index.html",
     "https://software.hebtu.edu.cn/a/xygk/cydh/index.html",
     "https://software.hebtu.edu.cn/a/lxwm/index.html",
+    "https://jwc.hebtu.edu.cn/",
     "https://software.hebtu.edu.cn/a/tzgg/index.html",
     "https://software.hebtu.edu.cn/a/jyjx/zypy/index.html",
     "https://software.hebtu.edu.cn/a/2025/05/30/E6381C289BF948A4A53049CC6AF4687D.html",
-    "https://jwc.hebtu.edu.cn/",
     "https://jwc.hebtu.edu.cn/a/2026/04/09/E55718F3AAD24D219FB44A3B64892DB7.html",
-    "https://jwc.hebtu.edu.cn/a/2026/03/05/C2E58230C5944480912C3E62C0E52B8E.html"
+    "https://jwc.hebtu.edu.cn/a/2026/03/05/C2E58230C5944480912C3E62C0E52B8E.html",
+    "https://jwc.hebtu.edu.cn/a/xlxx/index.html",
+    "https://jwc.hebtu.edu.cn/a/xkxx/index.html",
+    "https://jwc.hebtu.edu.cn/a/2026/06/01/326BAD4DC64948B0A64BC2B65E86223C.html"
+  ],
+  "core_seed_urls": [
+    "https://www.hebtu.edu.cn/",
+    "https://news.hebtu.edu.cn/",
+    "https://software.hebtu.edu.cn/",
+    "https://software.hebtu.edu.cn/a/xygk/xyjj/index.html",
+    "https://software.hebtu.edu.cn/a/xygk/xyry/index.html",
+    "https://software.hebtu.edu.cn/a/xygk/xyld/index.html",
+    "https://software.hebtu.edu.cn/a/xygk/xybs/index.html",
+    "https://software.hebtu.edu.cn/a/xygk/cydh/index.html",
+    "https://software.hebtu.edu.cn/a/lxwm/index.html",
+    "https://jwc.hebtu.edu.cn/"
   ],
   "allowed_netlocs": [
     "jwc.hebtu.edu.cn",
@@ -31,113 +46,77 @@
     "www.zhihuishu.com",
     "zsjyc.hebtu.edu.cn"
   ],
-  "max_pages_per_site": 30,
-  "page_count": 120,
-  "attachment_count": 0,
-  "skipped_count": 458,
+  "max_pages_per_site": 150,
+  "page_count": 230,
+  "attachment_count": 48,
+  "skipped_count": 74,
   "failed_count": 0,
   "site_counts": {
-    "www.hebtu.edu.cn": 30,
-    "news.hebtu.edu.cn": 30,
-    "software.hebtu.edu.cn": 30,
-    "jwc.hebtu.edu.cn": 30
+    "software.hebtu.edu.cn": 39,
+    "jwc.hebtu.edu.cn": 42,
+    "www.hebtu.edu.cn": 55,
+    "news.hebtu.edu.cn": 94
   },
   "skipped": [
     {
-      "url": "https://software.hebtu.edu.cn/a/xygk/xyry/index.html",
-      "reason": "text too short: 66"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3De0f55d6c415441efb478c39ac6c594b6",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/jgsz/fsdw/index.html",
-      "reason": "text too short: 75"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D7360566e36fb48b396653e78ee346952",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/ggfw/sfgk/index.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dbded67acef5a41729b68f537b1f4e484",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/ggfw/shfw/index.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fwww.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D8ee8245e29d5479bbc76ee809a946a23",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/ggfw/wlfw/index.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fwww.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D0ac458a550124a0981dc2feefd13125f",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/tztg/index.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fwww.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dbc988fd8df354a85a73b5021fa0ac683",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/2026/06/03/3262336ACC6A4F68BAB22E257EE350ED.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D390c34488a9f47d585509d53c3b2d597",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/2026/06/03/BE3073F1BC4541FC860A41FC881A9582.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D71cfbe73b3c94978857c37b200098e0e",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/2026/06/02/D4F874C246D84133A930B7844358AA7A.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/404.html",
+      "reason": "text too short: 18"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/2026/05/14/BD4A34C46A364895888096307B4ECD6B.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/404.html",
+      "reason": "text too short: 18"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/2026/05/13/61067167F93D48478EB5540BE902781E.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/404.html",
+      "reason": "text too short: 18"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/2026/05/06/C196AC6D4B3E4CE4971A51018A531301.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3De0f55d6c415441efb478c39ac6c594b6",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/2026/04/30/A9741030699D4DE5BAE5DA6169D91C6A.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D7360566e36fb48b396653e78ee346952",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/a/2026/04/30/549B1B0EAD35492EBCBB7A3DB2CBD241.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/xsdt/xshd/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2026/06/04/77DCF61644994E379CFB006E164E6DFE.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2026/06/04/B08DDB1338D64348A273B3185BC1C9BC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2026/06/04/B55DC4EF49794F5583682BB07DD559AB.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2026/06/03/2312771C7427473CB5CF4FA9C4270C18.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/zjsd/jxyy/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/zjsd/xydt/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/zjsd/sdxl/index.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dbded67acef5a41729b68f537b1f4e484",
+      "reason": "text too short: 36"
     },
     {
       "url": "https://www.hebtu.edu.cn/a/zthd/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/zbgg/index.html",
-      "reason": "site page budget reached"
+      "reason": "text too short: 17"
     },
     {
       "url": "https://news.hebtu.edu.cn/a/shipinshida/index.html",
@@ -172,1708 +151,208 @@
       "reason": "text too short: 14"
     },
     {
-      "url": "https://news.hebtu.edu.cn/dynamic/category.jsp?id=855f5bfdefd54778a153ccbd37c8606f",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=category-null",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://news.hebtu.edu.cn/a/bumenqingkuang/gzzd/index.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D5c0fedfe84c346ddab5f8f68214623a9",
+      "reason": "text too short: 36"
+    },
+    {
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D604a93037d784abca1781c934062e81f",
+      "reason": "text too short: 36"
+    },
+    {
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Df8998d215ee545ebb3e7a2b84e7a1f50",
+      "reason": "text too short: 36"
+    },
+    {
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dee3ae21924ff4bf88d9af85d6f18d5d3",
+      "reason": "text too short: 36"
     },
     {
       "url": "https://news.hebtu.edu.cn/a/bumenqingkuang/xzzq/index.html",
-      "reason": "site page budget reached"
+      "reason": "text too short: 49"
     },
     {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/03/F67C14C129CF412FB4C355F054B97799.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fwww.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D8ee8245e29d5479bbc76ee809a946a23",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://news.hebtu.edu.cn/a/tzgg/index.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fwww.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D0ac458a550124a0981dc2feefd13125f",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://news.hebtu.edu.cn/dynamic/content.jsp?id=390c34488a9f47d585509d53c3b2d597",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fwww.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dbc988fd8df354a85a73b5021fa0ac683",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://news.hebtu.edu.cn/dynamic/content.jsp?id=71cfbe73b3c94978857c37b200098e0e",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/a/xsdt/index.html",
+      "reason": "text too short: 24"
     },
     {
-      "url": "https://news.hebtu.edu.cn/dynamic/content.jsp?id=2f11728cf27144908751d1b8c8561a22",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Db330a2c6790d4cf59bc5219548928ec2",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://news.hebtu.edu.cn/a/2025/06/06/94B43634BF394A5286C0DBDF870D5545.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Df4abb2df4e374b2984e9cfd782f03453",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://news.hebtu.edu.cn/a/2025/10/22/F82D726B27F64A1F93C07CE8FBFB8803.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D8a83f863dac146bcb6b50affc45914c0",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://news.hebtu.edu.cn/a/2025/10/22/D359A42145F840FEB30B3A5D651C0C5F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/10/22/53FDAA35E0334F7ABF0E92BAFE38280A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/10/22/4C2AC11F6BF946ED951DF2E81047050F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/04/11/2B9345C31A5841DD9B5F38010AC9113E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/04/11/45EDBC9FE7FD4B9084C0E8D6D5760910.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/16/FFDDAAB0AE4E470A9287AF1127A15116.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/16/165DC51619DE4C0FAF31C041A4BCE2BA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/06/03/57E56D6ADB2346B288E8903078852BE1.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/16/F8BC6894F26F4F149FEBF5E00647E726.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Da86f8d8f607741f186a0d27a42d6d12f",
+      "reason": "text too short: 36"
     },
     {
       "url": "https://news.hebtu.edu.cn/a/ztwz/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/newwww/a/zbgg/index.html",
-      "reason": "site page budget reached"
+      "reason": "text too short: 5"
     },
     {
       "url": "https://www.hebtu.edu.cn/404.html",
       "reason": "text too short: 18"
     },
     {
-      "url": "https://software.hebtu.edu.cn/a/jyjx/jxcg/index.html",
-      "reason": "text too short: 54"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/11/12/ED570768D4924C379EBECED46A20F017.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/09/09/6D1AB297B3934FF8A2F2401D3AFBF710.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/09/07/B804CAE738254543BCDE5E831901C7A2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/11/04/69A616CC9360421FB5EEBEBE18BD51FB.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/08/7C8AA2E8765942C19F79A74DD5EC191F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/05/15/B9FEA257BC24435C94B9886E07E6EF9B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/hydt/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/xyry/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/xyzx/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/mtgz/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/xmsx/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "http://www.hebtu.edu.cn/",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/02/24/11C055221EBA42B181E517FD7F8A231C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2024/12/02/F1C9D435D8B24031866D91BC437DF59B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2024/10/31/85CD0452D9634B12947E29CF1184279E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/25/1B4D0A33F38D49BE804298278002C577.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/25/C73BD57744134089B727D8A0923ECD80.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/C97FD4A7DF8440408733017ED0DF3550.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3De0f55d6c415441efb478c39ac6c594b6",
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D390c34488a9f47d585509d53c3b2d597",
       "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D7360566e36fb48b396653e78ee346952",
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D71cfbe73b3c94978857c37b200098e0e",
       "reason": "text too short: 36"
     },
     {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dbded67acef5a41729b68f537b1f4e484",
-      "reason": "text too short: 36"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/11/15/F004579E58AB4E0791086DB5D8E31055.html",
+      "reason": "text too short: 11"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/5F70C6004FA44A1F893E739A165D659D.html",
-      "reason": "text too short: 68"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/11/23/E412313A5E854E048A6074CD1CAA9FE3.html",
+      "reason": "text too short: 15"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/DD9A5629A7474C7A8F38ED8BE377E176.html",
-      "reason": "text too short: 77"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/11/23/65536B58DCA1414CAD1CA0316C3D1CD9.html",
+      "reason": "text too short: 11"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/0E4BC3A53B16423BB863E90F0774DA36.html",
-      "reason": "text too short: 77"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/EB54C089FCF447F3A6FB2C4A316B1BE7.html",
+      "reason": "text too short: 7"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/01/03/829AFD7AC39945CFAE96E1FEC0A17287.html",
-      "reason": "text too short: 78"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/4B85AC9869DA4B40B35BC2DE1FBB3693.html",
+      "reason": "text too short: 8"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/2177DE5974584CDABD0263F561639D54.html",
-      "reason": "text too short: 78"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/291D2DC1FDC34B17B85467DA67E35462.html",
+      "reason": "text too short: 14"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/429746EC3296443AA5541E697C3DC8EE.html",
-      "reason": "text too short: 78"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/FE795547FFDB4BAE86DBDB5E49D7F366.html",
+      "reason": "text too short: 11"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/101E6D9373D545E4A22710BD0C63480D.html",
-      "reason": "text too short: 76"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/487A80E9E69948E5AC5530DAB1B47051.html",
+      "reason": "text too short: 12"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/87BF9B8322D34360BF464D6D7C0B7B7E.html",
-      "reason": "text too short: 71"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/7BB572877A7D48CB8346F2F5F0CD04B4.html",
+      "reason": "text too short: 9"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/146BF7F8CD3547BD9C06B9F23D1DF160.html",
-      "reason": "text too short: 73"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/8A4C70746E5240218F61FBC3B2B15D60.html",
+      "reason": "text too short: 15"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/C433249BEF254C9EA5606C017FE29A1D.html",
-      "reason": "text too short: 79"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/34C7FB11650C4595B90B16166AE71A91.html",
+      "reason": "text too short: 13"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/98777E5B4F0044438C9AE9BB90C9FE8E.html",
-      "reason": "text too short: 67"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/52AACCE0E67C46209C7BADD83CF4F517.html",
+      "reason": "text too short: 11"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/04/15/EA0D3C81B4514906BF3B525B207259E7.html",
-      "reason": "text too short: 70"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/D38E1B2486904FF78C3E451F202A6FD4.html",
+      "reason": "text too short: 7"
     },
     {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D357f02d39f5742f38b7aa4b6e4c366a6",
-      "reason": "text too short: 36"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/B8C3149D143542F08138032779A81991.html",
+      "reason": "text too short: 11"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/05/31/9DDBDD86955E41D9847BDB96B0C2DB83.html",
-      "reason": "text too short: 77"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/27/508DA1FA8151444F9D262ABE45A28653.html",
+      "reason": "text too short: 12"
     },
     {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Db66c0c1d62b54838a03990f665a4ef3b",
-      "reason": "text too short: 36"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/09/07/2D8EC90495D0474E9B3AAD6FED98A05C.html",
+      "reason": "text too short: 11"
     },
     {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3De664298067754551a6dd71b812905572",
-      "reason": "text too short: 36"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/11/23/A705B7C1EB6347B48E82C3B8273160AE.html",
+      "reason": "text too short: 6"
     },
     {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dafe3e23729754fae9732d043bd064cc9",
-      "reason": "text too short: 36"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D4f23e794c1984b97937a5d5fbedd0523",
-      "reason": "text too short: 36"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/03/27/7AB15A6A666A488E8236E06918C460D0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/03/24/D96604858598492CA9172EE459AF2489.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/03/03/58785C208563465182E9EF9B082D9D3D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/01/22/CFF048ACC23D4620BB38A7E3F84ED3EF.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/ysl/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/01/20/F3C45BCC650142C68C60372326374831.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/12/19/1046F1953A5544B8B696995728640E5D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/12/19/668F87179328405FB3C91BEDF939FAAE.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jxdjt/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/10/24/5750A0949A254F1A89A11EF4D4E15E4F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/05/23/944131E366C84799B3DC95AA2AB01BAF.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/01/17/822AF74DF0DB4C29BB5F8474220FF099.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/12/12/30887B6851CA45C585B92B08CDE6DEA9.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/12/11/EB82D58DCD9B4BD1B49E9AD790967A24.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/10/07/C1B76B85BFBB4DDC9CF9D84C14E944B2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/08/13/B66924C2A7314E58A3BAA1A626708123.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/xssw/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jxzb/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/zjygh",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/06/04/0AD07AB48779435B89A59C1F5EA62772.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/05/26/7885FD6E4C6C48ACA0444F75DD31B8DC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/05/19/BEBD4C5FF27B4C5A9253E324467198F2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/05/11/0746217E54604848825DE9C5CA3BADF5.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/04/28/69BE0D5628D84A37B8E2FA38B80D15AF.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/04/21/D3DD25F7317443E091B193C31B81CD27.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/04/14/123D6D1A30C94E4FACFDAD007287A2A9.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=7f7f325fb11c4cc297ddd82836130e83",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=ad0b9ce4591e42bfa798fdbe7c1108d9",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=5d65f32ea2e9414f98043c097fa1d692",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/01/02/2F5D48B70806486D9BB4586EBC1A240B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/01/03/1D1772F3AD8240518CC3B48AB84E40EC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/08/25/B0004BBB97C74A2DAF0E42D4D09FA13C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2024/07/05/8D88EB0600004BA7ACE569B58BAAFA7A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=6b3289ad0adb404bba9aa1176c850629",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=d6fa159f83b5407b9282a9b5167cbdf0",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=54f2c17163ce4de9888ce5b808725846",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/xxgk/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/xxgk/xkzy/bssxwsqxk/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/xxgk/xkzy/bkzy/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/xxgk/xyfg/lxqhy/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/01/27/B8DD6DFD38074F0B92DBAD61BF48BEF5.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2022/12/19/A1C803ADBB0F45BAADDCB73DC94D6756.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2023/07/21/2236D39DCCA548DBA04C8DC5EFE01174.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/01/14/76E8F9170254411DADB63EFBCB691F4F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2024/08/30/B14834D312C1481DB9C008D664734E20.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/01/27/46DDEA7BCC274A99A536EDAD20AE3D85.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/01/27/8911625CDD35495391B89EA00C5D73A1.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/09/28/E50A565154764BD6A09719E7B26CAA3F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/jgsz/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/rcpy/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/08/30/F8A68E5C8C26406AACB01F0C72A4F251.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/08/30/A41448C8815840388297A3E488DA2B70.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/08/30/72D6623DD85646AEA1A651BCEDEB44B5.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/08/30/9D8DA9D77C42403BB8CA081858C0E27A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/08/30/6FCEE279884A46D2A05CDE838BCF16CC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/08/30/196C33C1215D4FA8A39D55CD3514222F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "http://jwc.hebtu.edu.cn/",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/kxyjpt/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/zsjy/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/ggfw/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/F79BC57B149D471CBEE91789896FF76E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/3908A6AFE1AA4CD7A03404DC0609C548.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/313909B2732D4CECB70A6493B48B8B48.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/3E797319E28F401ABFE253D48999FF77.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/BDB170675E1D420FB59FB2657459019F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/8D9F221CBC274663AFACCE040F3B1EFA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/8A13748B77E0426B8D2815F955BB4598.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/F8788A32E163436DBEC49BA00F0694E7.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/6C4B61F399D048D282D127CCD9D4BBAD.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/BE05AA5528C842EFB8302C9AA2CC0CD8.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/A3088DAF5AB34BE298A0DA8B3B9BB25D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/9E92B02A4FF148D7848F6533F7BB705A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/6962D4055AC646E2A7A1F88C78684DF4.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/F8E9953B6BC94E519A7631FD92BF1FAD.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/6089DCA2E61C4153BE5063A7B6C2FA7D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/1E970EA4DC4E479C87CD82C4E3F8B348.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/19/6470EF66A81E40E091E9A8EF19C4C647.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2022/10/18/DD639A2CD36A44C890247D5B84496FED.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2022/10/18/9EEB9D60B4CE4D0588CDE38109794472.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2022/10/18/34B902DF70A149368B330CFE652B9F74.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/F599EF0A18E341F5A37B76531BFCB10E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/B7C6193EEE9046CCAE3B4506178DC7AB.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/8949CA1C56DF4F89A9217058BE8F1659.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/15A02023FD234CC69BED6D5D56F2E5B6.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/C1C4C22BFB884B9399A68AB1BD0D12FB.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/6FBC6E3DE26F4705992390A7E7AA475B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/A75F0A10E980458983F7B05684404EAA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/349A6B5C43D44350BA3B0871A43A26F4.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/52BB313CFF42481DBA1BEC38EBECDEDD.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/DA08B64DC23D421B82BD6215ACE22526.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/F5B68EB1131F47B79024D42F66D32A60.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/68BB494360034F17A0818FF055C70E40.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/695A58C2B868462983DBA73A62DC55D0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/6CF522562A894CD2AD32F396E1F22D60.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/CE045448EEFA4195894ED036234AB214.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/62ECA460BD4341538E9284574FF20698.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/A08B9524A6644DF3AC168EF019D06EFD.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/B2203674F1C94A629440C4CC2BAA422D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/E54FC4E7CBCD450192DA630921BBEC09.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/D3777C03F55441EBBDCC923415DDE2F2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2019/03/22/6CC50FC3AD6140F9B814A40A5E32E072.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/1751EE6DD3824DE8B516034F375965EF.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/0B57C643DFBB44CE9FE822EF784871C3.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/8D9245661680496095A1F1E2D0AE131A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/7B72EB33AADA4A6DAE1C0DC6FAD538E0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/11/9C66C2E47E4E48E480C8FCBF08650B01.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/10/C72A33BF364E4585B01123F2FACFDA8B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/10/74FABE4EE7D2471789973D16AC19B239.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/10/B55FBD810F404EDF8323F38AD6B2835A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/10/89FAC8ACA5284EBC8BA03F74F196B3AA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/10/8B9BCD9FE252471DA00483C0F9335C29.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2014/09/10/D76F24B24A014C53896BB8EED5178247.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2026/01/30/97C569F5007646258B7808A4D751A6E9.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/08/13/9EECA7D429F74702940AFF6C8AE76B4C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/01/17/C54964FD53304796B036005B0E0D83C0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2024/08/09/36D0C5A367D14F33A98209B1FD07717E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2024/01/25/727A165C6C9243AAA24620892AC99745.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2023/08/21/334D009B5CFB42158C5F42A2CAAFCE24.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2023/01/16/1059A5066F7E451A8D6038AA5AFDF66D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2022/08/24/5F24D63E4B3F47E881CF26466EBC9B6E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2022/01/28/5AB9F878EE724786B0658EEAB09D7088.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2021/09/02/DB0DD207BF5F4AF1931EB5AB865E1F19.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/04/01/891E4EE80CA34D769E52E32247F3D619.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/03/18/6DB745A394FC4C808F7759A0A5922BC9.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/03/17/3A6B83CEFA674328B3E83F3D738A591D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/03/11/54858DF50E684B74A0CB2D69CD17E758.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/02/28/326489E017254542921BC8513A91F7C8.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/04/DAE35C69632A4B9FB9CDB32C65A24552.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/04/FEC0CBCEC6664AD085063A16E1404F51.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/04/DB42B02DE6494E498464E1C3761614FA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/03/1C30322250BE4B1B8E9FAEFEB57CEFAE.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/01/AB0E30C702CB404E864FF3150C11FDC9.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/05/29/133B06D243244D598329001DF04AC5F8.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/02/89946A7F89F040FE9869CCF66FA484B3.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/01/748265CC507A4C638A910553050CFDF0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/01/9182487E9F01404BB5633E4E3D7BE1C6.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/05/29/4A89FFB36F0E4477BEBF2345625219EC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/05/29/DF3EA22AE287423FA4B7619D63E022A2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/dynamic/download.jsp?id=8015fb2b85d5437cb43a468ee487a3f8",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/06/03/915CA7D2A5D4415FACC559194A831E08.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/05/28/E107E632C4B1444BA1A8DDB90226A698.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/05/27/4C4886AD63CE49F0BE3C9BE2EA5E3046.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/05/27/D60490F9C541483080652EC4C5E21537.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/05/22/A7C73BA1827F40ED9F7CF4643AD5FF8B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/12/23/D233C90550074570BF69CC955B709745.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/12/18/D0A41C924C224CAA888FE358163DB9B6.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/12/16/EB7E5EB9205643D5B57A3AD0B2B8B09F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/12/05/5DD713B121954B5AB2E61AA0345EBB79.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/10/24/A64F84D4027941F09EA6ABDB54833B97.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/04/17/8006CBF01BC24E04ACD71F25642C5B37.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/08/10/7820845B5BE24B81A2594B9E04CA13DD.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/08/10/1DA5F603D75A4341A6EB717A31CFF5C8.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/08/10/F220F67A4BBD4EABBC42B72328CCD999.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/06/03/EBFCFCB72AFB422AB8E41C2D70D293B6.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/06/03/7B89AAD2C0204001AF85287A629F9780.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/04/21/AEB9EAA48432419DA1556F478B6AA0C9.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/04/21/A0786CCA83F544AE911AD96868060A75.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/04/21/2AEB4A2FB030443490493E2DCAE9F164.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/04/21/33DA32DBAE814D6480FBEF8FD8CD95AD.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/04/21/D01EF527AA1B4059B0C5899D947F60EA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/04/21/11699DB72B5749C096F5B85A9930432A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/03/26/FC0F88FAE04A4F84BA3108EDD21E03FE.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/03/17/14DD4F340D64458D968C4AF0755ED36F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2026/02/03/30692F424CA644DB874CA1DA9DCAEDE9.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/31/7AA0F8091F4047678E94F52BBB25F094.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/31/B2B5B879B13F4C9EABABDA1EFFABCF4D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/31/7DBD81D09CCD4CCBAA2DE77A826C158C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/31/7F60C5C9FC614F2C9A0AD46447085217.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2025/04/11/2AA79574192A4FE1A4C3477B6A6802D0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/16/D88B20754FFA4A769ED2B9A4784D1D45.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/16/47950DBDFCB24DBBB5ADDA6B2895D389.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://news.hebtu.edu.cn/a/2024/05/16/0137F2FA0CCD43C0831EF24E9274B7F5.html",
-      "reason": "site page budget reached"
+      "url": "https://jwc.hebtu.edu.cn/a/2023/11/23/2E4EF7047FF84EADBF5AD95187B6EB2C.html",
+      "reason": "text too short: 11"
     },
     {
       "url": "https://www.hebtu.edu.cn/404.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/djyd/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/29/D0F603F42351494396334DE6F762F997.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/29/F9CC593A4B354E7D932F148255465634.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/29/71859E8EC9924CA089EF3FDEFFB2AAAF.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2026/03/10/DE70DC0D677A41F8B8B237D21DBC42A5.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/ztlm/gjjl/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/12/08/2CCA6C367A4747B187D80139835336F0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/a/2025/06/24/997996BC3F2E4D158CB3DCE1FDD86191.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/01/16/307D89677B5046CAA3D4B14EFBB4EA5E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/11/04/5471F54B43F64852BF1CAB722F76EC8F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/09/03/D464A61C11D44F1F8CC9536703D44845.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/09/03/7B881E1C64AB4B05AC5B635BF7AD39BA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/xyfc/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/0EA913B6EB534103BAA081CCE8B9014A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/642D53146D2549BFB8AD275B09F5A8F3.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/88C4A8DA3D424EE29EB98FB10EEB3582.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/08ED6A02BAD9445B8BF764F154C27B65.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/BE573F7979F949D99C365A66E04DDE44.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/34BB05B9AFA54EE694592C122BE6824E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/4F8D43276E2C439C86FC6A7FFD585F1B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/BE56DA14AE0D416A8F81A60BFA91F8F2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/B1A7488CCD1B4EAFBA8FCB18BD080E8A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/F124FEF01B5247EFADE8F2F566D58157.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/7FDA3AFBD30B4EB4A81C0E21D8D22357.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/D2CAC1ADFF9442EAB7ED80E2FF33711C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/871B3530C98B4EFEAA97A3F9E6633FC6.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/EE8C613390654F8291FB050597448F54.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/0BE64D63C5844E9490AB6E5D0B686994.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/C1DC43BEDD5347C0B5F28353CF7C3ACD.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/791855ED5E2F4BFD861F7363DB2CF157.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/AEEE00D5FA024DA3B569EF2642AF132F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/4E01FA45D195433EBC4E986FCC7F3C29.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/D494285CF4CB4B64975649F8A3451FA4.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/3FF7B4613A0C4702B7D0500DCBF37104.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/48EDCAA110C3454FA8A50318B99C1388.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/BA11206B79C345EBB630FA77C416F142.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/AC716F3D7B6340D7B94BFBAD0B7A60E4.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/BADF4C68770A4FC29AA3F856E8B0883C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/3FBCE0DC02084B49B5828D39AA090F03.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/07/10/C7D4A7A86AAF40F98B39450923B4B7C8.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/05/09/8EA3C045D8374FFCB29D45283744161D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/04/09/EBCADD498C55490996CE70505835607F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/03/17/5D703A6CA7CD40E48F37DCDA4FCB50BC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/03/12/2E4E84AFBD5E465BB5BB895988C914D4.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/52DA52830E194BB0BECDA01650FA3EDA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/12/16/BC33BD2880554D6FBBC97E76AC4A7329.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2023/06/30/8C18017AF5C946198872F9045DE8C057.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2021/05/31/E9258033AF0B446081C3AA032206F11F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2020/06/05/212715A9B8E8459BA79E63EC09A426B2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2019/05/17/7BAFF89489EF4C2BBD59E6DC89F23AD8.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2018/09/05/DD23CD0DD94642349D201483AE094106.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/09/12/819CDC690C7B4C9BB051E0F1FA225F11.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/09/14/79F05AD003A041D893F5C0A7E1BAA663.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/09/12/13388FA64FA04327B61ABCCCE016C6E2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/09/12/0E7A2F99BE794EBEBB857CA7659F657E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/13/44CC1EF44DE2439C8781A3D025449FF7.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/10/11/684A2955EBD94B6AB61BDEA727E8F30D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/10/11/90CE45E830034EE4923F87F0549FE141.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/10/11/E947578F5F3649BAA74BABFF77277E95.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/B9C0D3EB6E8947F4B2F4212DC9A00FE0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/9AFF12401A0A489E8D078FCFE8396ED0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/12/03/D8C2ED903AF7448A8807BA2CFE4CBE13.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/12/03/0CD3049C2BB14A30B16A2D87E2A036AC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/12/03/C0C34DFD27EB4B398105587808A06144.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/12/03/E0DDAC736FB24F4787A053F0E116222D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/12/03/B9EA7394C5BA4865959958C934308F66.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/12/03/71DBD7905FDA478BA50CA4D785A5F766.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/A1B1F6846EE64B2D8F1ADB9A16E4ABF3.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/4682560C9AF849F597EB6324DBC1C6AA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/C352B02DAD8F4CF6934F62FE66471732.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/4CD98F9C703748419AF097DE304101F4.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/89C0A53F32F94A93A5CCB483290136DA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/27/953A1FA03B8E42C88462C9FC8AB49972.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2026/04/08/54254F9708CE4EAF9339B0FCE963C98F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/07/02/A2DAFE4E50D04E1E941C2F29CA74632B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/03/11/29E14FA8F28A49A98447D75658BA716F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/03/28/F5CCD8C275F648EC8D73ECABB8C6FD73.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/03/28/300EF1B446B8458C82F8E2B5E511060A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/05/27/6EC0706ABCEC48B389496BFCF4FAE483.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/02/14/8444272DA2494B4496587E4640C2208C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/06/05/DC8849A2C06F4DEC905B017AAD3786F2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/06/14/B2CEB53DB9C948E9851D0C1F6E1BD230.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/09/09/2C35B7ECC6634491B9E0D9FA71D7D906.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/08/13/EA8A0BDE6C514732959829B5B1FBD28C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2023/07/03/13C88C2270CB4ADEAC4DC19A48FF948E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2022/05/10/0AFF37B806CD4099B8BB96F78106B035.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2021/08/05/5B591F1FFA1649399A4F229BFD2B336B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2021/08/07/CE9BF3237B6E4FFC8D1C43EE97B157BB.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2019/09/24/95B6352FE9794B5795E06EA52544383E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2019/09/24/232225B6A8004E5980DB563A95D3D3D4.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2018/06/01/D28ECB9AEE3746289DD6C732FA816FFD.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/11/14/7BA681554F7E4D58B0FE6DF7531E039E.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/11/14/065A3E9540A34915A76E4C9CC3B11D79.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/11/14/EB378D88F2374336A4D145B02DEE9ED6.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/08/13/35EE616793DC41E29CA869C4A9257E55.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/07/26/5592D021C55248A381BAE86EBF43AD1D.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2023/07/03/401BAD438E8B4D5C986659770EC5E8DC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2022/05/10/D30FCCC2BAF249D195BF7DA26CEAEE21.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2021/08/05/37E13748DD4D468EA80D00DF455C36E2.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2020/07/22/FB31181978034A1D978CDE2042DE508F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2020/07/22/C2610F30AC4D409D819410D34B18B4DA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2018/05/30/46FEAF7889B84606AE143CBF2A7A8F3C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/09/10/6DB44CC525FE49EDB06DF23F12AE9481.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/09/10/7EB5C4D60EC54E0FA93905693D0E5555.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/09/10/39B9CB4C4B314CB1844D86B5E0F32640.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2017/09/10/624CB0FC5FAA411BA103486D5DEF0281.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/10/13/96ABDCFAC3DB4E05876D538F5A0532EB.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/04/19/B3CA0AAD887947FA9F4536DBD3E77F87.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2025/02/18/6818142BD6154ED4BFB834B8FA55FEFE.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/10/31/BD593D6EC5DC41FFB8307955FC0AF4AA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/09/19/10FDC65E1D904AC0BAB221458F64FADC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/09/18/865C81B4C45A4FCC9DA02FA4D39691AC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/09/18/EB581E5840A4486687095CD28A127B0C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/09/13/4676E4D9D2D94DF0BD6DB7A38FF1D42C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/09/10/0EC0BC28A34843A38C889F25C353B0F9.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/09/10/CD45B1C37C6F4AD3B1F69C86938ABC1F.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/a/2024/09/10/D6A935173FD84547B5F43D956AAB3215.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://software.hebtu.edu.cn/dynamic/download.jsp?id=c154942c63e5476d94c38e6360758397",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=54f0dff5812b425ab641cfc2114e74dc",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=60da4bf5cb3a49088a94bdae600ec18c",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=b1190efe8a4343bf9d65a9c7b49bbf97",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=e5dfb523f9fc48e99197641b29620345",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=064ab55553e549f79ca1524a38d76b6b",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=4107ec805b5c4376b0168c0c01f114c5",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=42676565464b4218bd01b494908f8362",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=0c0f2e94db67476da87f47871edbf00d",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/bgs/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/zhaoshengkaoshi/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/yuyanwenzigongzuoguanli/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/jiaoshiguanli/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/jiaoxuejianshe/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/shijianjiaoxue/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/xuejixuelixueweiguanli/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/jiaowuyunxing/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/jiaoxuezhiliangbaozhang/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jgsz/jiaocaiguanli/index.html",
-      "reason": "site page budget reached"
+      "reason": "text too short: 18"
     },
     {
       "url": "https://jwc.hebtu.edu.cn/a/wjzd/index.html",
-      "reason": "site page budget reached"
+      "reason": "text too short: 37"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2022/10/29/6297593B058E4809B8114F4DAA9FFBCF.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/a/jgsz/index.html",
+      "reason": "text too short: 17"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2022/10/29/35334CE0DAC84447AF3FB3AB017C1C24.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/a/kxyjpt/index.html",
+      "reason": "text too short: 59"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2022/10/29/090A42F26221414BB57409ED23D8E1E9.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/a/zsjy/index.html",
+      "reason": "text too short: 56"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2022/10/29/AB2952ED81884322AD0DFB523088B845.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/a/zjsd/index.html",
+      "reason": "text too short: 45"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2022/10/29/483946FE2E814BA6B5B780F1E22144F1.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=category-null",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2022/10/29/2D246451A1CF40F0BE6150EAA66EA2CF.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D5c0fedfe84c346ddab5f8f68214623a9",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2022/10/29/44DCD6D6FF9343D99DE303BCC4015139.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D604a93037d784abca1781c934062e81f",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=67a430b6b3a041adb750086416cd4c97",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Df8998d215ee545ebb3e7a2b84e7a1f50",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=bb6d76af63164f0785f5ab933d5a8a2c",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dee3ae21924ff4bf88d9af85d6f18d5d3",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=e559f24d4a244ae0a41af42f489c4e15",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Db330a2c6790d4cf59bc5219548928ec2",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=c0644566c90e48289620e4561a833be6",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Df4abb2df4e374b2984e9cfd782f03453",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/12/17/9611C7E15AE245F7BE839BB5BAA8024D.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D8a83f863dac146bcb6b50affc45914c0",
+      "reason": "text too short: 36"
     },
     {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/12/08/472F33BFE8F84A8281813195E8B60D35.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/08/06/A700DA8A12534CF0B2A590CFDFA065CD.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/12/21/A8B1A376F10D48568B02900B2EEBC8EC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/09/26/C393CC0B69F245D98EA4CB8CB534FE78.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/09/04/2DD13F8409084FADAF2557CD4D5A8726.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/03/27/9B77E513D1884E08B63B2FE8C6BDC09B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=64ffdde9e97f48b78c5759bc392d0947",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/01/11/51FE652470A341EDBC856696C2A182FA.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/01/11/5DD3CB931A6A481BA39D55812F79E85B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/01/11/F24C3296A6484A1FA6EF818ED18ABAAC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/01/11/6AA5EA9E9C92453A83876104E0DFBAA0.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/01/11/473F8E297EF6478CB2648C0E5B1A3827.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/01/11/368B39C1B20C43C9BF2AD6FB776679EB.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2023/01/11/E1090A2D22B54ABABE0D9767A599B859.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3De0f55d6c415441efb478c39ac6c594b6",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D7360566e36fb48b396653e78ee346952",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dbded67acef5a41729b68f537b1f4e484",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/jxfc/index.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/05/19/A408C4C23B564DA49573B5BB5A53C6B4.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/05/19/A0DE0F054F1641088EE4EE11890F7F2C.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/05/18/3847514073B3498AA7B3B47631E5C549.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=0bb5d39755f842b58a39570614e8c30f",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/05/11/2087DDFB99274A4DBB62756A37386406.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D357f02d39f5742f38b7aa4b6e4c366a6",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Db66c0c1d62b54838a03990f665a4ef3b",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3De664298067754551a6dd71b812905572",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=0b47928cbb7a4de2a0b249e344a568f8",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=f38e6d623ff94fdd9dcbb95e2883ff0a",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Dafe3e23729754fae9732d043bd064cc9",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/dynamic/download.jsp?id=a096b9cc25be44c0a60db8852eea84ab",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fjwc.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3D4f23e794c1984b97937a5d5fbedd0523",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/01/20/7F426A4F4A3E4108BA9AA2E3F2FCD0F3.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/01/20/7B5CA061EDCB4783B6E28D08A38ECD3A.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/12/31/D32523C797BC4F21BE0B4C4A15EFE041.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2026/01/20/6F5ECF5819484A848D51D874FF49A1E8.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/12/19/7D8C9B24F5364EB38A59797B2EC71ED7.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/12/19/95AE5301C3BE41FA9B2044C0262D148B.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/12/19/800FBE41A3CC41E4BAEF6AE1575620DC.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/12/19/0B82742FED6E430D9C6879B4384ADA48.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/11/06/0C25DA59B5444E46A95F728F4BE79F05.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/10/27/0FDFD6572B634E6FA7A8F73E62253258.html",
-      "reason": "site page budget reached"
-    },
-    {
-      "url": "https://jwc.hebtu.edu.cn/a/2025/10/20/58B7049F237B4360A238FE7AD628ECAF.html",
-      "reason": "site page budget reached"
+      "url": "https://www.hebtu.edu.cn/dynamic/403.jsp?state=https%3A%2F%2Fnews.hebtu.edu.cn%2Fdynamic%2Fcontent.jsp%3Fid%3Da86f8d8f607741f186a0d27a42d6d12f",
+      "reason": "text too short: 36"
     }
   ],
   "failed": []

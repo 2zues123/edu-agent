@@ -1,11 +1,11 @@
 {
-  "built_at": "2026-06-07T07:28:37.129524+00:00",
+  "built_at": "2026-06-29T10:28:39.464467+00:00",
   "raw_dir": "data\\raw",
   "output": "data\\processed\\chunks.jsonl",
-  "document_count": 133,
-  "parsed_count": 132,
-  "failed_count": 1,
-  "chunk_count": 668,
+  "document_count": 246,
+  "parsed_count": 244,
+  "failed_count": 2,
+  "chunk_count": 940,
   "parsed": [
     {
       "source_file": "data\\raw\\courses\\32201188_智能推荐.docx",
@@ -71,8 +71,18 @@
       "source_file": "data\\raw\\policies\\2024版本科教学工作手册.pdf",
       "category": "policies",
       "title": "2024版本科教学工作手册",
-      "text_chars": 345227,
-      "chunks": 389,
+      "text_chars": 342154,
+      "chunks": 387,
+      "source_url": "",
+      "site": "",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\programs\\2019级软件工程专业人才培养方案20190720修改稿v2.docx",
+      "category": "programs",
+      "title": "2019级软件工程专业人才培养方案20190720修改稿v2",
+      "text_chars": 15995,
+      "chunks": 17,
       "source_url": "",
       "site": "",
       "published_at": ""
@@ -91,8 +101,8 @@
       "source_file": "data\\raw\\programs\\2021级软件工程专业人才培养方案v9.pdf",
       "category": "programs",
       "title": "2021级软件工程专业人才培养方案v9",
-      "text_chars": 12433,
-      "chunks": 14,
+      "text_chars": 14176,
+      "chunks": 17,
       "source_url": "",
       "site": "",
       "published_at": ""
@@ -101,8 +111,8 @@
       "source_file": "data\\raw\\programs\\2022级软件工程专业人才培养方案v9.pdf",
       "category": "programs",
       "title": "2022级软件工程专业人才培养方案v9",
-      "text_chars": 11821,
-      "chunks": 12,
+      "text_chars": 11767,
+      "chunks": 15,
       "source_url": "",
       "site": "",
       "published_at": ""
@@ -111,8 +121,8 @@
       "source_file": "data\\raw\\programs\\2024培养方案.pdf",
       "category": "programs",
       "title": "2024培养方案",
-      "text_chars": 13719,
-      "chunks": 15,
+      "text_chars": 13666,
+      "chunks": 18,
       "source_url": "",
       "site": "",
       "published_at": ""
@@ -128,6 +138,16 @@
       "published_at": ""
     },
     {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\04a9db1f3f56b6b2.md",
+      "category": "web",
+      "title": "外国语学院：“人工智能+外语教育”研究沙龙讲座",
+      "text_chars": 105,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/2177DE5974584CDABD0263F561639D54.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
+    },
+    {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\0594d7f994046b44.md",
       "category": "web",
       "title": "职业技术学院、中燃工学院：获省课程思政教学竞赛二等奖",
@@ -136,16 +156,6 @@
       "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/DA54BC40C9984C269D3AA36E280AAE21.html",
       "site": "jwc.hebtu.edu.cn",
       "published_at": "2025-01-03"
-    },
-    {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\0b8930edc42cee35.md",
-      "category": "web",
-      "title": "2025级本科拟转专业学生名单公示",
-      "text_chars": 123,
-      "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/2026/05/20/3034880B48ED44D8B7784335F2EB4FC9.html",
-      "site": "jwc.hebtu.edu.cn",
-      "published_at": "2026-05-20"
     },
     {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\0d43ed28498ef3c9.md",
@@ -178,6 +188,16 @@
       "published_at": "2025-01-03"
     },
     {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\13e2e2a18fc6c0b0.md",
+      "category": "web",
+      "title": "教务狮小哒",
+      "text_chars": 195,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/xssw/index.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\17141266c386a601.md",
       "category": "web",
       "title": "关于2025秋季学期期末考试补考/缓考课程的考试安排",
@@ -188,14 +208,64 @@
       "published_at": "2026-03-05"
     },
     {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\25d890dff476d2e4.md",
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\2a757827e31e82de.md",
       "category": "web",
-      "title": "河北师范大学2025年下半年四六级报名的通知",
-      "text_chars": 130,
+      "title": "教育学院 ：河北省优秀教学团队——心理学专业",
+      "text_chars": 103,
       "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/2025/09/10/5B74B2FE39024DECAA2F30B9D14F2A12.html",
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/DD9A5629A7474C7A8F38ED8BE377E176.html",
       "site": "jwc.hebtu.edu.cn",
-      "published_at": "2025-09-10"
+      "published_at": "2025-01-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\2c348606c45af012.md",
+      "category": "web",
+      "title": "通知公告",
+      "text_chars": 670,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/newtzgg/index.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\3aed572300abee43.md",
+      "category": "web",
+      "title": "音乐学院：我校入选中国舞蹈教育联盟首批理事单位",
+      "text_chars": 105,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/429746EC3296443AA5541E697C3DC8EE.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\3bd4cadaf680fd33.md",
+      "category": "web",
+      "title": "2024年度本科教学成果展",
+      "text_chars": 85,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/5F70C6004FA44A1F893E739A165D659D.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\471888c1629c5c40.md",
+      "category": "web",
+      "title": "美术与设计学院：“引力场”2024届毕业展",
+      "text_chars": 101,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/101E6D9373D545E4A22710BD0C63480D.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\47f7105bba1bfba1.md",
+      "category": "web",
+      "title": "历史文化学院：河北省优秀教学团队——中国古代史",
+      "text_chars": 105,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2025/01/03/829AFD7AC39945CFAE96E1FEC0A17287.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
     },
     {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\4d3edc30294b73db.md",
@@ -206,16 +276,6 @@
       "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/4EE16FA70C864E69B45DD1D3D55426F5.html",
       "site": "jwc.hebtu.edu.cn",
       "published_at": "2025-01-03"
-    },
-    {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\54d1ba4f6ca1af12.md",
-      "category": "web",
-      "title": "师大教务人",
-      "text_chars": 132,
-      "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/sdjwr/index.html",
-      "site": "jwc.hebtu.edu.cn",
-      "published_at": "2025-10-21"
     },
     {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\55f543dca198a5bb.md",
@@ -238,24 +298,74 @@
       "published_at": "2025-01-03"
     },
     {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\5880f9a476a82056.md",
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\5a9f522e8e76ba80.md",
       "category": "web",
-      "title": "关于举办第十八届全国大学生广告艺术大赛校内选拔赛的通知",
-      "text_chars": 113,
+      "title": "教学风采",
+      "text_chars": 611,
       "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/2026/05/22/9D019A8B67554655A3EA5C04436A2E15.html",
+      "source_url": "https://jwc.hebtu.edu.cn/a/jxfc/index.html",
       "site": "jwc.hebtu.edu.cn",
-      "published_at": "2026-05-22"
+      "published_at": "2025-01-03"
     },
     {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\6d678241fade51bb.md",
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\5b2b9ff62ced5149.md",
       "category": "web",
-      "title": "常用下载",
-      "text_chars": 395,
+      "title": "教学动态",
+      "text_chars": 639,
       "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/newcyxz/index.html",
+      "source_url": "https://jwc.hebtu.edu.cn/a/newjxdt/index.html",
       "site": "jwc.hebtu.edu.cn",
-      "published_at": "2025-12-17"
+      "published_at": "2026-06-08"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\5db77b30752af694.md",
+      "category": "web",
+      "title": "高教云沙龙&教务微论坛&智慧云课程",
+      "text_chars": 606,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/ysl/index.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2026-01-04"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\73ccd36b9361cad4.md",
+      "category": "web",
+      "title": "教学周报",
+      "text_chars": 488,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/jxzb/index.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2026-06-15"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\79add3a47abed640.md",
+      "category": "web",
+      "title": "总结与规划",
+      "text_chars": 366,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/zjygh",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2026-03-18"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\79c662fe70839f96.md",
+      "category": "web",
+      "title": "计算机与网络空间安全学院：承办联盟专家进高校活动",
+      "text_chars": 107,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/C433249BEF254C9EA5606C017FE29A1D.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\97714cc05bb27f16.md",
+      "category": "web",
+      "title": "初等教育系：赴定州开展研学活动",
+      "text_chars": 89,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/EA0D3C81B4514906BF3B525B207259E7.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
     },
     {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\97742d036b6e5d7c.md",
@@ -288,14 +398,34 @@
       "published_at": "2025-01-03"
     },
     {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\9f439986bed0b650.md",
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\9bf7659cb01b3d4f.md",
       "category": "web",
-      "title": "校级",
-      "text_chars": 183,
+      "title": "青春广场",
+      "text_chars": 614,
       "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/wjzd/xj/index.html",
+      "source_url": "https://jwc.hebtu.edu.cn/a/jxdjt/index.html",
       "site": "jwc.hebtu.edu.cn",
-      "published_at": "2025-10-21"
+      "published_at": "2025-10-24"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\a034fc7d72ed567e.md",
+      "category": "web",
+      "title": "常用下载",
+      "text_chars": 425,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/newcyxz/index.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-12-17"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\a6d4ced00b95af44.md",
+      "category": "web",
+      "title": "省部级",
+      "text_chars": 297,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/wjzd/sbj/index.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-10-31"
     },
     {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\a76a65401661f1ba.md",
@@ -308,24 +438,54 @@
       "published_at": "2025-01-03"
     },
     {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\adc7a7f78369388b.md",
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\ae84b78dc805f580.md",
       "category": "web",
-      "title": "省部级",
-      "text_chars": 279,
+      "title": "师大教务人",
+      "text_chars": 144,
       "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/wjzd/sbj/index.html",
+      "source_url": "https://jwc.hebtu.edu.cn/a/sdjwr/index.html",
       "site": "jwc.hebtu.edu.cn",
-      "published_at": "2025-10-31"
+      "published_at": "2025-10-21"
     },
     {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\b59b9c1183f63c0e.md",
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\b9db270d857df98c.md",
       "category": "web",
-      "title": "关于做好2026年招生宣传工作的通知",
-      "text_chars": 150,
+      "title": "机构设置",
+      "text_chars": 282,
       "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/2026/05/21/BD19DA81C12947648955D650941B0A7A.html",
+      "source_url": "https://jwc.hebtu.edu.cn/a/jgsz/index.html",
       "site": "jwc.hebtu.edu.cn",
-      "published_at": "2026-05-21"
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\ca58e823efb3d9dd.md",
+      "category": "web",
+      "title": "物理学院：崔树旺老师获评全国优秀教师",
+      "text_chars": 95,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/146BF7F8CD3547BD9C06B9F23D1DF160.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\cadfd935c1d891a1.md",
+      "category": "web",
+      "title": "文学院：牛军老师获第四届全国教创赛国赛三等奖",
+      "text_chars": 103,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/0E4BC3A53B16423BB863E90F0774DA36.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\cf50402017660d44.md",
+      "category": "web",
+      "title": "新闻传播学院：获大广赛全国一等奖",
+      "text_chars": 91,
+      "chunks": 1,
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/87BF9B8322D34360BF464D6D7C0B7B7E.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-01-03"
     },
     {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\d232d99ec3a4c43d.md",
@@ -336,16 +496,6 @@
       "source_url": "https://jwc.hebtu.edu.cn/a/2026/06/01/326BAD4DC64948B0A64BC2B65E86223C.html",
       "site": "jwc.hebtu.edu.cn",
       "published_at": "2026-06-01"
-    },
-    {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\d59f606ee2de484f.md",
-      "category": "web",
-      "title": "关于开展人工智能教育与应用案例推荐活动的通知",
-      "text_chars": 247,
-      "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/2025/07/24/F382A0BAFC5041BDA0DA6E1714AD5167.html",
-      "site": "jwc.hebtu.edu.cn",
-      "published_at": "2025-07-24"
     },
     {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\d7636175f10ce5c6.md",
@@ -368,44 +518,14 @@
       "published_at": "2025-01-03"
     },
     {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\e425cb90b920acda.md",
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\e39cf31c8b93469f.md",
       "category": "web",
-      "title": "河北师范大学教务处",
-      "text_chars": 2150,
-      "chunks": 3,
-      "source_url": "https://jwc.hebtu.edu.cn/",
-      "site": "jwc.hebtu.edu.cn",
-      "published_at": "2026-06-04"
-    },
-    {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\e474750e649593a2.md",
-      "category": "web",
-      "title": "关于公布各专业接收2025级本科生考核方案的通知",
-      "text_chars": 139,
+      "title": "软件学院：师德师风建设月",
+      "text_chars": 83,
       "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/dynamic/content.jsp?id=1525de603c2c42f48c5714256cfac62f",
+      "source_url": "https://jwc.hebtu.edu.cn/a/2024/04/15/98777E5B4F0044438C9AE9BB90C9FE8E.html",
       "site": "jwc.hebtu.edu.cn",
-      "published_at": "2025-12-31"
-    },
-    {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\e86e790fea66b872.md",
-      "category": "web",
-      "title": "机构设置",
-      "text_chars": 262,
-      "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/jgsz/index.html",
-      "site": "jwc.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\ee5b98de6c1bad49.md",
-      "category": "web",
-      "title": "教学动态",
-      "text_chars": 619,
-      "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/newjxdt/index.html",
-      "site": "jwc.hebtu.edu.cn",
-      "published_at": "2026-03-26"
+      "published_at": "2025-01-03"
     },
     {
       "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\eecf176651c4bc72.md",
@@ -418,54 +538,94 @@
       "published_at": "2025-01-03"
     },
     {
-      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\ef7238fe9822c5e6.md",
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\f396120a18906a0f.md",
       "category": "web",
-      "title": "通知公告",
-      "text_chars": 562,
-      "chunks": 1,
-      "source_url": "https://jwc.hebtu.edu.cn/a/newtzgg/index.html",
-      "site": "jwc.hebtu.edu.cn",
-      "published_at": "2026-06-04"
-    },
-    {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\03195c0a2dd87588.md",
-      "category": "web",
-      "title": "我校中外合作办学工作取得突破性进展",
-      "text_chars": 1332,
+      "title": "河北师范大学教务处",
+      "text_chars": 2301,
       "chunks": 3,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/05/26/7092D8C1308D473194FE1B57A3DA237E.html",
-      "site": "news.hebtu.edu.cn",
-      "published_at": "2026-05-26"
+      "source_url": "https://jwc.hebtu.edu.cn/",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2026-06-29"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\05ac79e95d64d112.md",
+      "source_file": "data\\raw\\web\\jwc_hebtu_edu_cn\\ff39b4761ba3cfc5.md",
       "category": "web",
-      "title": "音乐学院举行2026届毕业生音乐会",
-      "text_chars": 682,
+      "title": "校级",
+      "text_chars": 195,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/04/8AA1E22CB1104D7CA80C087013A1966C.html",
-      "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-04"
+      "source_url": "https://jwc.hebtu.edu.cn/a/wjzd/xj/index.html",
+      "site": "jwc.hebtu.edu.cn",
+      "published_at": "2025-10-21"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\0b8534d468522e01.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\02f4e3b377cd49d1.md",
       "category": "web",
-      "title": "巴西坎皮纳格兰德联邦大学奎罗斯教授到访物理学院",
-      "text_chars": 914,
+      "title": "央视力荐！校长邀你报考河北师范大学！",
+      "text_chars": 278,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/01/C1C8952F52AB4E31BA3CAD166CF72B08.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/939EE64E9B604E48B5250C11234DCE2B.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-01"
+      "published_at": "2026-06-29"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\0cd98c47f0ba7af3.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\07d1db894d9f0a41.md",
+      "category": "web",
+      "title": "【基层党建】教师教育学院党委：党建引领教师教育改革新局面",
+      "text_chars": 2019,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/31/7F60C5C9FC614F2C9A0AD46447085217.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2022-10-20"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\08e50f2eb7b8ef78.md",
       "category": "web",
       "title": "教师教育学院教师受邀参加2026年NARST学术年会并作学术汇报",
-      "text_chars": 1078,
+      "text_chars": 1090,
       "chunks": 1,
       "source_url": "https://news.hebtu.edu.cn/a/2026/04/27/8A7F748F0E9E49C3B0A7939ECB4C596C.html",
       "site": "news.hebtu.edu.cn",
       "published_at": "2026-04-27"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\0ac977e65f848ae9.md",
+      "category": "web",
+      "title": "新一届河北省理学研究生教育指导委员会成立大会暨高质量发展研讨会召开",
+      "text_chars": 1276,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/8D35AE9A00FF48A1AABD7E06CEB2863A.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\0bc1ac61cc052282.md",
+      "category": "web",
+      "title": "通知 | 关于举办第八届全国大学生网络文化节和全国高校网络教育优秀作品推选展示活动的通知",
+      "text_chars": 2000,
+      "chunks": 2,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/06/06/94B43634BF394A5286C0DBDF870D5545.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-06-06"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\0df48b38f50d4eff.md",
+      "category": "web",
+      "title": "河北师范大学大屏幕信息发布审批表",
+      "text_chars": 298,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/57A3C5534B734506B359DFD015386A6A.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-10"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\0f664997135a3065.md",
+      "category": "web",
+      "title": "蓄势蝶变 赋能未来：我校“十四五”时期建设高水平综合性师范大学的实践探索",
+      "text_chars": 4024,
+      "chunks": 5,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/04/07/9E961D58DD884D1D83CA4E6B1A2A1938.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-04-07"
     },
     {
       "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\12f9f8476f1f7d8c.md",
@@ -478,34 +638,64 @@
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\1d852e519bb8c13d.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\1b795696180f001a.md",
       "category": "web",
-      "title": "我校在第40届河北省青少年科技创新大赛中斩获佳绩",
-      "text_chars": 709,
+      "title": "我校举办宣传思想工作队伍网络素养与业务能力提升研修班",
+      "text_chars": 667,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/04/7A06CAF0445E4444949BFAA3E6B81030.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/25/0AAE12882E994ACC8C5C319CE0BB8440.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-04"
+      "published_at": "2026-06-25"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\1dec0b94d6ddfb81.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\1c505da6315e8c5b.md",
       "category": "web",
-      "title": "我校开展“弘扬五四精神 奋进强国征程”主题团日活动",
-      "text_chars": 837,
+      "title": "河北师范大学各单位微信微博统计表",
+      "text_chars": 298,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/04/D1CE08263D8045E48A6DD9076B20F5CA.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/447958893DD443D18083A5D3485EC6AC.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-04"
+      "published_at": "2025-10-10"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\204807032188b0cd.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\1ce4205413cce6ca.md",
       "category": "web",
-      "title": "我校举办2026年科技活动周系列活动",
-      "text_chars": 1103,
+      "title": "软件学院举行毕业生党员重温入党誓词暨新发展党员入党宣誓大会",
+      "text_chars": 678,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/04/1DEA526D73494990A5DE99308D3B04B1.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/15/0DD5217DC4D14F0C90CF761E3D624262.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-04"
+      "published_at": "2026-06-15"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\1ce51a629072ea7a.md",
+      "category": "web",
+      "title": "【基层党建】先进基层党组织——锚定 “五个工程”以高质量党建引领学院高质量发展",
+      "text_chars": 2232,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/10/22/D359A42145F840FEB30B3A5D651C0C5F.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-22"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\1f7a3a9283d5af49.md",
+      "category": "web",
+      "title": "我校在金属有机框架材料电催化研究领域取得重要进展",
+      "text_chars": 1108,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/01/15/8A5DD6715BD34CFA856ADB35F79356BF.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-01-15"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\1ff306321c17ac0e.md",
+      "category": "web",
+      "title": "数学科学学院举行“数学系80级校友奖学金”发放仪式",
+      "text_chars": 936,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/15/E8BD528C7B19485CB53CC8B9C3AD3B27.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-15"
     },
     {
       "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\21498feb41e3c57b.md",
@@ -514,6 +704,36 @@
       "text_chars": 552,
       "chunks": 1,
       "source_url": "https://news.hebtu.edu.cn/a/sdywtplb/index.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\26e2c846c455ea9d.md",
+      "category": "web",
+      "title": "李树深",
+      "text_chars": 948,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/F8BC6894F26F4F149FEBF5E00647E726.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2024-05-11"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\27ac691e3958e370.md",
+      "category": "web",
+      "title": "【立德树人•榜样】孙颖：潜心育人若磐石，坚韧纯粹铸师魂",
+      "text_chars": 2465,
+      "chunks": 4,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/04/11/2B9345C31A5841DD9B5F38010AC9113E.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-04-11"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\295d26204d983439.md",
+      "category": "web",
+      "title": "规章制度",
+      "text_chars": 759,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/bumenqingkuang/gzzd/index.html",
       "site": "news.hebtu.edu.cn",
       "published_at": ""
     },
@@ -528,57 +748,67 @@
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\38c7ccb6417d8b97.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\32a0604576e4e85c.md",
       "category": "web",
-      "title": "商学院在技术经济及管理领域取得系列成果",
-      "text_chars": 1436,
-      "chunks": 3,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/04/15/8DAB78F2A77342449A140B67FAA4C2C8.html",
+      "title": "【立德树人•榜样】善思求变谋发展——记外国语学院党委书记王新平",
+      "text_chars": 3691,
+      "chunks": 5,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/D88B20754FFA4A769ED2B9A4784D1D45.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-04-15"
+      "published_at": "2020-05-27"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\3a8a5348671b6a8c.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\3801aa4943e55e01.md",
       "category": "web",
-      "title": "第四届“典耀中华”阅读大会之“阅读与传承：社会主义先进文化的正定实践”主题对谈活动举行",
-      "text_chars": 3154,
+      "title": "【基层党建】先进基层党组织——数学科学学院党委",
+      "text_chars": 2586,
       "chunks": 4,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/04/16/CD842979214B4791BD88BA1ACD0E7465.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2025/10/22/F82D726B27F64A1F93C07CE8FBFB8803.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-04-16"
+      "published_at": "2025-10-22"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\3f54f5c6827bf103.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\3b412524ee5d0977.md",
       "category": "web",
-      "title": "2026年度新时代青年先锋奖获奖者侯景亚来校宣讲",
-      "text_chars": 845,
-      "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/03/6D6073C51F9947648F7D553F94D2AF60.html",
+      "title": "河北师范大学新媒体建设与管理实施办法",
+      "text_chars": 1465,
+      "chunks": 2,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/AC8A3444592B41AA835350545DF8A083.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-03"
+      "published_at": "2020-05-18"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\4029ea560db2f17e.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\4023b0e48ab4931d.md",
       "category": "web",
-      "title": "校徽",
-      "text_chars": 268,
+      "title": "邓颖超",
+      "text_chars": 485,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/xywh/xh/index.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/FFDDAAB0AE4E470A9287AF1127A15116.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": ""
+      "published_at": "2024-05-11"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\538cc807a40f2ee2.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\430afd7015f85110.md",
       "category": "web",
-      "title": "心理学系开展心理服务进校园活动",
-      "text_chars": 763,
+      "title": "我校学生王天策获评全国优秀共青团员",
+      "text_chars": 895,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/01/032B4EE1E566409D890AA236CDCE071F.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/25/E1C58AA0971F4B3695158BAA667118BF.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-01"
+      "published_at": "2026-06-25"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\54ec433ae86f668c.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\44438af5ca739728.md",
+      "category": "web",
+      "title": "心理学系持续开展心理服务进校园活动",
+      "text_chars": 765,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/16/73A057DD42E74C6B8EDEBDAEB76B45C7.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-16"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\44fb0f6c03e788ae.md",
       "category": "web",
       "title": "基层动态",
       "text_chars": 534,
@@ -588,24 +818,84 @@
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\57a39aa8407811ef.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\4515a40a38abcfa9.md",
       "category": "web",
-      "title": "我校举办第四届中国创新发展政策与管理年会",
-      "text_chars": 1029,
+      "title": "生命科学学院与华南农业大学农学院开展党建联建交流活动",
+      "text_chars": 805,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/02/40E83356D0B94B809AABCC37AFEFA781.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/26/3D72E3EF0A9241368C83609A2D922B28.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-02"
+      "published_at": "2026-06-26"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\5829d69ac9ec4b9d.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\45c42acc5d8f05fa.md",
       "category": "web",
-      "title": "职业技术学院党委赴房山红色教育基地开展主题党日活动",
-      "text_chars": 757,
-      "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/01/CEF1C77CB89E4FED9F031EE31477418A.html",
+      "title": "我校在环境变化古人类演化关系领域研究取得重要进展",
+      "text_chars": 1243,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/12/23/D233C90550074570BF69CC955B709745.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-01"
+      "published_at": "2025-12-23"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\473bee69e49220db.md",
+      "category": "web",
+      "title": "栗战书",
+      "text_chars": 246,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/165DC51619DE4C0FAF31C041A4BCE2BA.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2024-05-11"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\4900a882f838d257.md",
+      "category": "web",
+      "title": "我校召开第43期实习支教驻县教师培训会",
+      "text_chars": 820,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/26/034581CBC8E14922B45C6C385E35A966.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-26"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\4b84b8542d859dce.md",
+      "category": "web",
+      "title": "【立德树人•榜样】崔树旺：宇宙使者，灵魂师者",
+      "text_chars": 2459,
+      "chunks": 4,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/04/11/45EDBC9FE7FD4B9084C0E8D6D5760910.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-09-26"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\4bd6a5c79489b877.md",
+      "category": "web",
+      "title": "中国共产党巡视工作条例",
+      "text_chars": 9363,
+      "chunks": 11,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/06/03/7B89AAD2C0204001AF85287A629F9780.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2024-02-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\50cd4e85f0fa1795.md",
+      "category": "web",
+      "title": "河北师范大学网络舆情报告处置与管理办法",
+      "text_chars": 3332,
+      "chunks": 4,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/6511A107E6D04CB48F4C83464D13A285.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2020-05-18"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\54f5acfcea0bb485.md",
+      "category": "web",
+      "title": "向“强学科”要“强发展”——我校深入实施学科振兴行动计划",
+      "text_chars": 7645,
+      "chunks": 8,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/04/01/891E4EE80CA34D769E52E32247F3D619.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-04-01"
     },
     {
       "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\5962f532bbe07300.md",
@@ -628,14 +918,64 @@
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\62f3c8776ef39963.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\60d3d3958ef59cfa.md",
       "category": "web",
-      "title": "综合新闻",
-      "text_chars": 534,
+      "title": "央视力荐！校长邀你报考河北师范大学！",
+      "text_chars": 281,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/zonghexinwen/index.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/3D5A8628C81645B197B6F3F4CC9838C3.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": ""
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\627df8d6654df068.md",
+      "category": "web",
+      "title": "河北师范大学各单位网站网页统计表",
+      "text_chars": 298,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/1B0F1405E350495EB6EBB456EDF61D73.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-10"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\6a8415ebad76fbf9.md",
+      "category": "web",
+      "title": "我校召开科研业务培训会议",
+      "text_chars": 729,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/22/ADA2FB6CB1524A369440C98D4EAF2C3A.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-22"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\6add70989681ab2f.md",
+      "category": "web",
+      "title": "从师大出发，向祖国报到!",
+      "text_chars": 307,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/5C1D63BD8D0B4EABB1F3382AFA2B9039.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\6ba7a634a1ebbee9.md",
+      "category": "web",
+      "title": "河北师范大学校园条幅悬挂审批表",
+      "text_chars": 295,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/8AAE03831C7F4A0F8898508FC782802F.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-11"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\6db211b3347b82b6.md",
+      "category": "web",
+      "title": "中共中央、国务院印发《教育强国建设规划纲要（2024—2035年）》",
+      "text_chars": 9617,
+      "chunks": 12,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/04/17/8006CBF01BC24E04ACD71F25642C5B37.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-01-22"
     },
     {
       "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\70036d0def72ee02.md",
@@ -648,14 +988,214 @@
       "published_at": "2025-06-27"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\807947153ead0a38.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\788526b91fb252ee.md",
+      "category": "web",
+      "title": "【立德树人•榜样】坚定的马克思主义学习者、信仰者和践行者——记魏建斌老师",
+      "text_chars": 2314,
+      "chunks": 4,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/0137F2FA0CCD43C0831EF24E9274B7F5.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2020-01-06"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\790fa00f849d7796.md",
+      "category": "web",
+      "title": "2026毕业歌，难忘《真知时光》！",
+      "text_chars": 279,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/F4F00A8FB52741F89EDD6F3E26DC9B32.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\7c7657c478f298dd.md",
+      "category": "web",
+      "title": "中国当代文学研究会第二十四届学术年会暨会员代表大会在河北师范大学举行",
+      "text_chars": 381,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/47A51F97221C41E18E3038FB5D6A4E67.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\7cb79c536e1eb898.md",
+      "category": "web",
+      "title": "中国共产党第二十届中央委员会第三次全体会议公报",
+      "text_chars": 5456,
+      "chunks": 7,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/08/10/7820845B5BE24B81A2594B9E04CA13DD.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2024-07-22"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\7cfdd6b7920b2aa0.md",
+      "category": "web",
+      "title": "河北师范大学举办2026年春季运动会",
+      "text_chars": 335,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/04/21/A0786CCA83F544AE911AD96868060A75.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-04-21"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\840ca4bbcc442f30.md",
+      "category": "web",
+      "title": "商学院在技术经济及管理领域取得系列成果",
+      "text_chars": 1448,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/04/15/8DAB78F2A77342449A140B67FAA4C2C8.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-04-15"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\84e9dace07461ba4.md",
+      "category": "web",
+      "title": "逐院把脉定向，聚力实干破题 以专项调研赋能“十五五”开局起步",
+      "text_chars": 1546,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/A2382B7C2C834F69804BD7E4991BC34E.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\84fa9b2405ba512e.md",
+      "category": "web",
+      "title": "校徽",
+      "text_chars": 276,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/xywh/xh/index.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\87f8b348f424cfc6.md",
+      "category": "web",
+      "title": "师大晚霞",
+      "text_chars": 254,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/B67C30CA019D42AC9D50235B8F9F81DD.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\8b0673d681260218.md",
+      "category": "web",
+      "title": "我校举行第十届“感动师大·青春正能量”大学生年度人物事迹展演暨颁奖典礼",
+      "text_chars": 867,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/08/CA65652B904C46C69CE009B8E85998AD.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-08"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\8c13a859b2b80163.md",
+      "category": "web",
+      "title": "【基层党建】先进基层党组织——生命科学学院党委",
+      "text_chars": 1606,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/31/B2B5B879B13F4C9EABABDA1EFFABCF4D.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2022-10-20"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\8c90a8694b53811b.md",
+      "category": "web",
+      "title": "河北师范大学校园文化建设管理办法",
+      "text_chars": 2862,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/7524A37E49FD483BA60A43CFC86B5042.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2021-05-18"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\8ee9cbfe9d061c20.md",
+      "category": "web",
+      "title": "河北师范大学各单位报纸刊物统计表",
+      "text_chars": 298,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/2F1936BA11064FADAE47163755C7CBAE.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-10"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\9548e1176d61987b.md",
+      "category": "web",
+      "title": "我校举行数字赋能爱心助学金发放仪式",
+      "text_chars": 911,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/22/DEF884AC92F54245964A062CAAD2A78D.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-22"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\967a7a80dff9c2bf.md",
+      "category": "web",
+      "title": "【立德树人•榜样】焦艳存：为师耕耘育桃李，润物无声暖人心",
+      "text_chars": 2310,
+      "chunks": 4,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/04/11/2AA79574192A4FE1A4C3477B6A6802D0.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-04-11"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\989ccc5d76c4154f.md",
       "category": "web",
       "title": "我校在气孔运动研究领域取得重要进展",
-      "text_chars": 1376,
+      "text_chars": 1388,
       "chunks": 3,
       "source_url": "https://news.hebtu.edu.cn/a/2026/03/24/B0CC9BAD4AA34C7880068F9792919750.html",
       "site": "news.hebtu.edu.cn",
       "published_at": "2026-03-24"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\9d924c46c00d8082.md",
+      "category": "web",
+      "title": "家政学院举办师生研究能力提升系列专题培训",
+      "text_chars": 816,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/17/A917AE81EEEB40D39FB298E9B7A14CC6.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-17"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\a09c5d4c56010751.md",
+      "category": "web",
+      "title": "我校召开2026年全面从严治党暨警示教育大会",
+      "text_chars": 1076,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/03/18/6DB745A394FC4C808F7759A0A5922BC9.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-03-18"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\a142d9e9179a4e8e.md",
+      "category": "web",
+      "title": "我校在生态系统多营养级互作领域取得重要成果",
+      "text_chars": 1336,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/25/B6843937C6294EDAB78E56B9C13C8B0A.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-25"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\a2942f8621e76459.md",
+      "category": "web",
+      "title": "中共中央办公厅印发《关于在全党开展党纪学习教育的通知》",
+      "text_chars": 990,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/06/03/EBFCFCB72AFB422AB8E41C2D70D293B6.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2024-04-08"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\a369a662220a540d.md",
+      "category": "web",
+      "title": "心理学系举办本硕毕业生成长故事分享会",
+      "text_chars": 739,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/15/4F0DD503357E48588BD5ECBD75ABC002.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-15"
     },
     {
       "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\adc2f21e7da74175.md",
@@ -668,6 +1208,16 @@
       "published_at": ""
     },
     {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\add814d7d997f7eb.md",
+      "category": "web",
+      "title": "我校召开“十五五”规划编制征求民主党派意见座谈会",
+      "text_chars": 830,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/18/253C7C535EB54EB6BB2CCA258DC7362C.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-18"
+    },
+    {
       "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\aec97cf9cab4c609.md",
       "category": "web",
       "title": "学习参考",
@@ -676,6 +1226,66 @@
       "source_url": "https://news.hebtu.edu.cn/a/lilunxuexi/llck/index.html",
       "site": "news.hebtu.edu.cn",
       "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\b135c68900d2d8ed.md",
+      "category": "web",
+      "title": "关于使用校园LED大屏幕的规定",
+      "text_chars": 574,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/C1CCAB5C322B4CAFB4D45B3D5328F904.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2020-05-18"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\b44c08285621ba71.md",
+      "category": "web",
+      "title": "【支部党旗红】凝心聚力强根基 立德树人润心田：心理学系教工第一党支部",
+      "text_chars": 2353,
+      "chunks": 4,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/10/22/53FDAA35E0334F7ABF0E92BAFE38280A.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-22"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\b65df9e187581b4b.md",
+      "category": "web",
+      "title": "中国共产党第二十届中央委员会第四次全体会议公报",
+      "text_chars": 5456,
+      "chunks": 6,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/10/24/A64F84D4027941F09EA6ABDB54833B97.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-24"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\b8cabb7e6dcb2864.md",
+      "category": "web",
+      "title": "通知 | 关于举办河北师范大学2025年大学生网络文化节和高校网络教育优秀作品推选展示活动的通知",
+      "text_chars": 1602,
+      "chunks": 2,
+      "source_url": "https://news.hebtu.edu.cn/dynamic/content.jsp?id=2f11728cf27144908751d1b8c8561a22",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-06-27"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\bc90c2437d89340a.md",
+      "category": "web",
+      "title": "【基层党建】家政学院（学前教育系）党委：凝心聚力谋发展，真抓实干促建设",
+      "text_chars": 2659,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/31/7DBD81D09CCD4CCBAA2DE77A826C158C.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2022-10-20"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\bdae9d94c30dd6f2.md",
+      "category": "web",
+      "title": "我校临城南盘石遗址主动发掘项目入选“2025年河北六大考古新发现”",
+      "text_chars": 1071,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/12/16/EB7E5EB9205643D5B57A3AD0B2B8B09F.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-12-16"
     },
     {
       "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\becda92c8860500e.md",
@@ -688,24 +1298,114 @@
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\c57388d187b7cfee.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\bf175770d45fa86a.md",
       "category": "web",
-      "title": "我校在金属有机框架材料电催化研究领域取得重要进展",
-      "text_chars": 1096,
+      "title": "河北师范大学举办2026届毕业生春季双选会",
+      "text_chars": 341,
       "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/01/15/8A5DD6715BD34CFA856ADB35F79356BF.html",
+      "source_url": "https://news.hebtu.edu.cn/a/2026/04/21/AEB9EAA48432419DA1556F478B6AA0C9.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-01-15"
+      "published_at": "2026-04-21"
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\e088d5ffaec32cf9.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\c28cfc8bda5f4548.md",
       "category": "web",
-      "title": "蓄势蝶变 赋能未来：我校“十四五”时期建设高水平综合性师范大学的实践探索",
-      "text_chars": 4012,
-      "chunks": 5,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/04/07/9E961D58DD884D1D83CA4E6B1A2A1938.html",
+      "title": "教育学院举办2026届本科毕业生“青春圆桌会”",
+      "text_chars": 616,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/24/D4E52CD5D3B646CA9D4C9250947CC18F.html",
       "site": "news.hebtu.edu.cn",
-      "published_at": "2026-04-07"
+      "published_at": "2026-06-24"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\c92b3ca535263afe.md",
+      "category": "web",
+      "title": "关于《中共中央关于进一步全面深化改革、推进中国式现代化的决定》的说明",
+      "text_chars": 5667,
+      "chunks": 7,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/08/10/1DA5F603D75A4341A6EB717A31CFF5C8.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2024-07-22"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\ca0f69a749ed4f7f.md",
+      "category": "web",
+      "title": "【基层党建】先进基层党组织——马克思主义学院党委",
+      "text_chars": 1374,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/31/7AA0F8091F4047678E94F52BBB25F094.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2022-10-20"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\ce03211fef38e178.md",
+      "category": "web",
+      "title": "教师教育学院开展毕业生党员主题党日活动",
+      "text_chars": 809,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/16/2CD3F0168B694D1586B3A6115AECA114.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-16"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\d7c06a204a93e503.md",
+      "category": "web",
+      "title": "中共中央关于进一步全面深化改革推进中国式现代化的决定",
+      "text_chars": 22663,
+      "chunks": 28,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/08/10/F220F67A4BBD4EABBC42B72328CCD999.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2024-07-22"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\da4bfc02928457a4.md",
+      "category": "web",
+      "title": "河北师范大学各级单位新媒体公共账号备案表",
+      "text_chars": 310,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/1E1AE21A4B5146848C6BEEBC4DEFC058.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-11"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\e099267412ce6422.md",
+      "category": "web",
+      "title": "第四届“典耀中华”阅读大会之“阅读与传承：社会主义先进文化的正定实践”主题对谈活动",
+      "text_chars": 381,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/04/21/2AEB4A2FB030443490493E2DCAE9F164.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-04-21"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\e2c395a13e84417f.md",
+      "category": "web",
+      "title": "河北师范大学第十届“感动师大·青春正能量”大学生年度人物事迹展演暨颁奖典礼在真知讲堂举行",
+      "text_chars": 393,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/0A2B08683A0D445596A12BB727635F6A.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-05"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\e41a658331eecd44.md",
+      "category": "web",
+      "title": "我校在药物化学线粒体靶向荧光探针领域发表重要成果",
+      "text_chars": 1380,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2025/12/18/D0A41C924C224CAA888FE358163DB9B6.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-12-18"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\e665d809e5a1acaf.md",
+      "category": "web",
+      "title": "综合新闻",
+      "text_chars": 542,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/zonghexinwen/index.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": ""
     },
     {
       "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\e79f7417bd0fd2b9.md",
@@ -718,622 +1418,1048 @@
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\ffb13ca6d999117a.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\e9d29a34e848c4fb.md",
       "category": "web",
-      "title": "我校举办2026年教职工毽球比赛",
-      "text_chars": 526,
-      "chunks": 1,
-      "source_url": "https://news.hebtu.edu.cn/a/2026/06/05/D4997FB9DD254A929AE2E418ECCDF364.html",
-      "site": "news.hebtu.edu.cn",
-      "published_at": "2026-06-05"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\00ec1a23e5f83c6f.md",
-      "category": "web",
-      "title": "关于开展河北师范大学软件学院第十七届学院之星评选工作的通知",
-      "text_chars": 1277,
-      "chunks": 2,
-      "source_url": "https://software.hebtu.edu.cn/a/2026/03/10/BA614BF3C9904780916A7F0D40301EE0.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2026-03-10"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\07e7baaea9aed1d3.md",
-      "category": "web",
-      "title": "组织机构",
-      "text_chars": 226,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/djyd/zzjg/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\080832aa6ef04c46.md",
-      "category": "web",
-      "title": "学工动态",
-      "text_chars": 606,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xsgl/xgxx/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2026-03-10"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\0ebdc031a7873d66.md",
-      "category": "web",
-      "title": "网络教育学院(软件学院)",
-      "text_chars": 1242,
+      "title": "【支部党旗红】“七个有力”筑根基，“党建+文化”润初心：文学院古典文学党支部",
+      "text_chars": 1997,
       "chunks": 3,
-      "source_url": "https://software.hebtu.edu.cn/",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2026-06-04"
+      "source_url": "https://news.hebtu.edu.cn/a/2025/10/22/4C2AC11F6BF946ED951DF2E81047050F.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-22"
     },
     {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\15b7974ef794fa2c.md",
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\ec7a7e8cf7d502be.md",
+      "category": "web",
+      "title": "河北师范大学报告会、研讨会、讲座、论坛审批表",
+      "text_chars": 316,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/9D5BE9E78A0046B4BEB6A6B66B4E4939.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2025-10-12"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\ee1e77b61837d5ea.md",
+      "category": "web",
+      "title": "【立德树人•榜样】学而不厌，诲人不倦——郭学军老师",
+      "text_chars": 1584,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/05/16/47950DBDFCB24DBBB5ADDA6B2895D389.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2020-05-18"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\f0226a4efa436c4b.md",
+      "category": "web",
+      "title": "雨后师大，美到心动！",
+      "text_chars": 307,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/29/B54BA4AD483947F6A465F76638FEA6E4.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-13"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\f0ee73fcf732e5ec.md",
+      "category": "web",
+      "title": "王蒙",
+      "text_chars": 302,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2024/06/03/57E56D6ADB2346B288E8903078852BE1.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2024-05-11"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\f692b04ac36d9027.md",
+      "category": "web",
+      "title": "第四届“典耀中华”阅读大会之“阅读与传承：社会主义先进文化的正定实践”主题对谈活动举行",
+      "text_chars": 3166,
+      "chunks": 4,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/04/16/CD842979214B4791BD88BA1ACD0E7465.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-04-16"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\f815078092888de8.md",
+      "category": "web",
+      "title": "我校中外合作办学工作取得突破性进展",
+      "text_chars": 1344,
+      "chunks": 3,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/05/26/7092D8C1308D473194FE1B57A3DA237E.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-05-26"
+    },
+    {
+      "source_file": "data\\raw\\web\\news_hebtu_edu_cn\\fe446ad46438bb6f.md",
+      "category": "web",
+      "title": "新疆维吾尔自治区科协、河北省科协到我校开展调研交流",
+      "text_chars": 966,
+      "chunks": 1,
+      "source_url": "https://news.hebtu.edu.cn/a/2026/06/18/F3A9599D5FA84142B8799244CAF7E4D7.html",
+      "site": "news.hebtu.edu.cn",
+      "published_at": "2026-06-18"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\06ae56f650a75fa1.md",
       "category": "web",
       "title": "专业培养",
-      "text_chars": 105,
+      "text_chars": 117,
       "chunks": 1,
       "source_url": "https://software.hebtu.edu.cn/a/jyjx/zypy/index.html",
       "site": "software.hebtu.edu.cn",
       "published_at": "2025-10-25"
     },
     {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\19326014be4f0a23.md",
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\0b3e033eb32cc197.md",
+      "category": "web",
+      "title": "网络教育学院(软件学院)",
+      "text_chars": 1256,
+      "chunks": 3,
+      "source_url": "https://software.hebtu.edu.cn/",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-06-23"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\31cd4d276884b81d.md",
       "category": "web",
       "title": "理论学习",
-      "text_chars": 362,
+      "text_chars": 388,
       "chunks": 1,
       "source_url": "https://software.hebtu.edu.cn/a/djyd/llxx/index.html",
       "site": "software.hebtu.edu.cn",
       "published_at": "2025-10-26"
     },
     {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\1b343177768bf1f3.md",
-      "category": "web",
-      "title": "教务信息",
-      "text_chars": 473,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/jyjx/jwxx/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2026-04-10"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\1ca2e779a59610e2.md",
-      "category": "web",
-      "title": "科研项目",
-      "text_chars": 142,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/kyhz/kyxm/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-01-16"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\1daf67f323ac4b1b.md",
-      "category": "web",
-      "title": "学院领导",
-      "text_chars": 131,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xygk/xyld/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\223f1fb15393c91c.md",
-      "category": "web",
-      "title": "研学感悟",
-      "text_chars": 112,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/gjjl/yxgw/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-10-25"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\33bac29ef8e8b37e.md",
-      "category": "web",
-      "title": "软件故事",
-      "text_chars": 523,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xsgl/jcsp/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2026-01-06"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\3a6b122c799a6c77.md",
-      "category": "web",
-      "title": "国际教育",
-      "text_chars": 206,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/gjjl/lxgy/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2026-01-06"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\4b16cb90c3f85cae.md",
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\3988c3eb165587f9.md",
       "category": "web",
       "title": "学院简介",
-      "text_chars": 1036,
+      "text_chars": 1046,
       "chunks": 1,
       "source_url": "https://software.hebtu.edu.cn/a/xygk/xyjj/index.html",
       "site": "software.hebtu.edu.cn",
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\5121442128135db3.md",
-      "category": "web",
-      "title": "历年就业情况",
-      "text_chars": 407,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xyfc/lnjy/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-09-09"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\5a362aa05710f304.md",
-      "category": "web",
-      "title": "学院之星",
-      "text_chars": 299,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xsgl/xyzx/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-09-09"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\5bc243272286f405.md",
-      "category": "web",
-      "title": "联系我们",
-      "text_chars": 197,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/lxwm/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\63429e697a7eb74c.md",
-      "category": "web",
-      "title": "学院新闻",
-      "text_chars": 560,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xyxw/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2026-06-04"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\786669d85699f25f.md",
-      "category": "web",
-      "title": "实训项目",
-      "text_chars": 465,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/kyhz/xmcg/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-12-03"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\82bd83100391e5a6.md",
-      "category": "web",
-      "title": "就业指导",
-      "text_chars": 566,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/zsxx/jyzd/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2026-03-19"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\8e2b8a41bac5e0cc.md",
-      "category": "web",
-      "title": "学院标识",
-      "text_chars": 159,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xygk/xybs/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\92d7ac342e815d53.md",
-      "category": "web",
-      "title": "软件学院举行2025年人才培养方案论证会",
-      "text_chars": 872,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/2025/05/30/E6381C289BF948A4A53049CC6AF4687D.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-05-30"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\a2878f7b0f420e11.md",
-      "category": "web",
-      "title": "重要通知",
-      "text_chars": 545,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/tzgg/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2026-05-14"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\a9914da50167cb85.md",
-      "category": "web",
-      "title": "就业明星",
-      "text_chars": 378,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xyfc/jymx/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-09-09"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\b38620b158704f3a.md",
-      "category": "web",
-      "title": "校友专访",
-      "text_chars": 503,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xyfc/xyhd/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-10-13"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\b7ebce10e3be893e.md",
-      "category": "web",
-      "title": "招生动态",
-      "text_chars": 251,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/zsxx/zsdt/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-09-04"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\c439eb4cf594e479.md",
-      "category": "web",
-      "title": "党建活动",
-      "text_chars": 649,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/djyd/dtgz/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-10-26"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\da0e5322a1c72a83.md",
-      "category": "web",
-      "title": "考研升学",
-      "text_chars": 449,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xyfc/kysx/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": "2025-08-13"
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\da7e51d6905b8d47.md",
-      "category": "web",
-      "title": "机构设置",
-      "text_chars": 198,
-      "chunks": 1,
-      "source_url": "https://software.hebtu.edu.cn/a/xygk/cydh/index.html",
-      "site": "software.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\ddf6a65fe37cfad6.md",
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\4efeae943d67dc7c.md",
       "category": "web",
       "title": "就业动态",
-      "text_chars": 531,
+      "text_chars": 561,
       "chunks": 1,
       "source_url": "https://software.hebtu.edu.cn/a/zsxx/jydt/index.html",
       "site": "software.hebtu.edu.cn",
       "published_at": "2026-01-16"
     },
     {
-      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\e1deb1226e70f803.md",
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\50645d5c7231246d.md",
+      "category": "web",
+      "title": "考研升学",
+      "text_chars": 481,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xyfc/kysx/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-08-13"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\58db7d011616b44a.md",
+      "category": "web",
+      "title": "行业动态",
+      "text_chars": 507,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/hydt/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-06-04"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\5d7a6a0b14f53402.md",
+      "category": "web",
+      "title": "学院之星",
+      "text_chars": 326,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xyzx/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-09-09"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\5d9c0280eeaab157.md",
+      "category": "web",
+      "title": "学院荣誉",
+      "text_chars": 84,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xygk/xyry/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\5e3a37c05e311986.md",
+      "category": "web",
+      "title": "重要通知",
+      "text_chars": 577,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/tzgg/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-05-14"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\5fd9760e94ace917.md",
+      "category": "web",
+      "title": "机构设置",
+      "text_chars": 208,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xygk/cydh/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\69f1333f2518dd3b.md",
+      "category": "web",
+      "title": "教务信息",
+      "text_chars": 513,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/jyjx/jwxx/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-05-25"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\6b5f3f0909231c20.md",
+      "category": "web",
+      "title": "学工动态",
+      "text_chars": 636,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xsgl/xgxx/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-03-10"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\724c4958819d9975.md",
+      "category": "web",
+      "title": "实训项目",
+      "text_chars": 493,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/kyhz/xmcg/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-12-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\76eeea3750381054.md",
+      "category": "web",
+      "title": "软件学院举行2025年人才培养方案论证会",
+      "text_chars": 880,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/2025/05/30/E6381C289BF948A4A53049CC6AF4687D.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-05-30"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\7d55a447d7397766.md",
+      "category": "web",
+      "title": "国际教育",
+      "text_chars": 218,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/gjjl/lxgy/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-01-06"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\83611b9983c05c3b.md",
+      "category": "web",
+      "title": "学院荣誉",
+      "text_chars": 82,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xyry/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-10-21"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\a1506aa07c50628f.md",
+      "category": "web",
+      "title": "学院新闻",
+      "text_chars": 533,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xyxw/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-06-23"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\a3c1949608b6f355.md",
+      "category": "web",
+      "title": "组织机构",
+      "text_chars": 234,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/djyd/zzjg/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\ab5e684b30463991.md",
+      "category": "web",
+      "title": "就业指导",
+      "text_chars": 596,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/zsxx/jyzd/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-03-19"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\b33d3505736ba174.md",
+      "category": "web",
+      "title": "联系我们",
+      "text_chars": 207,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/lxwm/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\b64cc055473fdf62.md",
+      "category": "web",
+      "title": "学院标识",
+      "text_chars": 169,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xygk/xybs/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\baa907adca206d5a.md",
+      "category": "web",
+      "title": "历年就业情况",
+      "text_chars": 439,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xyfc/lnjy/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-09-09"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\bd0f82b3a1b19a20.md",
+      "category": "web",
+      "title": "科研项目",
+      "text_chars": 154,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/kyhz/kyxm/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-01-16"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\bfd1adc65b16bbd9.md",
+      "category": "web",
+      "title": "校友风采",
+      "text_chars": 431,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xyfc/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-10-13"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\bff5e4672056fb9f.md",
+      "category": "web",
+      "title": "媒体关注",
+      "text_chars": 104,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/mtgz/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-03-07"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\c06b32315781a448.md",
+      "category": "web",
+      "title": "项目实训",
+      "text_chars": 481,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xmsx/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-10-23"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\cd276fa7b389a9ff.md",
+      "category": "web",
+      "title": "就业明星",
+      "text_chars": 410,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xyfc/jymx/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-09-09"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\e010dcb94b827f4b.md",
+      "category": "web",
+      "title": "研学感悟",
+      "text_chars": 120,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/gjjl/yxgw/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-10-25"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\e34e843662b8698c.md",
+      "category": "web",
+      "title": "学院之星",
+      "text_chars": 327,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xsgl/xyzx/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-09-09"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\e799c2d699aba0a3.md",
+      "category": "web",
+      "title": "国际交流",
+      "text_chars": 274,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/ztlm/gjjl/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-01-06"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\e9ea23a99c42c753.md",
+      "category": "web",
+      "title": "学院领导",
+      "text_chars": 141,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xygk/xyld/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\eac35e88ddf57697.md",
+      "category": "web",
+      "title": "软件故事",
+      "text_chars": 553,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/xsgl/jcsp/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-01-06"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\ebd86795ced598be.md",
+      "category": "web",
+      "title": "党建园地",
+      "text_chars": 608,
+      "chunks": 1,
+      "source_url": "https://software.hebtu.edu.cn/a/djyd/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-10-28"
+    },
+    {
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\ecbe8242ded08d83.md",
       "category": "web",
       "title": "规章制度",
-      "text_chars": 150,
+      "text_chars": 164,
       "chunks": 1,
       "source_url": "https://software.hebtu.edu.cn/a/djyd/gzzd/index.html",
       "site": "software.hebtu.edu.cn",
       "published_at": "2025-10-28"
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\030f98786339b5ce.md",
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\f41e9252f7344b1a.md",
       "category": "web",
-      "title": "图书情报服务",
-      "text_chars": 129,
+      "title": "党建活动",
+      "text_chars": 681,
       "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/ggfw/tsqbfw/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
+      "source_url": "https://software.hebtu.edu.cn/a/djyd/dtgz/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-10-26"
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\0db01ffca582943d.md",
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\f8a11589aeacb46a.md",
       "category": "web",
-      "title": "研究生服务",
-      "text_chars": 126,
+      "title": "校友专访",
+      "text_chars": 535,
       "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/ggfw/yjsfw/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
+      "source_url": "https://software.hebtu.edu.cn/a/xyfc/xyhd/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2025-10-13"
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\0f51f5aece3b6953.md",
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\fd17fb75ae25c6f1.md",
       "category": "web",
-      "title": "管理服务",
-      "text_chars": 476,
+      "title": "招生动态",
+      "text_chars": 309,
       "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/jgsz/glfw/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
+      "source_url": "https://software.hebtu.edu.cn/a/zsxx/zsdt/index.html",
+      "site": "software.hebtu.edu.cn",
+      "published_at": "2026-06-23"
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\0fecf8d50fc858b4.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\0029381ca6cc6d30.md",
       "category": "web",
       "title": "本科生服务",
-      "text_chars": 519,
+      "text_chars": 623,
       "chunks": 1,
       "source_url": "https://www.hebtu.edu.cn/a/ggfw/bksfw/index.html",
       "site": "www.hebtu.edu.cn",
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\29528dc19fb84962.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\0597a2cc64381ce8.md",
       "category": "web",
-      "title": "留学生教育",
-      "text_chars": 925,
+      "title": "关于确定中外合作办学机构及项目学费标准的公告",
+      "text_chars": 637,
       "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/rcpy/lxsjy/index.html",
+      "source_url": "https://www.hebtu.edu.cn/a/2026/06/11/27B6582613E84E7BB2E424957DE6D135.html",
       "site": "www.hebtu.edu.cn",
-      "published_at": ""
+      "published_at": "2026-06-11"
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\4f0a82076fab9e0d.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\0da922e94b6f01df.md",
       "category": "web",
-      "title": "校园风光",
-      "text_chars": 88,
+      "title": "学校概况",
+      "text_chars": 95,
       "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xyfg/index.html",
+      "source_url": "https://www.hebtu.edu.cn/a/xxgk/index.html",
       "site": "www.hebtu.edu.cn",
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\580ecdffa9d1cd7f.md",
-      "category": "web",
-      "title": "校园地图",
-      "text_chars": 104,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xydt/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\5d389027caae489e.md",
-      "category": "web",
-      "title": "就业服务",
-      "text_chars": 267,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/zsjy/jyfw/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\634377e0d573731e.md",
-      "category": "web",
-      "title": "学校简介",
-      "text_chars": 2859,
-      "chunks": 4,
-      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xxjj/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\64f3e99b17b9ac6d.md",
-      "category": "web",
-      "title": "本科教育简介",
-      "text_chars": 1375,
-      "chunks": 3,
-      "source_url": "https://www.hebtu.edu.cn/a/2014/08/30/B217A27331544C9FB28D4C096AA554E4.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\6d09dc1db974a766.md",
-      "category": "web",
-      "title": "研究生教育",
-      "text_chars": 582,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/rcpy/yjsjy/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\6f7fc4469e18cc9a.md",
-      "category": "web",
-      "title": "合作交流",
-      "text_chars": 561,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/kxyjpt/hzjl/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\785eb089c34256fe.md",
-      "category": "web",
-      "title": "学校标识",
-      "text_chars": 336,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xxbz/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\824aa8e433b073dd.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\1e6fa8f95f0f023e.md",
       "category": "web",
       "title": "院系设置",
-      "text_chars": 255,
+      "text_chars": 297,
       "chunks": 1,
       "source_url": "https://www.hebtu.edu.cn/a/jgsz/yxsz/index.html",
       "site": "www.hebtu.edu.cn",
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\8b243b8c9b433a15.md",
-      "category": "web",
-      "title": "行政事务服务",
-      "text_chars": 386,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/ggfw/xzswfw/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\9a9cf3669e548fe6.md",
-      "category": "web",
-      "title": "留学生招生",
-      "text_chars": 838,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/zsjy/lxszs/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": "2018-11-07"
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\a9ab84cedce00901.md",
-      "category": "web",
-      "title": "师资队伍",
-      "text_chars": 1468,
-      "chunks": 2,
-      "source_url": "https://www.hebtu.edu.cn/a/rcpy/szdw/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\b4120e48833dc7bd.md",
-      "category": "web",
-      "title": "本科生招生",
-      "text_chars": 424,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/zsjy/bkszs/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\b56a0f871c4c1070.md",
-      "category": "web",
-      "title": "治理架构",
-      "text_chars": 740,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/xxgk/zljg/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\c1449b77fdd8473c.md",
-      "category": "web",
-      "title": "河北师范大学2026年预算信息公开",
-      "text_chars": 4222,
-      "chunks": 6,
-      "source_url": "https://www.hebtu.edu.cn/a/ggfw/yjsgk/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\c26e68f276604abf.md",
-      "category": "web",
-      "title": "继续教育招生",
-      "text_chars": 499,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/zsjy/jxjyzs/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\d5b8bbb2ad82ea1d.md",
-      "category": "web",
-      "title": "科学研究平台",
-      "text_chars": 2128,
-      "chunks": 3,
-      "source_url": "https://www.hebtu.edu.cn/a/kxyjpt/kxyjpt/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\db52070b7c9e81a3.md",
-      "category": "web",
-      "title": "中外合作办学",
-      "text_chars": 2008,
-      "chunks": 3,
-      "source_url": "https://www.hebtu.edu.cn/a/rcpy/zwhzbx/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\e0c00ac3223fc46d.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\1e9a0ffbb8705d52.md",
       "category": "web",
       "title": "自然科学与技术",
-      "text_chars": 1220,
+      "text_chars": 1230,
       "chunks": 3,
       "source_url": "https://www.hebtu.edu.cn/a/kxyjpt/zrkxyjs/index.html",
       "site": "www.hebtu.edu.cn",
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\e3d224ba86488b84.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\1f76efc331ba04cd.md",
       "category": "web",
-      "title": "人文与社会科学",
-      "text_chars": 1489,
+      "title": "研究生教育",
+      "text_chars": 594,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/rcpy/yjsjy/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\203019964649429f.md",
+      "category": "web",
+      "title": "治理架构",
+      "text_chars": 778,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/xxgk/zljg/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\2297f8ad6d0018d6.md",
+      "category": "web",
+      "title": "生活服务",
+      "text_chars": 337,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/ggfw/shfw/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\2a322a4561446563.md",
+      "category": "web",
+      "title": "附属单位",
+      "text_chars": 97,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/jgsz/fsdw/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\2b325f94d29a6b7f.md",
+      "category": "web",
+      "title": "文明对话的学术主体与全球汉学发展",
+      "text_chars": 1947,
       "chunks": 3,
-      "source_url": "https://www.hebtu.edu.cn/a/kxyjpt/rwyshkx/index.html",
+      "source_url": "https://www.hebtu.edu.cn/a/xsdt/xshd/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-26"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\2d00948a2e5a9155.md",
+      "category": "web",
+      "title": "关于选派第四十三期实习支教驻县教师的通知",
+      "text_chars": 1596,
+      "chunks": 2,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/05/13/61067167F93D48478EB5540BE902781E.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-05-13"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\2fcbe0c7bd212092.md",
+      "category": "web",
+      "title": "公共服务",
+      "text_chars": 81,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/ggfw/index.html",
       "site": "www.hebtu.edu.cn",
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\e684df1a725ed11e.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\3135d86c34d0cab2.md",
       "category": "web",
-      "title": "河北师范大学",
-      "text_chars": 565,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/",
+      "title": "关于开展2026年度资产盘点盘活工作的通知",
+      "text_chars": 2429,
+      "chunks": 3,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/05/14/BD4A34C46A364895888096307B4ECD6B.html",
       "site": "www.hebtu.edu.cn",
-      "published_at": "2026-04-16"
+      "published_at": "2026-05-14"
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\ebdf06c0ac10d310.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\324e79226afc4294.md",
       "category": "web",
-      "title": "继续教育",
-      "text_chars": 668,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/rcpy/jxjy/index.html",
-      "site": "www.hebtu.edu.cn",
-      "published_at": ""
-    },
-    {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\ee0111a085e0c38a.md",
-      "category": "web",
-      "title": "学科专业",
-      "text_chars": 397,
-      "chunks": 1,
-      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xkzy/index.html",
+      "title": "本科教育简介",
+      "text_chars": 1387,
+      "chunks": 3,
+      "source_url": "https://www.hebtu.edu.cn/a/2014/08/30/B217A27331544C9FB28D4C096AA554E4.html",
       "site": "www.hebtu.edu.cn",
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\fa046ee77a2d9268.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\3785ad9f7a103c03.md",
+      "category": "web",
+      "title": "河北师范大学关于教育收费项目的公示",
+      "text_chars": 249,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/ggfw/sfgk/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\38789c66c8a6e09a.md",
+      "category": "web",
+      "title": "关于我校学生随外校团队参加2026年第十五届“挑战杯”中国大学生创业计划竞赛情况的公示",
+      "text_chars": 738,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/06/22/A83C4A38EA464935B9243C84B484A4D6.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-22"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\41b11c5c682cc717.md",
+      "category": "web",
+      "title": "继续教育招生",
+      "text_chars": 509,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/zsjy/jxjyzs/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\41daea8abe93eed1.md",
+      "category": "web",
+      "title": "学术活动",
+      "text_chars": 914,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/06/29/20A1CD9FC59D49A7815B4CD64F0FE491.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\42b304735cd3bc23.md",
+      "category": "web",
+      "title": "河北师范大学附属小学关于对2026年师大教职工子女入学需求情况摸底的通知",
+      "text_chars": 716,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/06/03/BE3073F1BC4541FC860A41FC881A9582.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\45b65f6ab26fb49f.md",
       "category": "web",
       "title": "历史沿革",
-      "text_chars": 4619,
+      "text_chars": 4687,
       "chunks": 6,
       "source_url": "https://www.hebtu.edu.cn/a/xxgk/lsyg/index.html",
       "site": "www.hebtu.edu.cn",
       "published_at": ""
     },
     {
-      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\fd24cfc02c7ae0ab.md",
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\46c85322007d8b45.md",
+      "category": "web",
+      "title": "河北师范大学附属实验中学、实验小学关于对2026年师大教职工子女入学需求情况摸底的通知",
+      "text_chars": 849,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/06/03/3262336ACC6A4F68BAB22E257EE350ED.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-03"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\4f3f97bdc1d5c950.md",
+      "category": "web",
+      "title": "合作交流",
+      "text_chars": 571,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/kxyjpt/hzjl/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\5678637c461533f2.md",
+      "category": "web",
+      "title": "留学生招生",
+      "text_chars": 848,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/zsjy/lxszs/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2018-11-07"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\56cbf19f2f3eb574.md",
+      "category": "web",
+      "title": "学术活动",
+      "text_chars": 827,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/06/25/A902D7B6E09D4CC49803AB65E2D1B6CD.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-25"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\5c3a7be21d87a631.md",
+      "category": "web",
+      "title": "中外合作办学",
+      "text_chars": 2020,
+      "chunks": 3,
+      "source_url": "https://www.hebtu.edu.cn/a/rcpy/zwhzbx/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\5c4e3b019ad7f068.md",
+      "category": "web",
+      "title": "网络服务",
+      "text_chars": 357,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/ggfw/wlfw/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\669db27f9efab699.md",
+      "category": "web",
+      "title": "本科生招生",
+      "text_chars": 434,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/zsjy/bkszs/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\733382af7a4336ed.md",
+      "category": "web",
+      "title": "河北师范大学职工医院租借DR车项目比选公告",
+      "text_chars": 515,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/zbgg/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\73b3c32c198c8567.md",
+      "category": "web",
+      "title": "人才培养",
+      "text_chars": 101,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/rcpy/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\73bb5d216bf4b2c5.md",
+      "category": "web",
+      "title": "进校预约",
+      "text_chars": 608,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/zjsd/jxyy/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\780d61dd8b167654.md",
+      "category": "web",
+      "title": "师大校历",
+      "text_chars": 110,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/zjsd/sdxl/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\7f8c8edcf64f83a6.md",
+      "category": "web",
+      "title": "行政事务服务",
+      "text_chars": 465,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/ggfw/xzswfw/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\81545df3720fec94.md",
+      "category": "web",
+      "title": "河北师范大学2026年预算信息公开",
+      "text_chars": 4258,
+      "chunks": 6,
+      "source_url": "https://www.hebtu.edu.cn/a/ggfw/yjsgk/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\824141546254b972.md",
+      "category": "web",
+      "title": "关于征集河北省第八届大学生艺术展演作品的通知",
+      "text_chars": 2148,
+      "chunks": 2,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/04/30/A9741030699D4DE5BAE5DA6169D91C6A.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-04-30"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\883b946166ee05cc.md",
+      "category": "web",
+      "title": "学校简介",
+      "text_chars": 2873,
+      "chunks": 4,
+      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xxjj/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\8fa6eb9036dd3c0d.md",
+      "category": "web",
+      "title": "图书情报服务",
+      "text_chars": 155,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/ggfw/tsqbfw/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\9714915b72704ca1.md",
+      "category": "web",
+      "title": "学术活动",
+      "text_chars": 543,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/06/25/CB16465EBA5E4B23908010690420CFE4.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-25"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\9e55845e9de40d66.md",
+      "category": "web",
+      "title": "人文与社会科学",
+      "text_chars": 1499,
+      "chunks": 3,
+      "source_url": "https://www.hebtu.edu.cn/a/kxyjpt/rwyshkx/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\b33c8240a3179096.md",
+      "category": "web",
+      "title": "管理服务",
+      "text_chars": 550,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/jgsz/glfw/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\b806b141782f939a.md",
+      "category": "web",
+      "title": "学校标识",
+      "text_chars": 362,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xxbz/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\bed869b9d1635c4b.md",
+      "category": "web",
+      "title": "就业服务",
+      "text_chars": 277,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/zsjy/jyfw/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\c4e0ef08c4203617.md",
+      "category": "web",
+      "title": "河北师范大学参加第十五届“‘挑战杯’中国大学生创业计划竞赛”推荐项目公示",
+      "text_chars": 530,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/06/17/7AE1C49D8D044C4FBE3EDFD7F73A097B.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-17"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\c7edf4fe5a3d198e.md",
+      "category": "web",
+      "title": "留学生教育",
+      "text_chars": 937,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/rcpy/lxsjy/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\cc132e6b747a39e7.md",
+      "category": "web",
+      "title": "师资队伍",
+      "text_chars": 1480,
+      "chunks": 2,
+      "source_url": "https://www.hebtu.edu.cn/a/rcpy/szdw/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\d0c15f1ad7d3f7f9.md",
+      "category": "web",
+      "title": "科学研究平台",
+      "text_chars": 2174,
+      "chunks": 3,
+      "source_url": "https://www.hebtu.edu.cn/a/kxyjpt/kxyjpt/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\d768b2fbf6c9f406.md",
+      "category": "web",
+      "title": "继续教育",
+      "text_chars": 680,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/rcpy/jxjy/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\d9b1420807c0790f.md",
+      "category": "web",
+      "title": "学术活动",
+      "text_chars": 623,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/2026/06/29/A88D230E5BD64389A86CA914D5056BCC.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\def242c42d68e536.md",
+      "category": "web",
+      "title": "学科专业",
+      "text_chars": 411,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xkzy/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\e12d5569b463fe6a.md",
+      "category": "web",
+      "title": "校园地图",
+      "text_chars": 118,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xydt/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\e1a80fbdd9613f77.md",
+      "category": "web",
+      "title": "研究生服务",
+      "text_chars": 152,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/ggfw/yjsfw/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\e256fe852e19f287.md",
+      "category": "web",
+      "title": "æ²³åŒ—å¸ˆèŒƒå¤§å­¦",
+      "text_chars": 1614,
+      "chunks": 3,
+      "source_url": "https://www.hebtu.edu.cn/",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2026-06-29"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\e4fb7cd16cc0e849.md",
+      "category": "web",
+      "title": "校园地图",
+      "text_chars": 82,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/zjsd/xydt/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\f09b12b4617e1fde.md",
       "category": "web",
       "title": "研究生招生",
-      "text_chars": 683,
+      "text_chars": 693,
       "chunks": 1,
       "source_url": "https://www.hebtu.edu.cn/a/zsjy/yjszs/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\f145f6048e761eeb.md",
+      "category": "web",
+      "title": "河北师范大学2026年公开选聘教学科研人员公告",
+      "text_chars": 1763,
+      "chunks": 3,
+      "source_url": "https://www.hebtu.edu.cn/a/tztg/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": "2025-06-01"
+    },
+    {
+      "source_file": "data\\raw\\web\\www_hebtu_edu_cn\\f52ff01d034c35d6.md",
+      "category": "web",
+      "title": "校园风光",
+      "text_chars": 102,
+      "chunks": 1,
+      "source_url": "https://www.hebtu.edu.cn/a/xxgk/xyfg/index.html",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web_attachments\\www_hebtu_edu_cn\\8089214b561fc401.pdf",
+      "category": "web",
+      "title": "B98A30E6F5D44F208993D03AFB31B9FA",
+      "text_chars": 1213,
+      "chunks": 2,
+      "source_url": "https://www.hebtu.edu.cn/resources/43/202506/B98A30E6F5D44F208993D03AFB31B9FA.pdf",
+      "site": "www.hebtu.edu.cn",
+      "published_at": ""
+    },
+    {
+      "source_file": "data\\raw\\web_attachments\\www_hebtu_edu_cn\\c57bfec2bbf10ef2.pdf",
+      "category": "web",
+      "title": "900617C487F84EB59B53F421F481E08D",
+      "text_chars": 1270,
+      "chunks": 2,
+      "source_url": "https://www.hebtu.edu.cn/resources/43/202606/900617C487F84EB59B53F421F481E08D.pdf",
       "site": "www.hebtu.edu.cn",
       "published_at": ""
     }
   ],
   "failed": [
     {
-      "source_file": "data\\raw\\programs\\2019级软件工程专业人才培养方案20190720修改稿v2.doc",
-      "category": "programs",
-      "title": "2019级软件工程专业人才培养方案20190720修改稿v2",
-      "error": "textutil is not available; cannot parse Word documents"
+      "source_file": "data\\raw\\web\\software_hebtu_edu_cn\\db059e732eb988fe.md",
+      "category": "web",
+      "title": "教学成果",
+      "error": "extracted text too short: 68 chars"
+    },
+    {
+      "source_file": "data\\raw\\web_attachments\\www_hebtu_edu_cn\\1dee905bc063cfad.pdf",
+      "category": "web",
+      "title": "9DD784A100ED411082900C901D8346E2",
+      "error": "'gbk' codec can't encode character '\\u26a0' in position 2: illegal multibyte sequence"
     }
   ]
 }

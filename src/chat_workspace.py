@@ -489,6 +489,29 @@ def render_empty_dashboard(conversations: list[dict]) -> None:
                     st.session_state["pending_question"] = question
                     st.rerun()
 
+    # ── Recent conversations section ──
+    recent = visible_conversations(conversations)[:6]
+    if recent:
+        st.markdown("---")
+        st.markdown("#### 📋 历史对话")
+        st.caption("点击即可继续之前的对话")
+        hist_cols = st.columns(3)
+        for i, c in enumerate(recent):
+            cid = str(c.get("id", ""))
+            ct = str(c.get("title") or "未命名教务对话")
+            ts = c.get("updated_at") or c.get("created_at") or ""
+            pinned = c.get("pinned")
+            label = f"{'📌 ' if pinned else ''}{ct}"
+            with hist_cols[i % 3]:
+                with st.container(border=True):
+                    st.markdown(f"**{label[:30]}{'…' if len(label) > 30 else ''}**")
+                    if ts:
+                        st.caption(ts)
+                    if st.button("继续对话 →", key=f"resume_{i}", use_container_width=True):
+                        st.session_state["current_conversation_id"] = cid
+                        set_chat_route("thread", cid)
+                        st.rerun()
+
 
 def render_quick_questions() -> None:
     st.caption("💡 试试这些问题")
@@ -720,6 +743,12 @@ def finish_pending_answer(conversations: list[dict]) -> None:
 
     current_msgs = current_conv.setdefault("messages", [])
 
+    # Build chat history from last N messages (exclude current question)
+    recent_history: list[dict[str, str]] = []
+    raw_msgs = current_conv.get("messages", []) or []
+    for m in raw_msgs[-6:]:
+        recent_history.append({"role": m.get("role", ""), "content": str(m.get("content", ""))})
+
     with st.spinner("正在生成回答..."):
         try:
             agent = load_agent(knowledge_cache_stamp())
@@ -727,6 +756,7 @@ def finish_pending_answer(conversations: list[dict]) -> None:
                 question,
                 top_k=st.session_state["cfg_top_k"],
                 use_llm=st.session_state["cfg_use_llm"],
+                chat_history=recent_history if recent_history else None,
             )
         except Exception as exc:
             try:
@@ -772,7 +802,7 @@ def render_workspace_page(configure_page: bool = False) -> None:
     if configure_page:
         st.set_page_config(
             page_title="智能问答工作台", page_icon="💬",
-            layout="wide", initial_sidebar_state="collapsed",
+            layout="wide", initial_sidebar_state="expanded",
         )
 
     apply_design_system()

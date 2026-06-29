@@ -531,20 +531,41 @@ DESIGN_SYSTEM_CSS = r"""
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
         max-width: 94% !important;
     }
-    div[data-testid="stChatInput"] textarea {
-        min-height: 52px !important;
-        border-radius: 24px !important;
-        border: 1px solid var(--border) !important;
-        background: rgba(255, 249, 239, 0.96) !important;
-        padding: 14px 20px !important;
-        color: var(--ink) !important;
-        font-size: 0.94rem !important;
+    div[data-testid="stChatInput"] {
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+    div[data-testid="stChatInput"] > div {
+        border: 1px solid rgba(22, 140, 140, 0.34) !important;
+        border-radius: var(--radius-full) !important;
+        background: #FFF9EF !important;
         box-shadow: var(--shadow) !important;
+        outline: none !important;
+        overflow: hidden !important;
         transition: border-color 180ms ease, box-shadow 180ms ease !important;
     }
-    div[data-testid="stChatInput"] textarea:focus {
+    div[data-testid="stChatInput"] > div *,
+    div[data-testid="stChatInput"] [data-baseweb="textarea"],
+    div[data-testid="stChatInput"] [data-baseweb="base-input"],
+    div[data-testid="stChatInput"] [data-baseweb="base-input"] > div {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+    div[data-testid="stChatInput"] > div:focus-within {
         border-color: var(--accent) !important;
         box-shadow: 0 0 0 3px rgba(22, 140, 140, 0.16), var(--shadow) !important;
+    }
+    div[data-testid="stChatInput"] textarea,
+    div[data-testid="stChatInput"] textarea:focus {
+        min-height: 52px !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        color: var(--ink) !important;
+        font-size: 0.94rem !important;
+        box-shadow: none !important;
+        outline: none !important;
     }
 
     .ds-source-text {

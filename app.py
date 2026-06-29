@@ -10,7 +10,7 @@ from src.knowledge_summary import load_knowledge_summary
 from src.ui.design_system import apply_design_system
 
 
-VALID_VIEWS = {"home", "chat", "knowledge"}
+VALID_VIEWS = {"home", "chat", "knowledge", "code", "learn"}
 
 HEBTU_LOGO_URL = "https://news.hebtu.edu.cn/resources/40/202505/7EF35EDE89AF416D9AE00B8F78239B36.png"
 HEBTU_HERO_URL = "https://www.hebtu.edu.cn/resources/40/202504/1F8C477E6C6340D8A5681922161AEB74.jpg"
@@ -68,6 +68,18 @@ def render_knowledge_view() -> None:
     from src.knowledge_page import render_knowledge_base_page
 
     render_knowledge_base_page()
+
+
+def render_code_view() -> None:
+    from src.code_learning_page import render_code_learning_page
+
+    render_code_learning_page()
+
+
+def render_learn_view() -> None:
+    from src.learning_dashboard_page import render_learning_dashboard_page
+
+    render_learning_dashboard_page()
 
 
 def render_recent_conversations() -> str:
@@ -279,20 +291,6 @@ footer {{
     width: max(100%, 210px);
     height: 18px;
     transform: translateX(-50%);
-}}
-.hebtu-dropdown > a::after {{
-    content: "";
-    width: 7px;
-    height: 7px;
-    margin-left: 9px;
-    border-right: 2px solid rgba(255,255,255,0.9);
-    border-bottom: 2px solid rgba(255,255,255,0.9);
-    transform: translateY(-2px) rotate(45deg);
-    transition: transform 180ms ease;
-}}
-.hebtu-dropdown:hover > a::after,
-.hebtu-dropdown:focus-within > a::after {{
-    transform: translateY(2px) rotate(225deg);
 }}
 .hebtu-dropdown-menu {{
     position: absolute;
@@ -1108,6 +1106,10 @@ def main() -> None:
     view = current_view()
     if view == "chat":
         render_chat_view()
+    elif view == "code":
+        render_code_view()
+    elif view == "learn":
+        render_learn_view()
     elif view == "knowledge":
         render_knowledge_view()
     else:

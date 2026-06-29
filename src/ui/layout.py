@@ -16,7 +16,9 @@ def render_top_nav(active: str) -> None:
     """Render the top navigation bar."""
     nav_items = [
         ("home", "首页", "/?view=home"),
-        ("chat", "智能问答", "/?view=chat"),
+        ("chat", "教务问答", "/?view=chat"),
+        ("code", "代码学习", "/?view=code"),
+        ("learn", "学习驾驶舱", "/?view=learn"),
         ("knowledge", "知识库", "/?view=knowledge"),
     ]
     links = "".join(
@@ -39,7 +41,7 @@ def render_top_nav(active: str) -> None:
 
 
 def metric_card(label: str, value: object) -> None:
-    """Render a premium metric card using legacy DS classes."""
+    """Render a metric card using legacy DS classes."""
     st.markdown(
         f"""
         <div class="metric-card">
@@ -51,20 +53,19 @@ def metric_card(label: str, value: object) -> None:
     )
 
 
-# ── New design system metric card ─────────────────────────
 METRIC_ICONS = {
-    "资料文件": ("📄", "blue"),
+    "资料文件": ("📚", "blue"),
     "知识片段": ("🧩", "coral"),
     "课程大纲": ("📋", "green"),
     "官网网页": ("🌐", "indigo"),
     "公开附件": ("📎", "amber"),
-    "培养方案": ("📘", "blue"),
-    "本地文件": ("📁", "blue"),
+    "培养方案": ("🗂", "blue"),
+    "本地文件": ("📄", "blue"),
 }
 
 
 def ds_metric_card(label: str, value: object, *, accent: str = "blue") -> None:
-    """Render a new design-system metric card with icon and hover effect."""
+    """Render a design-system metric card with icon and hover effect."""
     icon_info = METRIC_ICONS.get(label, ("📊", accent))
     icon, icon_class = icon_info if isinstance(icon_info, tuple) else ("📊", accent)
     st.markdown(
@@ -72,7 +73,7 @@ def ds_metric_card(label: str, value: object, *, accent: str = "blue") -> None:
         <div class="ds-metric-card">
             <span class="ds-metric-icon {html.escape(icon_class)}">{icon}</span>
             <div>
-                <div class="ds-metric-label">{html.escape(label)}</div>
+                <div class="ds-metric-label">{html.escape(str(label))}</div>
                 <div class="ds-metric-value">{html.escape(str(value))}</div>
             </div>
         </div>

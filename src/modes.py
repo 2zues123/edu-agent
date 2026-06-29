@@ -64,7 +64,17 @@ def classify_answer_mode(question: str, intent: Intent) -> AnswerMode:
     asks_for_advice = any(term in text for term in ADVICE_TERMS)
     asks_to_use_references = any(term in text for term in REFERENCE_TERMS)
 
+    modern_school_terms = ["学校", "校内", "学院", "软件学院", "软件工程", "专业", "课程", "培养方案", "学分"]
+    modern_advice_terms = ["怎么学", "如何学", "学习路径", "学习规划", "方向规划", "推荐", "适合", "提升", "补弱", "考研", "就业", "竞赛"]
+    modern_reference_terms = ["结合", "根据", "基于", "参考", "按照", "课程体系", "培养方案"]
+    has_school_context = has_school_context or any(term in text for term in modern_school_terms)
+    asks_for_advice = asks_for_advice or any(term in text for term in modern_advice_terms)
+    asks_to_use_references = asks_to_use_references or any(term in text for term in modern_reference_terms)
+
     if has_school_context and asks_for_advice and asks_to_use_references:
+        return HYBRID_MODE
+
+    if has_school_context and asks_for_advice:
         return HYBRID_MODE
 
     if intent.name in STRICT_INTENTS:

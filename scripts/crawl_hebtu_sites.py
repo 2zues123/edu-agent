@@ -41,6 +41,10 @@ DISCOVERY_SEED_URLS = [
     "https://software.hebtu.edu.cn/a/2025/05/30/E6381C289BF948A4A53049CC6AF4687D.html",
     "https://jwc.hebtu.edu.cn/a/2026/04/09/E55718F3AAD24D219FB44A3B64892DB7.html",
     "https://jwc.hebtu.edu.cn/a/2026/03/05/C2E58230C5944480912C3E62C0E52B8E.html",
+    # Additional detail pages
+    "https://jwc.hebtu.edu.cn/a/xlxx/index.html",     # 校历 / academic calendar
+    "https://jwc.hebtu.edu.cn/a/xkxx/index.html",     # 选课信息 / course selection
+    "https://jwc.hebtu.edu.cn/a/2026/06/01/326BAD4DC64948B0A64BC2B65E86223C.html",
 ]
 SEED_URLS = CORE_SEED_URLS + DISCOVERY_SEED_URLS
 ALLOWED_NETLOCS = {
@@ -121,6 +125,7 @@ def normalize_url(url: str) -> str:
         (key, value)
         for key, value in parse_qsl(parsed.query, keep_blank_values=True)
         if not key.lower().startswith(("utm_", "spm", "from"))
+        and key.lower() not in {"page", "pageno", "curpage", "p", "pn", "pageid", "pageindex"}
     ]
     query = urlencode(sorted(query_items), doseq=True)
     return urlunparse((scheme, netloc, path, "", query, ""))
@@ -141,7 +146,12 @@ def is_allowed_url(url: str) -> bool:
 
 
 def looks_like_attachment(url: str) -> bool:
-    return suffix_for_url(url) in ATTACHMENT_SUFFIXES
+    if suffix_for_url(url) in ATTACHMENT_SUFFIXES:
+        return True
+    # AndaCMS download portal URLs (jwc attachments use /dynamic/download.jsp?id=...)
+    if "/dynamic/download.jsp" in url and "id=" in url:
+        return True
+    return False
 
 
 def should_skip_url(url: str) -> bool:
@@ -245,7 +255,37 @@ def extract_published_at(soup: BeautifulSoup, text: str) -> str:
     return ""
 
 
-def extract_page(response: requests.Response, url: str) -> tuple[str, str, str, list[str]]:
+def html_to_markdown_text(soup_element) -> str:
+    """Convert BS4 element to plain text, preserving structure from tables/lists."""
+    for table in soup_element.find_all("table"):
+        rows = []
+        for tr in table.find_all("tr"):
+            cells = [td.get_text(" ", strip=True) for td in tr.find_all(["td", "th"])]
+            if cells:
+                rows.append(" | ".join(cells))
+        if rows:
+            table.replace_with("\n" + "\n".join(rows) + "\n")
+
+    for li in soup_element.find_all("li"):
+        text = li.get_text(" ", strip=True)
+        if text:
+            li.replace_with(f"- {text}\n")
+
+    for dl in soup_element.find_all("dl"):
+        lines = []
+        for dt, dd in zip(dl.find_all("dt"), dl.find_all("dd")):
+            key = dt.get_text(" ", strip=True)
+            val = dd.get_text(" ", strip=True)
+            if key and val:
+                lines.append(f"**{key}**: {val}")
+        if lines:
+            dl.replace_with("\n".join(lines) + "\n")
+
+    text = soup_element.get_text("\n", strip=True)
+    return clean_text(text)
+
+
+def extract_page(response: requests.Response, url: str) -> tuple[str, str, str, list[str], list[tuple[str, str]]]:
     if not response.encoding or response.encoding.lower() in {"iso-8859-1", "latin-1"}:
         response.encoding = response.apparent_encoding or "utf-8"
     soup = BeautifulSoup(response.text, "html.parser")
@@ -263,17 +303,31 @@ def extract_page(response: requests.Response, url: str) -> tuple[str, str, str, 
 
     main = soup.find("article") or soup.find("main")
     if main is None:
-        candidates = soup.select(".content, .article, .news, .main, .con, .detail, #content, #main")
+        candidates = soup.select(
+            ".con_con, .TRS_Editor, .article_content, .news_content, "
+            ".Custom_UnionStyle, .text_content, .nr-content, .wp_articlecontent, "
+            ".content, .article, .news, .main, .con, .detail, #content, #main"
+        )
         main = max(candidates, key=lambda item: len(item.get_text(" ", strip=True)), default=soup.body or soup)
-    text = clean_text(main.get_text("\n", strip=True))
+    text = html_to_markdown_text(main)
     published_at = extract_published_at(soup, text)
+
+    # Discover attachment links within the main content area
+    discovered_attachments: list[tuple[str, str]] = []
+    if main is not None:
+        for anchor in main.find_all("a", href=True):
+            href = str(anchor["href"]).strip()
+            joined = normalize_url(urljoin(url, href))
+            if looks_like_attachment(joined):
+                link_text = clean_text(anchor.get_text(" ", strip=True))
+                discovered_attachments.append((joined, link_text))
 
     links: list[str] = []
     for anchor in soup.find_all("a", href=True):
         joined = normalize_url(urljoin(url, str(anchor["href"]).strip()))
         if is_allowed_url(joined) and not should_skip_url(joined):
             links.append(joined)
-    return title, text, published_at, links
+    return title, text, published_at, links, discovered_attachments
 
 
 def markdown_document(title: str, text: str, *, url: str, site: str, published_at: str) -> str:
@@ -398,6 +452,16 @@ def validate_clean_run(args: argparse.Namespace) -> None:
     )
 
 
+def _url_priority(url: str) -> bool:
+    """Return True if the URL looks like a detail/article page (crawl first)."""
+    path = urlparse(url).path.lower()
+    if re.search(r"/a/\d{4}/\d{2}/\d{2}/[a-f0-9]+\.html$", path):
+        return True
+    if "/dynamic/content.jsp" in path:
+        return True
+    return False
+
+
 def crawl(args: argparse.Namespace) -> int:
     if args.dry_run:
         print("Seeds:")
@@ -406,7 +470,9 @@ def crawl(args: argparse.Namespace) -> int:
         print(f"Allowed domains: {', '.join(sorted(ALLOWED_NETLOCS))}")
         print(f"Excluded domains: {', '.join(sorted(EXCLUDED_NETLOCS))}")
         page_limit = "unlimited" if args.max_pages_per_site <= 0 else str(args.max_pages_per_site)
+        total_limit = "unlimited" if args.max_total_pages <= 0 else str(args.max_total_pages)
         print(f"Max pages per site: {page_limit}")
+        print(f"Max total pages: {total_limit}")
         print(f"Core seed counts: {seed_counts_by_site(CORE_SEED_URLS)}")
         print(f"Attachments: {', '.join(sorted(ATTACHMENT_SUFFIXES))}")
         return 0
@@ -418,8 +484,17 @@ def crawl(args: argparse.Namespace) -> int:
     ensure_output_dirs(args.raw_web_dir, args.attachment_dir, args.processed_dir)
     session = build_session(args.user_agent)
     robots = load_robot_parsers(session, args.timeout, args.user_agent)
-    queue: deque[str] = deque(normalize_url(url) for url in SEED_URLS)
-    seen = set(queue)
+
+    # Priority queues: high = detail pages first, low = listing/nav pages
+    queue_high: deque[str] = deque()
+    queue_low: deque[str] = deque()
+    for url in SEED_URLS:
+        normalized = normalize_url(url)
+        if _url_priority(normalized):
+            queue_high.append(normalized)
+        else:
+            queue_low.append(normalized)
+    seen: set[str] = set(queue_high) | set(queue_low)
     content_hashes: set[str] = set()
     site_counts: dict[str, int] = defaultdict(int)
     pages: list[CrawledPage] = []
@@ -427,8 +502,34 @@ def crawl(args: argparse.Namespace) -> int:
     skipped: list[dict] = []
     failed: list[dict] = []
 
-    while queue:
-        url = queue.popleft()
+    def _pop_url() -> str | None:
+        """Pop from high-priority queue first, then low."""
+        if queue_high:
+            return queue_high.popleft()
+        if queue_low:
+            return queue_low.popleft()
+        return None
+
+    def _enqueue_links(links: Iterable[str]) -> None:
+        for link in links:
+            if link in seen:
+                continue
+            seen.add(link)
+            if _url_priority(link):
+                queue_high.append(link)
+            else:
+                queue_low.append(link)
+
+    while True:
+        url = _pop_url()
+        if url is None:
+            break
+
+        # Global budget check
+        if args.max_total_pages > 0 and len(pages) >= args.max_total_pages:
+            skipped.append({"url": url, "reason": "global page budget reached"})
+            continue
+
         site = urlparse(url).netloc.lower()
         if not site_counts_within_budget(site_counts, url, args.max_pages_per_site):
             skipped.append({"url": url, "reason": "site page budget reached"})
@@ -452,10 +553,22 @@ def crawl(args: argparse.Namespace) -> int:
                 skipped.append({"url": final_url, "reason": f"unsupported content type: {content_type}"})
                 continue
 
-            title, text, published_at, links = extract_page(response, final_url)
+            title, text, published_at, links, discovered_attachments = extract_page(response, final_url)
+
+            # Download any discovered attachments (jwc notices embed content in files)
+            for att_url, att_title in discovered_attachments:
+                if args.download_attachments:
+                    try:
+                        att_response = fetch_with_retries(session, att_url, timeout=args.timeout, retries=1)
+                        attachments.append(write_attachment(
+                            args.attachment_dir, response=att_response, url=att_url, title=att_title))
+                        time.sleep(args.delay * 0.5)
+                    except Exception:
+                        pass
+
             if len(text) < args.min_text_chars:
                 skipped.append({"url": final_url, "reason": f"text too short: {len(text)}"})
-                enqueue_links(queue, seen, links)
+                _enqueue_links(links)
                 continue
 
             content_hash = sha1_text(text)
@@ -472,7 +585,7 @@ def crawl(args: argparse.Namespace) -> int:
                     )
                 )
                 site_counts[site] += 1
-            enqueue_links(queue, seen, links)
+            _enqueue_links(links)
             time.sleep(args.delay)
         except Exception as exc:
             failed.append({"url": url, "error": str(exc)})
@@ -519,8 +632,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max-pages-per-site",
         type=int,
-        default=0,
+        default=150,
         help="Maximum saved HTML pages per allowed site. Use 0 for no per-site limit.",
+    )
+    parser.add_argument(
+        "--max-total-pages",
+        type=int,
+        default=600,
+        help="Maximum total saved pages across all sites. Use 0 for no limit.",
     )
     parser.add_argument("--timeout", type=int, default=15)
     parser.add_argument("--retries", type=int, default=2)

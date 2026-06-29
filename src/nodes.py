@@ -18,6 +18,17 @@ from src.prompts import (
 from src.retriever import HybridRetriever, RetrievedChunk
 from src.risk import RISK_NOTICE, is_high_risk
 from src.state import AgentState
+from src.course_db import is_counting_query, query_course_db, lookup_course_info, CourseDB
+
+# Module-level cache — BGE model is heavy, reuse across queries
+_RETRIEVER_CACHE: HybridRetriever | None = None
+
+
+def _get_retriever() -> HybridRetriever:
+    global _RETRIEVER_CACHE
+    if _RETRIEVER_CACHE is None:
+        _RETRIEVER_CACHE = HybridRetriever()
+    return _RETRIEVER_CACHE
 
 
 def classify_intent_node(state: AgentState) -> AgentState:
@@ -40,14 +51,82 @@ def retrieve_knowledge_node(state: AgentState) -> AgentState:
         return {"sources": []}
 
     intent = state.get("intent")
-    retriever = HybridRetriever()
-    category = intent.category if intent else None
+    retriever = _get_retriever()
     top_k = state.get("top_k", 5)
+    question = state["question"]
 
-    sources = retriever.search(state["question"], category=category, top_k=top_k)
-    if not sources and category is not None:
-        sources = retriever.search(state["question"], category=None, top_k=top_k)
+    # Course intent: also search programs — 培养方案 contains the definitive
+    # course list (name, code, credits, hours) that individual syllabi may lack.
+    # Workflow intent: search all categories since workflows data is in policies/web.
+    if intent and intent.category in ("courses", "workflows"):
+        sources = retriever.search(question, category=None, top_k=top_k)
+    else:
+        category = intent.category if intent else None
+        sources = retriever.search(question, category=category, top_k=top_k)
+        if not sources and category is not None:
+            sources = retriever.search(question, category=None, top_k=top_k)
+
+    # ── Augment with structured course DB for counting / specific lookups ──
+    sources = _augment_with_course_db(question, sources)
+
     return {"sources": sources}
+
+
+def _augment_with_course_db(
+    question: str, sources: list[RetrievedChunk]
+) -> list[RetrievedChunk]:
+    """Add structured course DB results for counting/listing/course-info queries."""
+    # 1. Counting / listing queries (e.g. "几门数学课")
+    if is_counting_query(question):
+        answer = query_course_db(question)
+        if answer:
+            # Create a synthetic chunk with the structured answer
+            fake_chunk = RetrievedChunk(
+                chunk_id="course_db_count",
+                title="软件工程专业培养方案（课程数据库）",
+                category="programs",
+                source_file="data/processed/learning_map.json",
+                heading="课程统计",
+                text=answer,
+                score=100.0,  # highest priority
+                source_url="",
+                site="",
+                published_at="",
+            )
+            # Only keep top 1-2 relevant supplementary sources (programs/courses only)
+            filtered = [s for s in sources if s.category in ("programs", "courses")]
+            return [fake_chunk] + filtered[:1]
+
+    # 2. Specific course info lookup
+    # Check if question asks about a known course's credits/hours/etc.
+    db = CourseDB()
+    course_formal_q = any(kw in question for kw in
+        ["学分", "学时", "必修", "选修", "考核", "先修", "第几学期"])
+    if course_formal_q:
+        for course in db.courses:
+            name = course.get("name", "")
+            if len(name) >= 3 and name in question:
+                info = lookup_course_info(name)
+                if info:
+                    src_file = course.get("source", "data/processed/learning_map.json")
+                    fake_chunk = RetrievedChunk(
+                        chunk_id=f"course_db_{course.get('code', '')}",
+                        title=f"{name}（课程数据库）",
+                        category="courses",
+                        source_file=src_file,
+                        heading="课程信息",
+                        text=info,
+                        score=95.0,
+                        source_url="",
+                        site="",
+                        published_at="",
+                    )
+                    # Insert at position 1 (before other results), filter noise
+                    sources.insert(0, fake_chunk)
+                    sources = [s for s in sources if s.category in ("programs", "courses")][:2]
+                    break
+
+    return sources
 
 
 def generate_answer_node(state: AgentState) -> AgentState:
@@ -55,22 +134,33 @@ def generate_answer_node(state: AgentState) -> AgentState:
     sources = state.get("sources", [])
     risk_notice = state.get("risk_notice")
     question = state["question"]
+    history = state.get("chat_history") or []
 
     if not state.get("use_llm", True):
         return {"answer": build_fallback_answer(mode, sources, risk_notice, question)}
 
     if mode.name == GENERAL_MODE.name:
-        return {"answer": invoke_llm(GENERAL_SYSTEM_PROMPT, build_general_prompt(question))}
+        return {"answer": invoke_llm(GENERAL_SYSTEM_PROMPT, build_general_prompt(question, history=history))}
 
     if mode.name == STRICT_MODE.name:
         if not sources:
             return {"answer": insufficient_evidence_answer(risk_notice)}
-        return {"answer": invoke_llm(STRICT_SYSTEM_PROMPT, build_strict_prompt(question, sources, risk_notice))}
+        return {
+            "answer": invoke_llm(
+                STRICT_SYSTEM_PROMPT,
+                build_strict_prompt(question, sources, risk_notice, history=history),
+            )
+        }
 
     if mode.name == HYBRID_MODE.name:
-        return {"answer": invoke_llm(HYBRID_SYSTEM_PROMPT, build_hybrid_prompt(question, sources, risk_notice))}
+        return {
+            "answer": invoke_llm(
+                HYBRID_SYSTEM_PROMPT,
+                build_hybrid_prompt(question, sources, risk_notice, history=history),
+            )
+        }
 
-    return {"answer": invoke_llm(GENERAL_SYSTEM_PROMPT, build_general_prompt(question))}
+    return {"answer": invoke_llm(GENERAL_SYSTEM_PROMPT, build_general_prompt(question, history=history))}
 
 
 def invoke_llm(system_prompt: str, user_prompt: str) -> str:

@@ -168,6 +168,44 @@ def read_docx(path: Path) -> str:
     return "\n".join(parts)
 
 
+def read_doc(path: Path) -> str:
+    """Extract text from legacy .doc files (Windows / cross-platform)."""
+    # Tier 1: antiword (cross-platform, handles old .doc well)
+    antiword = shutil.which("antiword")
+    if not antiword:
+        # Check common Windows install paths
+        for candidate in (
+            r"D:\Git\mingw64\bin\antiword.exe",
+            r"C:\Program Files\antiword\antiword.exe",
+            r"C:\antiword\antiword.exe",
+        ):
+            if Path(candidate).exists():
+                antiword = candidate
+                break
+    if antiword:
+        result = subprocess.run(
+            [antiword, str(path)],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            return result.stdout
+
+    # Tier 2: python-docx can sometimes read .doc (if it's actually docx format)
+    try:
+        from docx import Document
+        doc = Document(str(path))
+        parts = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
+        if parts:
+            return "\n".join(parts)
+    except Exception:
+        pass
+
+    # Tier 3: textutil (macOS only)
+    return read_with_textutil(path)
+
+
 def read_with_textutil(path: Path) -> str:
     textutil = shutil.which("textutil")
     if not textutil:
@@ -185,23 +223,65 @@ def read_with_textutil(path: Path) -> str:
     return result.stdout
 
 
-def read_pdf(path: Path) -> str:
+def _read_pdf_pymupdf(path: Path) -> str:
+    """Extract text using PyMuPDF (fitz) — handles many PDFs better than pypdf."""
+    import fitz  # type: ignore[import-untyped]
+
+    doc = fitz.open(str(path))
+    pages: list[str] = []
     try:
-        from pypdf import PdfReader  # type: ignore
-    except ModuleNotFoundError:
-        pdftotext = shutil.which("pdftotext")
-        if not pdftotext:
-            raise RuntimeError("PDF parser unavailable; install pypdf or pdftotext")
-        result = subprocess.run(
-            [pdftotext, "-layout", str(path), "-"],
-            check=False,
-            capture_output=True,
-            text=True,
-        )
-        if result.returncode != 0:
-            error = result.stderr.strip() or result.stdout.strip()
-            raise RuntimeError(f"pdftotext failed: {error}")
-        return result.stdout
+        for page_index, page in enumerate(doc, start=1):
+            page_text = page.get_text("text") or ""
+            if page_text.strip():
+                pages.append(f"[page {page_index}]\n{page_text}")
+    finally:
+        doc.close()
+    return "\n\n".join(pages)
+
+
+def _ocr_pdf_pages_pymupdf(path: Path) -> str:
+    """Render each page to an image via PyMuPDF, then OCR with pytesseract."""
+    try:
+        import fitz  # type: ignore[import-untyped]
+        import pytesseract  # type: ignore[import-untyped]
+        from PIL import Image  # type: ignore[import-untyped]
+
+        # Auto-detect Tesseract if not in PATH
+        _tesseract_exe = pytesseract.pytesseract.tesseract_cmd
+        if not _tesseract_exe or not Path(_tesseract_exe).exists():
+            for _candidate in (
+                r"D:\tess\tesseract.exe",
+                r"C:\Program Files\Tesseract-OCR\tesseract.exe",
+                r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe",
+            ):
+                if Path(_candidate).exists():
+                    pytesseract.pytesseract.tesseract_cmd = _candidate
+                    break
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            f"OCR requires pytesseract + Pillow (and Tesseract installed on the system): {exc}"
+        ) from exc
+
+    doc = fitz.open(str(path))
+    pages: list[str] = []
+    try:
+        for page_index, page in enumerate(doc, start=1):
+            pix = page.get_pixmap(dpi=200)
+            img = Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
+            page_text = pytesseract.image_to_string(img, lang="chi_sim+eng").strip()
+            if page_text:
+                pages.append(f"[page {page_index}]\n{page_text}")
+    finally:
+        doc.close()
+    return "\n\n".join(pages)
+
+
+def _read_pdf_pypdf(path: Path) -> str:
+    """Extract text with pypdf (legacy fallback)."""
+    try:
+        from pypdf import PdfReader  # type: ignore[import-untyped]
+    except ModuleNotFoundError as exc:
+        raise RuntimeError("PDF parser unavailable; install pymupdf or pypdf") from exc
 
     reader = PdfReader(str(path))
     pages: list[str] = []
@@ -212,6 +292,88 @@ def read_pdf(path: Path) -> str:
     return "\n\n".join(pages)
 
 
+def _read_pdf_pdftotext(path: Path) -> str:
+    """Extract text with pdftotext CLI (last resort)."""
+    pdftotext = shutil.which("pdftotext")
+    if not pdftotext:
+        raise RuntimeError("PDF parser unavailable; install pymupdf, pypdf, or pdftotext")
+    result = subprocess.run(
+        [pdftotext, "-layout", str(path), "-"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        error = result.stderr.strip() or result.stdout.strip()
+        raise RuntimeError(f"pdftotext failed: {error}")
+    return result.stdout
+
+
+def _text_quality_ok(text: str) -> bool:
+    """Check if extracted text has decent quality (not too many garbled chars)."""
+    if len(text.strip()) < 100:
+        return False
+    # U+FFFD = replacement character (garbled encoding)
+    garbled = text.count("�")
+    total = max(len(text), 1)
+    # More than 2% garbled characters = poor quality
+    return (garbled / total) < 0.02
+
+
+def read_pdf(path: Path) -> str:
+    """Extract text from a PDF using a tiered strategy:
+
+    1. PyMuPDF (fitz) — best quality, handles mixed text/image PDFs
+    2. If text poor quality: OCR via PyMuPDF → pytesseract (for scanned PDFs)
+    3. Fall back to pypdf if PyMuPDF unavailable
+    4. Last resort: pdftotext CLI
+    """
+
+    # ── Tier 1: PyMuPDF ──
+    try:
+        text = _read_pdf_pymupdf(path)
+    except ModuleNotFoundError:
+        text = ""
+    except Exception:
+        text = ""
+
+    if text and _text_quality_ok(text):
+        return text
+
+    # ── Tier 2: OCR (scanned / poor quality PDF) ──
+    if text and not _text_quality_ok(text):
+        garbled = text.count("�")
+        print(f"  ⚠ PyMuPDF: {len(text.strip())} chars ({garbled} garbled) from {path.name}, trying OCR...")
+    elif not text or len(text.strip()) < 100:
+        print(f"  ⚠ PyMuPDF extracted only {len(text.strip()) if text else 0} chars from {path.name}, trying OCR...")
+
+    try:
+        ocr_text = _ocr_pdf_pages_pymupdf(path)
+        if ocr_text and _text_quality_ok(ocr_text):
+            print(f"  ✓ OCR succeeded: {len(ocr_text.strip())} chars from {path.name}")
+            return ocr_text
+    except (ModuleNotFoundError, RuntimeError) as exc:
+        print(f"  ⚠ OCR unavailable for {path.name}: {exc}")
+    except Exception as exc:
+        print(f"  ⚠ OCR failed for {path.name}: {exc}")
+
+    if text.strip():
+        return text
+
+    # ── Tier 3: pypdf ──
+    try:
+        text = _read_pdf_pypdf(path)
+        if text and len(text.strip()) >= 100:
+            return text
+    except (ModuleNotFoundError, RuntimeError):
+        pass
+    except Exception:
+        pass
+
+    # ── Tier 4: pdftotext ──
+    return _read_pdf_pdftotext(path)
+
+
 def extract_text(document: SourceDocument) -> str:
     if document.suffix in {".txt", ".md"}:
         metadata, body = parse_front_matter(read_text_file(document.path))
@@ -219,7 +381,7 @@ def extract_text(document: SourceDocument) -> str:
     if document.suffix == ".docx":
         return read_docx(document.path)
     if document.suffix == ".doc":
-        return read_with_textutil(document.path)
+        return read_doc(document.path)
     if document.suffix == ".pdf":
         return read_pdf(document.path)
     raise RuntimeError(f"unsupported file type: {document.suffix}")

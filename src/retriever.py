@@ -100,6 +100,16 @@ def infer_query_phrases(question: str) -> list[str]:
         "考试安排",
     ]
     phrases.extend(phrase for phrase in direct_phrases if phrase in question)
+
+    # Credit / score queries: boost program-category chunks
+    credit_keywords = ["学分", "学时", "几分", "多少分", "绩点", "周学时", "考核",
+                       "必修", "选修", "先修", "课程类别", "课程性质"]
+    if any(kw in question for kw in credit_keywords):
+        phrases.append("学分")
+        phrases.append("学时")
+        phrases.append("课程代码")
+        phrases.append("必修")
+
     return list(dict.fromkeys(phrases))
 
 
@@ -121,7 +131,13 @@ def chunk_to_result(chunk: dict, score: float) -> RetrievedChunk:
 def category_matches(chunk: dict, category: str | None) -> bool:
     if category is None:
         return True
-    return chunk.get("category") in {category, "web"}
+    chunk_cat = chunk.get("category", "")
+    if chunk_cat in {category, "web"}:
+        return True
+    # Course queries also need program data (培养方案 has course credits)
+    if category == "courses" and chunk_cat == "programs":
+        return True
+    return False
 
 
 class KeywordRetriever:
@@ -184,8 +200,54 @@ class KeywordRetriever:
         search_text = f"{title} {heading} {source_url} {text[:1200]}"
         score = 0.0
 
+        # ── Noise penalties: suppress known low-quality / irrelevant chunks ──
+        score += KeywordRetriever._noise_penalty(question, chunk)
+
         if "软件学院" in question and site == "software.hebtu.edu.cn":
             score += 8.0
+
+        # ── School-info queries: boost specific pages ──
+        if any(kw in question for kw in ["校区", "在哪", "地址", "位置"]):
+            if "软件学院" in title or "网络教育学院" in title:
+                score += 40.0
+        if "院长" in question or "领导" in question:
+            if "领导" in title or "领导" in source_url:
+                score += 50.0
+            if "学院简介" in title:
+                score += 25.0
+        if any(kw in question for kw in ["教师", "老师", "师资", "教授", "教职工"]):
+            if "领导" in title or "领导" in source_url:
+                score += 60.0
+            if "学院简介" in title or "师资" in title:
+                score += 25.0
+            # Boost any page that contains person names/titles
+            if any(t in text for t in ["书记", "院长", "教授", "讲师"]):
+                score += 15.0
+        chunk_cat = str(chunk.get("category", ""))
+        if any(kw in question for kw in ["选课", "退课", "办理", "申请", "流程"]):
+            if chunk_cat == "policies":
+                score += 25.0
+            if "选课" in title or "选课" in text:
+                score += 30.0
+            if "休学" in title or "休学" in text:
+                score += 35.0
+            if "缓考" in title or "缓考" in text:
+                score += 30.0
+
+        # Credit / course-info queries: boost program chunks heavily
+        credit_keywords = ["学分", "学时", "几分", "多少分", "绩点", "周学时", "考核方式",
+                           "必修", "选修", "先修", "课程类别", "课程性质"]
+        if any(kw in question for kw in credit_keywords):
+            cat = str(chunk.get("category", ""))
+            if cat == "programs":
+                score += 30.0
+            elif cat == "courses":
+                score += 10.0
+            # Boost syllabus metadata sections that contain credit/requirement info
+            heading = str(chunk.get("heading", ""))
+            metadata_headings = ["课程说明", "一、课程说明", "课程信息", "基本信息"]
+            if any(h in heading for h in metadata_headings):
+                score += 15.0
         if "领导" in question:
             if "领导" in title:
                 score += 40.0
@@ -213,6 +275,52 @@ class KeywordRetriever:
             if "/xyfc/kysx/" in source_url and not any(word in question for word in ["考研", "升学"]):
                 score -= 30.0
         return score
+
+    @staticmethod
+    def _noise_penalty(question: str, chunk: dict) -> float:
+        """Penalize known noise documents and low-quality web pages."""
+        title = str(chunk.get("title", ""))
+        text = str(chunk.get("text", ""))
+        source_url = str(chunk.get("source_url", ""))
+        site = str(chunk.get("site", ""))
+        cat = str(chunk.get("category", ""))
+
+        penalty = 0.0
+
+        # ── Known noise news articles (not academic) ──
+        noise_titles = [
+            "典耀中华", "阅读大会", "毽球比赛", "音乐会",
+        ]
+        for nt in noise_titles:
+            if nt in title:
+                penalty -= 50.0
+                break
+
+        # ── Short web pages are usually just navigation / index pages ──
+        if cat == "web" and len(text) < 300:
+            penalty -= 30.0
+
+        # ── News site chunks are rarely relevant for academic queries ──
+        academic_query = any(kw in question for kw in [
+            "学分", "课程", "考试", "毕业", "补考", "重修", "必修", "选修",
+            "培养方案", "考核", "成绩", "绩点", "学位", "学籍",
+        ])
+        if academic_query and site == "news.hebtu.edu.cn":
+            penalty -= 20.0
+
+        # ── Generic index/navigation pages ──
+        nav_titles = {"师大要闻", "综合新闻", "基层动态", "学术动态", "通知公告",
+                       "教学动态", "学工动态", "学院新闻", "重要通知",
+                       "党旗飘扬", "立德树人", "学习参考", "文件精神",
+                       "媒体师大", "校园风光", "校园地图"}
+        if title in nav_titles:
+            penalty -= 35.0
+
+        # ── Short, low-content pages that are just link lists ──
+        if cat == "web" and len(text) < 150:
+            penalty -= 45.0
+
+        return penalty
 
 
 class FaissVectorRetriever:
@@ -296,18 +404,29 @@ def merge_results(
     *,
     top_k: int,
 ) -> list[RetrievedChunk]:
+    """Merge vector and keyword results using Reciprocal Rank Fusion (RRF).
+
+    Keyword results are weighted 1.5x higher than vector results.  With
+    BGE-small-zh providing good Chinese semantic vectors, the weights are
+    more balanced than with the old HashingVectorizer.
+    """
     merged: dict[str, RetrievedChunk] = {}
+    k = 60  # RRF damping constant
+    kw_weight = 1.5
+    vec_weight = 1.0
+
     for rank, result in enumerate(vector_results):
-        adjusted_score = safe_score(result) + max(0.0, 1.0 - rank * 0.05)
-        merged[result_key(result)] = result_with_score(result, adjusted_score)
+        rrf = vec_weight / (k + rank)
+        merged[result_key(result)] = result_with_score(result, rrf)
 
     for rank, result in enumerate(keyword_results):
-        adjusted_score = safe_score(result) * 0.25 + max(0.0, 0.5 - rank * 0.03)
+        rrf = kw_weight / (k + rank)
         key = result_key(result)
         existing = merged.get(key)
-        if existing:
-            adjusted_score += existing.score
-        merged[key] = result_with_score(result, adjusted_score)
+        merged[key] = result_with_score(
+            result,
+            existing.score + rrf if existing else rrf,
+        )
 
     return sorted(merged.values(), key=lambda item: item.score, reverse=True)[:top_k]
 

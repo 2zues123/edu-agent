@@ -18,3 +18,4 @@ class AgentState(TypedDict, total=False):
     risk_notice: str | None
     sources: list[object]
     answer: str
+    chat_history: list[dict[str, str]]

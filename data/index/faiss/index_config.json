@@ -1,0 +1,12 @@
+{
+  "chunks_file": "data\\processed\\chunks.jsonl",
+  "index_file": "chunks.faiss",
+  "metadata_file": "metadata.jsonl",
+  "embedding": {
+    "backend": "sentence-transformers",
+    "model": "BAAI/bge-small-zh-v1.5",
+    "dimension": 512,
+    "normalized": true,
+    "local_files_only": false
+  }
+}
