@@ -463,11 +463,17 @@ def chunk_text(
     pending_heading = ""
     pending_parts: list[str] = []
     pending_size = 0
+    # Carry over the last paragraph from previous flush as overlap
+    overlap_carry: str | None = None
 
-    def flush() -> None:
-        nonlocal pending_heading, pending_parts, pending_size
+    def flush(keep_last: bool = False) -> str | None:
+        nonlocal pending_heading, pending_parts, pending_size, overlap_carry
         if not pending_parts:
-            return
+            return None
+        # Prepend overlap from previous chunk
+        if overlap_carry:
+            pending_parts.insert(0, overlap_carry)
+            pending_size += len(overlap_carry)
         combined = "\n\n".join(pending_parts).strip()
         for part in split_long_block(combined, max_chars, overlap):
             index = len(chunks)
@@ -487,16 +493,22 @@ def chunk_text(
                     published_at=document.published_at,
                 )
             )
+        # Carry last paragraph as overlap for next chunk
+        if keep_last and pending_parts and len(pending_parts) > 1:
+            overlap_carry = pending_parts[-1]
+        else:
+            overlap_carry = None
         pending_heading = ""
         pending_parts = []
         pending_size = 0
+        return overlap_carry
 
     for heading, block in paragraph_blocks(text):
         if not block:
             continue
         block_size = len(block)
         if pending_parts and pending_size + block_size > max_chars:
-            flush()
+            flush(keep_last=True)
         if not pending_heading and heading:
             pending_heading = heading
         pending_parts.append(block)

@@ -136,8 +136,13 @@ def query_course_db(question: str) -> str | None:
     Returns a formatted answer string, or None if this isn't a counting query.
     """
     type_keyword = is_counting_query(question)
+    # If regex captured a long string (> 4 chars) that won't match TYPE_KEYWORDS,
+    # fall back to direct keyword matching on the original question
+    if type_keyword and len(type_keyword) > 4:
+        direct = _match_type_keyword(question)
+        if direct:
+            type_keyword = direct
     if not type_keyword:
-        # Final fallback: check if question directly contains a TYPE_KEYWORDS key
         type_keyword = _match_type_keyword(question)
     if not type_keyword:
         # Also check if question mentions any course-related listing pattern
