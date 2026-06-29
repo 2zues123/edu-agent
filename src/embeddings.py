@@ -177,4 +177,4 @@ def build_embedding_provider_from_config(config: dict[str, Any], *, index_dir: P
             n_features=int(config.get("n_features", DEFAULT_HASHING_FEATURES)),
             vectorizer_file=vectorizer_path,
         )
-    return build_embedding_provider(backend, model=config.get("model"), local_files_only=True)
+    return build_embedding_provider(backend, model=config.get("model"), local_files_only=False)
